@@ -1,7 +1,7 @@
 Summary: Red Hat specific rpm configuration files.
 Name: redhat-rpm-config
-Version: 8.0.7
-Release: 2
+Version: 8.0.8
+Release: 1
 License: GPL
 Group: Development/System
 Source: redhat-rpm-config-%{version}.tar.gz
@@ -27,6 +27,10 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_prefix}/lib/rpm/redhat
 
 %changelog
+* Tue Dec  3 2002 Bill Nottingham <notting@redhat.com> 8.0.8-1
+- turn debug packages off
+- override optflags with no -g
+
 * Fri Nov 22 2002 Elliot Lee <sopwith@redhat.com> 8.0.7-1
 - turn on debug packages
 
