@@ -35,7 +35,7 @@
   done ; \
   ./configure --host=%{_host} --build=%{_build} \\\
 	--target=%{_target_platform} \\\
-	--program_prefix=%{?_program_prefix} \\\
+	--program-prefix=%{?_program_prefix} \\\
 	--prefix=%{_prefix} \\\
 	--exec-prefix=%{_exec_prefix} \\\
 	--bindir=%{_bindir} \\\

@@ -8,7 +8,7 @@ CVSTAG = REDHAT_RPM_CONFIG_$(subst .,_,$(VERSION))
 all:
 
 tag-archive:
-	@cvs -Q tag -F $(CVSTAG)
+	cvs -Q tag -F $(CVSTAG)
 
 create-archive:
 	@rm -rf /tmp/$(NAME)
