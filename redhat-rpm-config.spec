@@ -1,10 +1,12 @@
 Summary: Red Hat specific rpm configuration files.
 Name: redhat-rpm-config
 Version: 8.0.33
-Release: 1
+Release: 2
 License: GPL
 Group: Development/System
 Source: redhat-rpm-config-%{version}.tar.gz
+Source1: wall.patch
+
 BuildArch: noarch
 #Requires: rpmbuild(VendorConfig) <= 4.1
 #Requires: mktemp
@@ -23,6 +25,7 @@ Red Hat specific rpm configuration files.
 rm -rf ${RPM_BUILD_ROOT}
 mkdir -p ${RPM_BUILD_ROOT}%{_prefix}/lib/rpm
 ( cd ${RPM_BUILD_ROOT}%{_prefix}/lib/rpm; tar xzf %{SOURCE0}; mv %{name}-%{version} redhat; rm -f redhat/*.spec )
+( cd ${RPM_BUILD_ROOT}; cat %{SOURCE1} | patch -p1   )
 
 # fix perms of config.{guess,sub}
 chmod a+x ${RPM_BUILD_ROOT}%{_prefix}/lib/rpm/redhat/config.{guess,sub}
@@ -35,6 +38,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_prefix}/lib/rpm/redhat
 
 %changelog
+* Wed Feb 23 2005 Arjan van de Ven <arjanv@redhat.com> 8.0.33-2
+- add -Wall on Ulrichs request
+
 * Wed Feb 9 2005 Elliot Lee <sopwith@redhat.com> 8.0.33-1
 - Change -D to -Wp,-D to make java happy
 - Add -D_FORTIFY_SOURCE=2 to global cflags (as per Jakub & Arjan's request)
