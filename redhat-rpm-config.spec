@@ -1,7 +1,7 @@
 Summary: Red Hat specific rpm configuration files.
 Name: redhat-rpm-config
-Version: 8.0.24
-Release: 3
+Version: 8.0.25
+Release: 1
 License: GPL
 Group: Development/System
 Source: redhat-rpm-config-%{version}.tar.gz
@@ -31,6 +31,15 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_prefix}/lib/rpm/redhat
 
 %changelog
+* Mon Jul 07 2003 Jens Petersen <petersen@redhat.com> - 8.0.25-1
+- update config.{guess,sub} to 2003-06-17
+- define VENDOR to be redhat only when /etc/redhat-release present
+  [suggested by jbj]
+- put VENDOR in vendor field in our config.guess file for
+  ia64, ppc, ppc64, s390, s390x, x86_64 and elf32-i386 Linux
+- drop the --host, --build, --target and --program-prefix configure options
+  from %%configure, since this causes far too many problems
+
 * Fri May  2 2003 Jens Petersen <petersen@redhat.com> - 8.0.24-3
 - make config.{guess,sub} executable
 
