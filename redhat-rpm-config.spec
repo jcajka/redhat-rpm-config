@@ -1,12 +1,12 @@
 Summary: Red Hat specific rpm configuration files.
 Name: redhat-rpm-config
 Version: 8.0.3
-Release: 2
+Release: 3
 License: GPL
 Group: Development/System
 Source: redhat-rpm-config-%{version}.tar.gz
 BuildArch: noarch
-Requires: rpmbuild(VendorConfig) <= 4.1
+#Requires: rpmbuild(VendorConfig) <= 4.1
 BuildRoot: %{_tmppath}/%{name}-root
 
 %description
@@ -27,6 +27,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_prefix}/lib/rpm/redhat
 
 %changelog
+* Thu Oct 31 2002 Elliot Lee <sopwith@redhat.com> 8.0.3-3
+- Remove tracking dependency
+
 * Wed Oct 16 2002 Phil Knirsch <pknirsch@redhat.com> 8.0.3-2
 - Added fix for outdated config.[sub|guess] files in %configure section
 
