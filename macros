@@ -130,6 +130,10 @@ export LANG\
 %find_lang      /usr/lib/rpm/redhat/find-lang.sh %{buildroot}
 
 #
+# use internal dep generator?
+%_use_internal_dependency_generator 1
+
+#
 # Should missing %doc files terminate a build?
 %_missing_doc_files_terminate_build    1
 
