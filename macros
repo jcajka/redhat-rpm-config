@@ -9,21 +9,12 @@
 %_target_platform	%{_target_cpu}-%{_vendor}-%{_target_os}%{?_gnu}
 
 #==============================================================================
-# ---- configure macros.
+# ---- configure macros.  note that most of these are inherited
+#      from the defaults.
 #
 %_prefix		/usr
-%_exec_prefix		%{_prefix}
-%_bindir		%{_exec_prefix}/bin
-%_sbindir		%{_exec_prefix}/sbin
-%_libexecdir		%{_exec_prefix}/libexec
-%_datadir		%{_prefix}/share
 %_sysconfdir		/etc
-%_sharedstatedir	%{_prefix}/com
 %_localstatedir		/var
-%_lib			lib
-%_libdir		%{_exec_prefix}/%{_lib}
-%_includedir		%{_prefix}/include
-%_oldincludedir		/usr/include
 %_infodir		/usr/share/info
 %_mandir		/usr/share/man
 %_initrddir		%{_sysconfdir}/rc.d/init.d
@@ -97,21 +88,6 @@
     %{__os_install_post}\
 %{nil}
 
-#---------------------------------------------------------------------
-#	Expanded at end of %prep
-#
-%__id_u		%{__id} -u
-%__chown_Rhf	%{__chown} -Rhf
-%__chgrp_Rhf	%{__chgrp} -Rhf
-%_fixowner	[ `%{__id_u}` = '0' ] && %{__chown_Rhf} root
-%_fixgroup	[ `%{__id_u}` = '0' ] && %{__chgrp_Rhf} root
-%_fixperms	%{__chmod} -Rf a+rX,g-w,o-w
-#---------------------------------------------------------------------
-#	Always use %defattr(-,root,root) in %files (added in rpm-4.0.4)
-#
-#%files(n:f:)	%%files%{?-f: -f %{-f*}}%{?-n: -n %{-n*}} %{?1}\
-#%defattr(-,root,root,-)\
-#%{nil}
 
 # Bad hack to set $LANG to C during all RPM builds
 %prep %%prep\
