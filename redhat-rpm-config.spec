@@ -1,6 +1,6 @@
 Summary: Red Hat specific rpm configuration files.
 Name: redhat-rpm-config
-Version: 8.0.14
+Version: 8.0.15
 Release: 1
 License: GPL
 Group: Development/System
@@ -27,6 +27,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_prefix}/lib/rpm/redhat
 
 %changelog
+* Mon Dec 16 2002 Elliot Lee <sopwith@redhat.com> 8.0.15-1
+- Rename -debug subpackages to -debuginfo
+
 * Sat Dec 14 2002 Tim Powers <timp@redhat.com> 8.0.14-1
 - tweak debug package stuff so that we are overloading %%install
   instead of %%post
