@@ -1,6 +1,6 @@
 Summary: Red Hat specific rpm configuration files.
 Name: redhat-rpm-config
-Version: 8.0.18
+Version: 8.0.19
 Release: 1
 License: GPL
 Group: Development/System
@@ -28,6 +28,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_prefix}/lib/rpm/redhat
 
 %changelog
+* Wed Jan 22 2003 Elliot Lee <sopwith@redhat.com> 8.0.19-1
+- Disable brp-implant-ident-static until it works everywhere
+
 * Thu Jan 16 2003 Nalin Dahyabhai <nalin@redhat.com> 8.0.18-1
 - add brp-implant-ident-static, which requires mktemp
 
