@@ -25,6 +25,8 @@ optflags: ppc %{__global_cflags} -m32 -fsigned-char
 optflags: ppciseries %{__global_cflags} -m32 -fsigned-char
 optflags: ppcpseries %{__global_cflags} -m32 -fsigned-char
 optflags: ppc64 %{__global_cflags} -m64 -fsigned-char -mminimal-toc
+optflags: ppc8260 %{__global_cflags} -m32 -fsigned-char
+optflags: ppc8560 %{__global_cflags} -m32 -fsigned-char
 
 optflags: parisc %{__global_cflags} -mpa-risc-1-0
 optflags: hppa1.0 %{__global_cflags} -mpa-risc-1-0
