@@ -1,6 +1,6 @@
 Summary: Red Hat specific rpm configuration files.
 Name: redhat-rpm-config
-Version: 8.0.31
+Version: 8.0.32
 Release: 1
 License: GPL
 Group: Development/System
@@ -31,6 +31,10 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_prefix}/lib/rpm/redhat
 
 %changelog
+* Fri Oct  1 2004 Bill Nottingham <notting@redhat.com> 8.0.32-1
+- allow all symbol versioning in find_requires - matches RPM internal
+  behavior
+
 * Mon Jun 28 2004 Elliot Lee <sopwith@redhat.com> 8.0.31-1
 - Add ppc8[25]60 to rpmrc optflags
 
