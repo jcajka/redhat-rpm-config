@@ -31,6 +31,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_prefix}/lib/rpm/redhat
 
 %changelog
+* Mon Nov 15 2004 Elliot Lee <sopwith@redhat.com> 8.0.33-1
+- Add -D_FORTIFY_SOURCE=2 to global cflags (as per Jakub & Arjan's request)
+
 * Fri Oct  1 2004 Bill Nottingham <notting@redhat.com> 8.0.32-1
 - allow all symbol versioning in find_requires - matches RPM internal
   behavior

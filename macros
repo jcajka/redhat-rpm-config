@@ -151,4 +151,4 @@ unset DISPLAY\
 %__find_provides        /usr/lib/rpm/redhat/find-provides
 %__find_requires        /usr/lib/rpm/redhat/find-requires
 
-%__global_cflags	-O2 -g -pipe
+%__global_cflags	-O2 -g -pipe -D_FORTIFY_SOURCE=2
