@@ -1,7 +1,7 @@
 Summary: Red Hat specific rpm configuration files.
 Name: redhat-rpm-config
 Version: 8.0.28
-Release: 1.1
+Release: 1.1.1
 License: GPL
 Group: Development/System
 Source: redhat-rpm-config-%{version}.tar.gz
@@ -31,6 +31,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_prefix}/lib/rpm/redhat
 
 %changelog
+* Fri Feb 13 2004 Elliot Lee <sopwith@redhat.com>
+- rebuilt
+
 * Wed Sep 17 2003 Elliot Lee <sopwith@redhat.com> 8.0.28-1
 - Change brp-compress to pass -n flag to gzip (per msw's request)
 
