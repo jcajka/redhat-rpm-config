@@ -66,7 +66,6 @@
 	&& RPM_BUILD_NCPUS="`/usr/bin/getconf _NPROCESSORS_ONLN`"; \\\
 	[ "$RPM_BUILD_NCPUS" -gt 1 ] && echo "-j$RPM_BUILD_NCPUS")
 
-
 #==============================================================================
 # ---- Build policy macros.
 #
@@ -111,10 +110,10 @@ export LANG\
 # Should missing %doc files terminate a build?
 #
 # Note: The default value is 0 for legacy compatibility.
-%_missing_doc_files_terminate_build    0
+%_missing_doc_files_terminate_build    1
 
 #
 # Should unpackaged files in a build root terminate a build?
 #
 # Note: The default value should be 0 for legacy compatibility.
-%_unpackaged_files_terminate_build    0
+%_unpackaged_files_terminate_build    1
