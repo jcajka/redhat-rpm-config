@@ -15,6 +15,7 @@ if [ X"$1" = Xldd ]; then
 elif [ X"$1" = Xobjdump ]; then
     needed=1
 fi
+[ -z "$OBJDUMP" ] && OBJDUMP=objdump
 
 #
 # --- Grab the file manifest and classify files.
@@ -94,7 +95,7 @@ for f in $liblist $exelist ; do
     [ -r $f ] || continue
     lib64=`if file -L $f 2>/dev/null | \
 	grep "ELF 64-bit" >/dev/null; then echo "$mark64"; fi`
-    objdump -p $f | awk 'BEGIN { START=0; LIBNAME=""; needed='$needed'; }
+    $OBJDUMP -p $f | awk 'BEGIN { START=0; LIBNAME=""; needed='$needed'; }
 	/^$/ { START=0; }
 	/^Dynamic Section:$/ { START=1; }
 	(START==1) && /NEEDED/ {

@@ -3,6 +3,8 @@
 # This script reads filenames from STDIN and outputs any relevant provides
 # information that needs to be included in the package.
 
+[ -z "$OBJDUMP" ] && OBJDUMP=objdump
+
 filelist=`sed "s/['\"]/\\\&/g"`
 
 solist=$(echo $filelist | grep "\\.so" | grep -v "^/lib/ld.so" | \
