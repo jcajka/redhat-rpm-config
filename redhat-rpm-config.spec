@@ -27,6 +27,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_prefix}/lib/rpm/redhat
 
 %changelog
+* Sat Dec 14 2002 Tim Powers <timp@redhat.com> 8.0.13-1
+- turn on internal rpm dep generation by default
+
 * Fri Dec 13 2002 Elliot Lee <sopwith@redhat.com> 8.0.12-1
 - New release with debug packages on
 
