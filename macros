@@ -51,7 +51,7 @@
 	--infodir=%{_infodir}
 
 %makeinstall \
-  make \\\
+  %{__make} \\\
 	prefix=%{?buildroot:%{buildroot}}%{_prefix} \\\
 	exec_prefix=%{?buildroot:%{buildroot}}%{_exec_prefix} \\\
 	bindir=%{?buildroot:%{buildroot}}%{_bindir} \\\
