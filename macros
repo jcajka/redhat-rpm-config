@@ -92,6 +92,7 @@
     %{__os_install_post}\
 %{nil}
 
+
 #	Template for debug information sub-package.
 # NOTE: This is a copy from rpm to get the ifnarch noarch fix, it can be removed later
 %debug_package \
@@ -111,7 +112,6 @@ package or when debugging this package.\
 
 # Bad hack to set $LANG to C during all RPM builds
 %prep \
-%{?_enable_debug_packages:%{debug_package}}\
 %%prep\
 LANG=C\
 export LANG\
@@ -122,7 +122,8 @@ LANG=C\
 export LANG\
 %{nil}
 
-%install %%install\
+%install %{?_enable_debug_packages:%{?buildsubdir:%{debug_package}}}\
+%%install\
 LANG=C\
 export LANG\
 %{nil}
@@ -140,10 +141,6 @@ export LANG\
 #
 # Should unpackaged files in a build root terminate a build?
 %_unpackaged_files_terminate_build    1
-
-#
-# Use rpm's built in dependency generator?
-%_use_internal_dependency_generator 1
 
 %__find_provides        /usr/lib/rpm/redhat/find-provides
 %__find_requires        /usr/lib/rpm/redhat/find-requires

@@ -1,6 +1,6 @@
 Summary: Red Hat specific rpm configuration files.
 Name: redhat-rpm-config
-Version: 8.0.13
+Version: 8.0.14
 Release: 1
 License: GPL
 Group: Development/System
@@ -27,6 +27,10 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_prefix}/lib/rpm/redhat
 
 %changelog
+* Sat Dec 14 2002 Tim Powers <timp@redhat.com> 8.0.14-1
+- tweak debug package stuff so that we are overloading %%install
+  instead of %%post
+
 * Sat Dec 14 2002 Tim Powers <timp@redhat.com> 8.0.13-1
 - turn on internal rpm dep generation by default
 
