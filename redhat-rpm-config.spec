@@ -1,6 +1,6 @@
 Summary: Red Hat specific rpm configuration files.
 Name: redhat-rpm-config
-Version: 7.3.93
+Version: 7.3.94
 Release: 1
 License: GPL
 Group: Development/System
@@ -27,6 +27,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_prefix}/lib/rpm/redhat
 
 %changelog
+* Wed Aug 28 2002 Elliot Lee <sopwith@redhat.com> 7.3.94-1
+- Update macrofiles
+
 * Wed Jul 31 2002 Elliot Lee <sopwith@redhat.com> 7.3.93-1
 - Add _unpackaged_files_terminate_build and 
 _missing_doc_files_terminate_build to macros
