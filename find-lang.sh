@@ -76,7 +76,7 @@ while test $# -gt 0 ; do
     esac
 done    
 
-find $TOP_DIR -type f|sed '
+find $TOP_DIR -type f -or -type l|sed '
 1i\
 %defattr (644, root, root, 755)
 s:'"$TOP_DIR"'::
