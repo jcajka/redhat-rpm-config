@@ -1,6 +1,6 @@
 Summary: Red Hat specific rpm configuration files.
 Name: redhat-rpm-config
-Version: 8.0.27
+Version: 8.0.28
 Release: 1
 License: GPL
 Group: Development/System
@@ -31,6 +31,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_prefix}/lib/rpm/redhat
 
 %changelog
+* Wed Sep 17 2003 Elliot Lee <sopwith@redhat.com> 8.0.28-1
+- Change brp-compress to pass -n flag to gzip (per msw's request)
+
 * Tue Jul 15 2003 Elliot Lee <sopwith@redhat.com> 8.0.27-1
 - Fix broken configure macro find for config.guess/config.sub
 - Put host/target/build back for now
