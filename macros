@@ -112,4 +112,18 @@
 #%defattr(-,root,root,-)\
 #%{nil}
 
+# Bad hack to set $LANG to C during all RPM builds
+%prep %%prep\
+LANG=C\
+export LANG\
+%{nil}
 
+%build %%build\
+LANG=C\
+export LANG\
+%{nil}
+
+%install %%install\
+LANG=C\
+export LANG\
+%{nil}
