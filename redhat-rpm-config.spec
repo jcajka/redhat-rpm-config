@@ -1,6 +1,6 @@
 Summary: Red Hat specific rpm configuration files.
 Name: redhat-rpm-config
-Version: 8.0.20
+Version: 8.0.21
 Release: 1
 License: GPL
 Group: Development/System
@@ -28,6 +28,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_prefix}/lib/rpm/redhat
 
 %changelog
+* Mon Feb 24 2003 Elliot Lee <sopwith@redhat.com> 8.0.21-1
+- Just turn on -g unconditionally for now
+
 * Thu Feb 13 2003 Elliot Lee <sopwith@redhat.com> 8.0.20-1
 - Reorganize rpmrc/macros to set cflags in a nicer manner.
 

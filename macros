@@ -148,4 +148,4 @@ export LANG\
 %__find_provides        /usr/lib/rpm/redhat/find-provides
 %__find_requires        /usr/lib/rpm/redhat/find-requires
 
-%__global_cflags	-O2 %{?__debug_package:-g} -pipe
+%__global_cflags	-O2 -g -pipe
