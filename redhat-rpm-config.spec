@@ -1,6 +1,6 @@
 Summary: Red Hat specific rpm configuration files.
 Name: redhat-rpm-config
-Version: 8.0.32
+Version: 8.0.33
 Release: 1
 License: GPL
 Group: Development/System
@@ -9,7 +9,6 @@ BuildArch: noarch
 #Requires: rpmbuild(VendorConfig) <= 4.1
 #Requires: mktemp
 BuildRoot: %{_tmppath}/%{name}-root
-
 # rpmrc passes -mtune which first appeared in gcc 3.4
 %ifarch i386 i686 sparc
 Conflicts: gcc < 3.4
@@ -36,7 +35,8 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_prefix}/lib/rpm/redhat
 
 %changelog
-* Mon Nov 15 2004 Elliot Lee <sopwith@redhat.com> 8.0.33-1
+* Wed Feb 9 2005 Elliot Lee <sopwith@redhat.com> 8.0.33-1
+- Change -D to -Wp,-D to make java happy
 - Add -D_FORTIFY_SOURCE=2 to global cflags (as per Jakub & Arjan's request)
 
 * Fri Oct  1 2004 Bill Nottingham <notting@redhat.com> 8.0.32-1
