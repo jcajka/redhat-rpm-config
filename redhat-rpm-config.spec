@@ -1,7 +1,7 @@
 Summary: Red Hat specific rpm configuration files.
 Name: redhat-rpm-config
 Version: 8.0.33
-Release: 3
+Release: 4
 License: GPL
 Group: Development/System
 Source: redhat-rpm-config-%{version}.tar.gz
@@ -38,8 +38,8 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_prefix}/lib/rpm/redhat
 
 %changelog
-* Thu Mar 3 2005 Arjan van de Ven <arjanv@redhat.com> 8.0.33-2
-- add -fomit-frame-pointer -fexceptions -fasynchronous-unwind-tables 
+* Thu Mar 3 2005 Arjan van de Ven <arjanv@redhat.com> 8.0.33-4
+- add -fexceptions 
 
 * Wed Feb 23 2005 Arjan van de Ven <arjanv@redhat.com> 8.0.33-2
 - add -Wall on Ulrichs request
