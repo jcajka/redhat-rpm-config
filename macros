@@ -3,12 +3,10 @@
 #==============================================================================
 # ---- per-platform macros.
 #
-%_arch			i386
 %_vendor		redhat
 %_os			linux
 %_gnu			-gnu
 %_target_platform	%{_target_cpu}-%{_vendor}-%{_target_os}
-%optflags		-O2 -march=i386 -mcpu=i686 -g
 
 #==============================================================================
 # ---- configure macros.

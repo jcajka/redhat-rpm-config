@@ -27,6 +27,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_prefix}/lib/rpm/redhat
 
 %changelog
+* Fri Jun 21 2002 Elliot Lee <sopwith@redhat.com> 7.3.92-2
+- Don't define _arch
+
 * Thu Jun 20 2002 Elliot Lee <sopwith@redhat.com> 7.3.92-1
 - find-lang error detection from Havoc
 
