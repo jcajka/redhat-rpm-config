@@ -10,6 +10,11 @@ BuildArch: noarch
 #Requires: mktemp
 BuildRoot: %{_tmppath}/%{name}-root
 
+# rpmrc passes -mtune which first appeared in gcc 3.4
+%ifarch i386 i686 sparc
+Conflicts: gcc < 3.4
+%endif
+
 %description
 Red Hat specific rpm configuration files.
 
