@@ -127,3 +127,5 @@ export LANG\
 LANG=C\
 export LANG\
 %{nil}
+
+%find_lang      /usr/lib/rpm/redhat/find-lang.sh %{buildroot}
