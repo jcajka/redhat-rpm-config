@@ -1,6 +1,6 @@
 Summary: Red Hat specific rpm configuration files.
 Name: redhat-rpm-config
-Version: 8.0.5
+Version: 8.0.6
 Release: 1
 License: GPL
 Group: Development/System
@@ -27,6 +27,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_prefix}/lib/rpm/redhat
 
 %changelog
+* Thu Nov 21 2002 Elliot Lee <sopwith@redhat.com> 8.0.6-1
+- Pass __strip and __objdump macros
+
 * Thu Nov 21 2002 Elliot Lee <sopwith@redhat.com> 8.0.5-1
 - Update macros to specify find-provides/find-requires
 

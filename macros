@@ -82,8 +82,8 @@
 
 %__os_install_post    \
     /usr/lib/rpm/redhat/brp-compress \
-    /usr/lib/rpm/redhat/brp-strip \
-    /usr/lib/rpm/redhat/brp-strip-comment-note \
+    /usr/lib/rpm/redhat/brp-strip %{__strip} \
+    /usr/lib/rpm/redhat/brp-strip-comment-note %{__strip} %{__objdump} \
 %{nil}
 
 %__spec_install_post\
