@@ -16,6 +16,7 @@ optflags: alphaev6 %{__global_cflags} -mieee -mcpu=ev6
 optflags: alphaev67 %{__global_cflags} -mieee -mcpu=ev67
 
 optflags: sparc %{__global_cflags} -m32 -mcpu=v7 -mtune=ultrasparc
+optflags: sparcv8 %{__global_cflags} -m32 -mcpu=ultrasparc -mv8
 optflags: sparcv9 %{__global_cflags} -m32 -mcpu=ultrasparc
 optflags: sparc64 %{__global_cflags} -m64 -mcpu=ultrasparc
 
