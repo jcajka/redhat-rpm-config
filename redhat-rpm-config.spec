@@ -1,6 +1,6 @@
 Summary: Red Hat specific rpm configuration files.
 Name: redhat-rpm-config
-Version: 8.0.26
+Version: 8.0.27
 Release: 1
 License: GPL
 Group: Development/System
@@ -31,6 +31,10 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_prefix}/lib/rpm/redhat
 
 %changelog
+* Tue Jul 15 2003 Elliot Lee <sopwith@redhat.com> 8.0.27-1
+- Fix broken configure macro find for config.guess/config.sub
+- Put host/target/build back for now
+
 * Mon Jul  7 2003 Jens Petersen <petersen@redhat.com> - 8.0.26-1
 - preserve the vendor field when VENDOR not set
 - put VENDOR in the final i386-libc line, not the tentative one
