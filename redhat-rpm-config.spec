@@ -1,6 +1,6 @@
 Summary: Red Hat specific rpm configuration files.
 Name: redhat-rpm-config
-Version: 8.0.30
+Version: 8.0.31
 Release: 1
 License: GPL
 Group: Development/System
@@ -31,6 +31,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_prefix}/lib/rpm/redhat
 
 %changelog
+* Mon Jun 28 2004 Elliot Lee <sopwith@redhat.com> 8.0.31-1
+- Add ppc8[25]60 to rpmrc optflags
+
 * Fri Jun 25 2004 Elliot Lee <sopwith@redhat.com> 8.0.29-1
 - rpmrc patch from jakub to change optflags.
 
