@@ -1,7 +1,7 @@
 Summary: Red Hat specific rpm configuration files.
 Name: redhat-rpm-config
-Version: 8.0.32
-Release: 2
+Version: 8.0.33
+Release: 1
 License: GPL
 Group: Development/System
 Source: redhat-rpm-config-%{version}.tar.gz
@@ -9,6 +9,10 @@ BuildArch: noarch
 #Requires: rpmbuild(VendorConfig) <= 4.1
 #Requires: mktemp
 BuildRoot: %{_tmppath}/%{name}-root
+# rpmrc passes -mtune which first appeared in gcc 3.4
+%ifarch i386 i686 sparc
+Conflicts: gcc < 3.4
+%endif
 
 %description
 Red Hat specific rpm configuration files.
@@ -19,9 +23,6 @@ Red Hat specific rpm configuration files.
 rm -rf ${RPM_BUILD_ROOT}
 mkdir -p ${RPM_BUILD_ROOT}%{_prefix}/lib/rpm
 ( cd ${RPM_BUILD_ROOT}%{_prefix}/lib/rpm; tar xzf %{SOURCE0}; mv %{name}-%{version} redhat; rm -f redhat/*.spec )
-
-sed -i -e '/%%__global_cflags/s/$/ -D_FORTIFY_SOURCE=2/' \
-  ${RPM_BUILD_ROOT}%{_prefix}/lib/rpm/redhat/macros
 
 # fix perms of config.{guess,sub}
 chmod a+x ${RPM_BUILD_ROOT}%{_prefix}/lib/rpm/redhat/config.{guess,sub}
@@ -34,8 +35,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_prefix}/lib/rpm/redhat
 
 %changelog
-* Thu Nov 11 2004 Jakub Jelinek <jakub@redhat.com> 8.0.32-2
-- append -D_FORTIFY_SOURCE=2 to %%{__global_cflags}
+* Wed Feb 9 2005 Elliot Lee <sopwith@redhat.com> 8.0.33-1
+- Change -D to -Wp,-D to make java happy
+- Add -D_FORTIFY_SOURCE=2 to global cflags (as per Jakub & Arjan's request)
 
 * Fri Oct  1 2004 Bill Nottingham <notting@redhat.com> 8.0.32-1
 - allow all symbol versioning in find_requires - matches RPM internal
