@@ -21,6 +21,8 @@
 
 %_defaultdocdir		%{_usr}/share/doc
 
+#%_enable_debug_packages 1
+
 #==============================================================================
 # ---- configure and makeinstall.
 #
@@ -92,7 +94,9 @@
 
 
 # Bad hack to set $LANG to C during all RPM builds
-%prep %%prep\
+%prep \
+%{?_enable_debug_packages:%{debug_package}}\
+%%prep\
 LANG=C\
 export LANG\
 %{nil}
