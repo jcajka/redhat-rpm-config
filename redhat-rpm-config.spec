@@ -1,6 +1,6 @@
 Summary: Red Hat specific rpm configuration files.
 Name: redhat-rpm-config
-Version: 8.0.2
+Version: 8.0.3
 Release: 1
 License: GPL
 Group: Development/System
@@ -27,6 +27,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_prefix}/lib/rpm/redhat
 
 %changelog
+* Wed Oct 16 2002 Elliot Lee <sopwith@redhat.com> 8.0.3-1
+- New release that blows up on unpackaged files and missing doc files.
+
 * Thu Oct  3 2002 Jeremy Katz <katzj@redhat.com> 8.0.2
 - don't redefine everything in macros, just what we need to
 
