@@ -1,7 +1,7 @@
 Summary: Red Hat specific rpm configuration files.
 Name: redhat-rpm-config
 Version: 8.0.24
-Release: 2
+Release: 3
 License: GPL
 Group: Development/System
 Source: redhat-rpm-config-%{version}.tar.gz
@@ -31,7 +31,7 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_prefix}/lib/rpm/redhat
 
 %changelog
-* Fri May  2 2003 Jens Petersen <petersen@redhat.com> - 8.0.24-2
+* Fri May  2 2003 Jens Petersen <petersen@redhat.com> - 8.0.24-3
 - make config.{guess,sub} executable
 
 * Thu May  1 2003 Jens Petersen <petersen@redhat.com> - 8.0.22-2
