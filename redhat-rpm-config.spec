@@ -1,7 +1,7 @@
 Summary: Red Hat specific rpm configuration files.
 Name: redhat-rpm-config
-Version: 8.0
-Release: 0.1
+Version: 7.3.91
+Release: 1
 License: GPL
 Group: Development/System
 Source: redhat-rpm-config-%{version}.tar.gz
