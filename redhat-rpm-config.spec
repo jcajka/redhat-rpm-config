@@ -1,6 +1,6 @@
 Summary: Red Hat specific rpm configuration files.
 Name: redhat-rpm-config
-Version: 8.0.33
+Version: 8.0.34
 Release: 1
 License: GPL
 Group: Development/System
@@ -35,6 +35,10 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_prefix}/lib/rpm/redhat
 
 %changelog
+* Wed Mar 23 2005 Elliot Lee <sopwith@redhat.com> 8.0.34-1
+- Bug fixes
+- Cflags change by drepper
+
 * Wed Feb 9 2005 Elliot Lee <sopwith@redhat.com> 8.0.33-1
 - Change -D to -Wp,-D to make java happy
 - Add -D_FORTIFY_SOURCE=2 to global cflags (as per Jakub & Arjan's request)

@@ -1,12 +1,12 @@
 include: /usr/lib/rpm/rpmrc
 
-optflags: i386 %{__global_cflags} -m32 -march=i386 -mtune=pentium4
-optflags: i486 %{__global_cflags} -m32 -march=i486
-optflags: i586 %{__global_cflags} -m32 -march=i586
-optflags: i686 %{__global_cflags} -m32 -march=i686 -mtune=pentium4
-optflags: athlon %{__global_cflags} -m32 -march=athlon
+optflags: i386 %{__global_cflags} -m32 -march=i386 -mtune=pentium4 -fexceptions -fasynchronous-unwind-tables
+optflags: i486 %{__global_cflags} -m32 -march=i486 -fexceptions -fasynchronous-unwind-tables
+optflags: i586 %{__global_cflags} -m32 -march=i586 -fexceptions -fasynchronous-unwind-tables
+optflags: i686 %{__global_cflags} -m32 -march=i686 -mtune=pentium4 -fexceptions -fasynchronous-unwind-tables
+optflags: athlon %{__global_cflags} -m32 -march=athlon -fexceptions -fasynchronous-unwind-tables
 optflags: ia64 %{__global_cflags}
-optflags: x86_64 %{__global_cflags} -m64
+optflags: x86_64 %{__global_cflags} -m64 -march=nocona
 
 optflags: alpha %{__global_cflags} -mieee
 optflags: alphaev5 %{__global_cflags} -mieee -mcpu=ev5
