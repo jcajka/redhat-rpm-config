@@ -27,7 +27,7 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_prefix}/lib/rpm/redhat
 
 %changelog
-* Thu Jan  9 2002 Bill Nottingham <notting@redhat.com> 8.0.17-1
+* Thu Jan  9 2003 Bill Nottingham <notting@redhat.com> 8.0.17-1
 - add brp-strip-static-archive from rpm-4.2-0.54
 
 * Tue Dec 17 2002 Bill Nottingham <notting@redhat.com> 8.0.16-1
