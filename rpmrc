@@ -1,53 +1,53 @@
 include: /usr/lib/rpm/rpmrc
-optflags: i386 -O2 -march=i386 -mcpu=i686 %([ "%debug_package" != "" ] && echo "-g")
-optflags: i486 -O2 -march=i486 %([ "%debug_package" != "" ] && echo "-g")
-optflags: i586 -O2 -march=i586 %([ "%debug_package" != "" ] && echo "-g")
-optflags: i686 -O2 -march=i686 %([ "%debug_package" != "" ] && echo "-g")
-optflags: athlon -O2 -march=athlon %([ "%debug_package" != "" ] && echo "-g")
-optflags: ia64 -O2 %([ "%debug_package" != "" ] && echo "-g")
-optflags: x86_64 -O2 %([ "%debug_package" != "" ] && echo "-g")
 
-# XXX Please note that -mieee has been added in rpm-3.0.5.
-optflags: alpha -O2 -mieee %([ "%debug_package" != "" ] && echo "-g")
-optflags: alphaev5 -O2 -mieee -mcpu=ev5 %([ "%debug_package" != "" ] && echo "-g")
-optflags: alphaev56 -O2 -mieee -mcpu=ev56 %([ "%debug_package" != "" ] && echo "-g")
-optflags: alphapca56 -O2 -mieee -mcpu=pca56 %([ "%debug_package" != "" ] && echo "-g")
-optflags: alphaev6 -O2 -mieee -mcpu=ev6 %([ "%debug_package" != "" ] && echo "-g")
-optflags: alphaev67 -O2 -mieee -mcpu=ev67 %([ "%debug_package" != "" ] && echo "-g")
+optflags: i386 %{__global_cflags} -march=i386 -mcpu=i686
+optflags: i486 %{__global_cflags} -march=i486
+optflags: i586 %{__global_cflags} -march=i586
+optflags: i686 %{__global_cflags} -march=i686
+optflags: athlon %{__global_cflags} -march=athlon
+optflags: ia64 %{__global_cflags}
+optflags: x86_64 %{__global_cflags}
 
-optflags: sparc -O2 -m32 -mtune=ultrasparc %([ "%debug_package" != "" ] && echo "-g")
-optflags: sparcv9 -O2 -m32 -mcpu=ultrasparc %([ "%debug_package" != "" ] && echo "-g")
-optflags: sparc64 -O2 -m64 -mcpu=ultrasparc %([ "%debug_package" != "" ] && echo "-g")
+optflags: alpha %{__global_cflags} -mieee
+optflags: alphaev5 %{__global_cflags} -mieee -mcpu=ev5
+optflags: alphaev56 %{__global_cflags} -mieee -mcpu=ev56
+optflags: alphapca56 %{__global_cflags} -mieee -mcpu=pca56
+optflags: alphaev6 %{__global_cflags} -mieee -mcpu=ev6
+optflags: alphaev67 %{__global_cflags} -mieee -mcpu=ev67
 
-optflags: m68k -O2 -fomit-frame-pointer %([ "%debug_package" != "" ] && echo "-g")
+optflags: sparc %{__global_cflags} -m32 -mtune=ultrasparc
+optflags: sparcv9 %{__global_cflags} -m32 -mcpu=ultrasparc
+optflags: sparc64 %{__global_cflags} -m64 -mcpu=ultrasparc
 
-optflags: ppc -O2 -fsigned-char %([ "%debug_package" != "" ] && echo "-g")
-optflags: ppciseries -O2 -fsigned-char %([ "%debug_package" != "" ] && echo "-g")
-optflags: ppcpseries -O2 -fsigned-char %([ "%debug_package" != "" ] && echo "-g")
-optflags: ppc64 -O2 -fsigned-char %([ "%debug_package" != "" ] && echo "-g")
+optflags: m68k %{__global_cflags}
 
-optflags: parisc -O2 -mpa-risc-1-0 %([ "%debug_package" != "" ] && echo "-g")
-optflags: hppa1.0 -O2 -mpa-risc-1-0 %([ "%debug_package" != "" ] && echo "-g")
-optflags: hppa1.1 -O2 -mpa-risc-1-0 %([ "%debug_package" != "" ] && echo "-g")
-optflags: hppa1.2 -O2 -mpa-risc-1-0 %([ "%debug_package" != "" ] && echo "-g")
-optflags: hppa2.0 -O2 -mpa-risc-1-0 %([ "%debug_package" != "" ] && echo "-g")
+optflags: ppc %{__global_cflags} -fsigned-char
+optflags: ppciseries %{__global_cflags} -fsigned-char
+optflags: ppcpseries %{__global_cflags} -fsigned-char
+optflags: ppc64 %{__global_cflags} -fsigned-char -mminimal-toc
 
-optflags: mips -O2 %([ "%debug_package" != "" ] && echo "-g")
-optflags: mipsel -O2 %([ "%debug_package" != "" ] && echo "-g")
+optflags: parisc %{__global_cflags} -mpa-risc-1-0
+optflags: hppa1.0 %{__global_cflags} -mpa-risc-1-0
+optflags: hppa1.1 %{__global_cflags} -mpa-risc-1-0
+optflags: hppa1.2 %{__global_cflags} -mpa-risc-1-0
+optflags: hppa2.0 %{__global_cflags} -mpa-risc-1-0
 
-optflags: armv3l -O2 -fsigned-char -fomit-frame-pointer -march=armv3 %([ "%debug_package" != "" ] && echo "-g")
-optflags: armv4b -O2 -fsigned-char -fomit-frame-pointer -march=armv4 %([ "%debug_package" != "" ] && echo "-g")
-optflags: armv4l -O2 -fsigned-char -fomit-frame-pointer -march=armv4 %([ "%debug_package" != "" ] && echo "-g")
+optflags: mips %{__global_cflags}
+optflags: mipsel %{__global_cflags}
 
-optflags: atarist -O2 -fomit-frame-pointer %([ "%debug_package" != "" ] && echo "-g")
-optflags: atariste -O2 -fomit-frame-pointer %([ "%debug_package" != "" ] && echo "-g")
-optflags: ataritt -O2 -fomit-frame-pointer %([ "%debug_package" != "" ] && echo "-g")
-optflags: falcon -O2 -fomit-frame-pointer %([ "%debug_package" != "" ] && echo "-g")
-optflags: atariclone -O2 -fomit-frame-pointer %([ "%debug_package" != "" ] && echo "-g")
-optflags: milan -O2 -fomit-frame-pointer %([ "%debug_package" != "" ] && echo "-g")
-optflags: hades -O2 -fomit-frame-pointer %([ "%debug_package" != "" ] && echo "-g")
+optflags: armv3l %{__global_cflags} -fsigned-char -march=armv3
+optflags: armv4b %{__global_cflags} -fsigned-char -march=armv4
+optflags: armv4l %{__global_cflags} -fsigned-char -march=armv4
 
-optflags: s390 -O2 %([ "%debug_package" != "" ] && echo "-g")
-optflags: s390x -O2 %([ "%debug_package" != "" ] && echo "-g")
+optflags: atarist %{__global_cflags}
+optflags: atariste %{__global_cflags}
+optflags: ataritt %{__global_cflags}
+optflags: falcon %{__global_cflags}
+optflags: atariclone %{__global_cflags}
+optflags: milan %{__global_cflags}
+optflags: hades %{__global_cflags}
+
+optflags: s390 %{__global_cflags}
+optflags: s390x %{__global_cflags}
 
 macrofiles:     /usr/lib/rpm/macros:/usr/lib/rpm/%{_target}/macros:/usr/lib/rpm/redhat/macros:/etc/rpm/macros.specspo:/etc/rpm/macros.cdb:/etc/rpm/macros.prelink:/etc/rpm/macros.solve:/etc/rpm/macros.up2date:/etc/rpm/macros:/etc/rpm/%{_target}/macros:~/.rpmmacros

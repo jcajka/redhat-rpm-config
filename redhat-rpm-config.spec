@@ -1,13 +1,13 @@
 Summary: Red Hat specific rpm configuration files.
 Name: redhat-rpm-config
-Version: 8.0.19
+Version: 8.0.20
 Release: 1
 License: GPL
 Group: Development/System
 Source: redhat-rpm-config-%{version}.tar.gz
 BuildArch: noarch
 #Requires: rpmbuild(VendorConfig) <= 4.1
-Requires: mktemp
+#Requires: mktemp
 BuildRoot: %{_tmppath}/%{name}-root
 
 %description
@@ -28,6 +28,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_prefix}/lib/rpm/redhat
 
 %changelog
+* Thu Feb 13 2003 Elliot Lee <sopwith@redhat.com> 8.0.20-1
+- Reorganize rpmrc/macros to set cflags in a nicer manner.
+
 * Wed Jan 22 2003 Elliot Lee <sopwith@redhat.com> 8.0.19-1
 - Disable brp-implant-ident-static until it works everywhere
 
