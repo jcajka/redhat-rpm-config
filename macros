@@ -33,7 +33,7 @@
   for i in $(find . -name config.guess -o -name config.sub) ; do \
            [ -f /usr/lib/rpm/redhat/$(basename $i) ] && %{__rm} -f $i && %{__cp} -fv /usr/lib/rpm/redhat/$(basename $i) $i ; \
   done ; \
-  ./configure --host=%{_host} --build=%{_build} \\\
+  ./configure --build=%{_build} --host=%{_host} \\\
 	--target=%{_target_platform} \\\
 	--program-prefix=%{?_program_prefix} \\\
 	--prefix=%{_prefix} \\\

@@ -50,4 +50,4 @@ optflags: hades %{__global_cflags}
 optflags: s390 %{__global_cflags}
 optflags: s390x %{__global_cflags}
 
-macrofiles:     /usr/lib/rpm/macros:/usr/lib/rpm/%{_target}/macros:/usr/lib/rpm/redhat/macros:/etc/rpm/macros.specspo:/etc/rpm/macros.cdb:/etc/rpm/macros.prelink:/etc/rpm/macros.solve:/etc/rpm/macros.up2date:/etc/rpm/macros:/etc/rpm/%{_target}/macros:~/.rpmmacros
+macrofiles:     /usr/lib/rpm/macros:/usr/lib/rpm/%{_target}/macros:/usr/lib/rpm/redhat/macros:/etc/rpm/macros.specspo:/etc/rpm/macros.cdb:/etc/rpm/macros.prelink:/etc/rpm/macros.solve:/etc/rpm/macros.up2date:/etc/rpm/macros.jpackage:/etc/rpm/macros:/etc/rpm/%{_target}/macros:~/.rpmmacros
