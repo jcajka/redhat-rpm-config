@@ -1,6 +1,6 @@
 Summary: Red Hat specific rpm configuration files.
 Name: redhat-rpm-config
-Version: 8.0.25
+Version: 8.0.26
 Release: 1
 License: GPL
 Group: Development/System
@@ -31,7 +31,11 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_prefix}/lib/rpm/redhat
 
 %changelog
-* Mon Jul 07 2003 Jens Petersen <petersen@redhat.com> - 8.0.25-1
+* Mon Jul  7 2003 Jens Petersen <petersen@redhat.com> - 8.0.26-1
+- preserve the vendor field when VENDOR not set
+- put VENDOR in the final i386-libc line, not the tentative one
+
+* Mon Jul  7 2003 Jens Petersen <petersen@redhat.com> - 8.0.25-1
 - update config.{guess,sub} to 2003-06-17
 - define VENDOR to be redhat only when /etc/redhat-release present
   [suggested by jbj]

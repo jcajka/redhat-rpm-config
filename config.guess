@@ -137,9 +137,10 @@ UNAME_SYSTEM=`(uname -s) 2>/dev/null`  || UNAME_SYSTEM=unknown
 UNAME_VERSION=`(uname -v) 2>/dev/null` || UNAME_VERSION=unknown
 
 ## for Red Hat Linux
-VENDOR=unknown
 if test -f /etc/redhat-release ; then
-    VENDOR=redhat
+    VENDOR=redhat ;
+else
+    VENDOR= ;
 fi
 
 # Note: order is significant - the case branches are not exclusive.
@@ -814,7 +815,7 @@ EOF
 	echo cris-axis-linux-gnu
 	exit 0 ;;
     ia64:Linux:*:*)
-	echo ${UNAME_MACHINE}-${VENDOR}-linux-gnu
+	echo ${UNAME_MACHINE}-${VENDOR:-unknown}-linux-gnu
 	exit 0 ;;
     m68*:Linux:*:*)
 	echo ${UNAME_MACHINE}-unknown-linux-gnu
@@ -858,10 +859,10 @@ EOF
 	test x"${CPU}" != x && echo "${CPU}-unknown-linux-gnu" && exit 0
 	;;
     ppc:Linux:*:*)
-	echo powerpc-${VENDOR}-linux-gnu
+	echo powerpc-${VENDOR:-unknown}-linux-gnu
 	exit 0 ;;
     ppc64:Linux:*:*)
-	echo powerpc64-${VENDOR}-linux-gnu
+	echo powerpc64-${VENDOR:-unknown}-linux-gnu
 	exit 0 ;;
     alpha:Linux:*:*)
 	case `sed -n '/^cpu model/s/^.*: \(.*\)/\1/p' < /proc/cpuinfo` in
@@ -889,7 +890,7 @@ EOF
 	echo hppa64-unknown-linux-gnu
 	exit 0 ;;
     s390:Linux:*:* | s390x:Linux:*:*)
-	echo ${UNAME_MACHINE}-${VENDOR}-linux-gnu
+	echo ${UNAME_MACHINE}-${VENDOR:-ibm}-linux-gnu
 	exit 0 ;;
     sh64*:Linux:*:*)
     	echo ${UNAME_MACHINE}-unknown-linux-gnu
@@ -901,7 +902,7 @@ EOF
 	echo ${UNAME_MACHINE}-unknown-linux-gnu
 	exit 0 ;;
     x86_64:Linux:*:*)
-	echo x86_64-${VENDOR}-linux-gnu
+	echo x86_64-${VENDOR:-unknown}-linux-gnu
 	exit 0 ;;
     i*86:Linux:*:*)
 	# The BFD linker knows what the default object file format is, so
@@ -916,7 +917,7 @@ EOF
 				    p'`
         case "$ld_supported_targets" in
 	  elf32-i386)
-		TENTATIVE="${UNAME_MACHINE}-${VENDOR}-linux-gnu"
+		TENTATIVE="${UNAME_MACHINE}-pc-linux-gnu"
 		;;
 	  a.out-i386-linux)
 		echo "${UNAME_MACHINE}-pc-linux-gnuaout"
@@ -953,7 +954,7 @@ EOF
 	#endif
 EOF
 	eval `$CC_FOR_BUILD -E $dummy.c 2>/dev/null | grep ^LIBC=`
-	test x"${LIBC}" != x && echo "${UNAME_MACHINE}-pc-linux-${LIBC}" && exit 0
+	test x"${LIBC}" != x && echo "${UNAME_MACHINE}-${VENDOR:-pc}-linux-${LIBC}" && exit 0
 	test x"${TENTATIVE}" != x && echo "${TENTATIVE}" && exit 0
 	;;
     i*86:DYNIX/ptx:4*:*)
