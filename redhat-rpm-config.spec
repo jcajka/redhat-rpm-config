@@ -1,11 +1,10 @@
 Summary: Red Hat specific rpm configuration files.
 Name: redhat-rpm-config
-Version: 7.3.94
-Release: 1b
+Version: 8.0
+Release: 1
 License: GPL
 Group: Development/System
 Source: redhat-rpm-config-%{version}.tar.gz
-Source1: redhat-rpm-config-7.3.94-s390.patch
 BuildArch: noarch
 Requires: rpmbuild(VendorConfig) <= 4.1
 BuildRoot: %{_tmppath}/%{name}-root
@@ -19,7 +18,6 @@ Red Hat specific rpm configuration files.
 rm -rf ${RPM_BUILD_ROOT}
 mkdir -p ${RPM_BUILD_ROOT}%{_prefix}/lib/rpm
 ( cd ${RPM_BUILD_ROOT}%{_prefix}/lib/rpm; tar xzf %{SOURCE0}; mv %{name}-%{version} redhat; rm -f redhat/*.spec )
-( cd ${RPM_BUILD_ROOT}%{_prefix}/lib/rpm/redhat && patch -p1 < %{SOURCE1} )
 
 %clean
 rm -rf ${RPM_BUILD_ROOT}
@@ -29,6 +27,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_prefix}/lib/rpm/redhat
 
 %changelog
+* Tue Sep  3 2002 Bill Nottingham <notting@redhat.com> 8.0-1
+- bump version
+
 * Wed Aug 28 2002 Elliot Lee <sopwith@redhat.com> 7.3.94-1
 - Update macrofiles
 
