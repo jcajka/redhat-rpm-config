@@ -28,6 +28,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_prefix}/lib/rpm/redhat
 
 %changelog
+* Mon Mar 03 2003 Elliot Lee <sopwith@redhat.com>
+- Unset $DISPLAY in macros
+
 * Mon Feb 24 2003 Elliot Lee <sopwith@redhat.com> 8.0.21-1
 - Just turn on -g unconditionally for now
 

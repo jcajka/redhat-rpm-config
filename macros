@@ -118,17 +118,20 @@ package or when debugging this package.\
 %%prep\
 LANG=C\
 export LANG\
+unset DISPLAY\
 %{nil}
 
 %build %%build\
 LANG=C\
 export LANG\
+unset DISPLAY\
 %{nil}
 
 %install %{?_enable_debug_packages:%{?buildsubdir:%{debug_package}}}\
 %%install\
 LANG=C\
 export LANG\
+unset DISPLAY\
 %{nil}
 
 %find_lang      /usr/lib/rpm/redhat/find-lang.sh %{buildroot}
