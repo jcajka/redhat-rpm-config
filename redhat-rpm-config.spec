@@ -14,12 +14,10 @@ Red Hat specific rpm configuration files.
 
 %prep
 
-%build
-
 %install
 rm -rf ${RPM_BUILD_ROOT}
 mkdir -p ${RPM_BUILD_ROOT}%{_prefix}/lib/rpm
-( cd ${RPM_BUILD_ROOT}%{_prefix}/lib/rpm; tar xzf %{SOURCE0} )
+( cd ${RPM_BUILD_ROOT}%{_prefix}/lib/rpm; tar xzf %{SOURCE0}; mv %{name}-%{version} redhat; rm -f redhat/*.spec )
 
 %clean
 rm -rf ${RPM_BUILD_ROOT}
@@ -29,5 +27,8 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_prefix}/lib/rpm/redhat
 
 %changelog
+* Wed Jun 12 2002 Elliot Lee <sopwith@redhat.com> 7.3.91-1
+- Update
+
 * Sun Jun  9 2002 Jeff Johnson <jbj@redhat.com>
 - create.
