@@ -1,7 +1,7 @@
 Summary: Red Hat specific rpm configuration files.
 Name: redhat-rpm-config
 Version: 7.3.92
-Release: 2
+Release: 4
 License: GPL
 Group: Development/System
 Source: redhat-rpm-config-%{version}.tar.gz
@@ -27,6 +27,13 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_prefix}/lib/rpm/redhat
 
 %changelog
+* Wed Jun 26 2002 Jens Petersen <petersen@redhat.com> 7.3.92-4
+- fix %configure targetting for autoconf-2.5x (#58468)
+- include ~/.rpmmacros in macrofiles file path again
+
+* Fri Jun 21 2002 Tim Powers <timp@redhat.com> 7.3.92-3
+- automated rebuild
+
 * Fri Jun 21 2002 Elliot Lee <sopwith@redhat.com> 7.3.92-2
 - Don't define _arch
 

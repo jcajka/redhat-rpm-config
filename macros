@@ -6,7 +6,7 @@
 %_vendor		redhat
 %_os			linux
 %_gnu			-gnu
-%_target_platform	%{_target_cpu}-%{_vendor}-%{_target_os}
+%_target_platform	%{_target_cpu}-%{_vendor}-%{_target_os}%{?_gnu}
 
 #==============================================================================
 # ---- configure macros.
@@ -37,7 +37,9 @@
   CFLAGS="${CFLAGS:-%optflags}" ; export CFLAGS ; \
   CXXFLAGS="${CXXFLAGS:-%optflags}" ; export CXXFLAGS ; \
   FFLAGS="${FFLAGS:-%optflags}" ; export FFLAGS ; \
-  ./configure %{_target_platform} \\\
+  ./configure --host=%{_host} --build=%{_build} \\\
+	--target=%{_target_platform} \\\
+	--program-prefix=%{?_program_prefix:%{_program_prefix}} \\\
  	--prefix=%{_prefix} \\\
 	--exec-prefix=%{_exec_prefix} \\\
 	--bindir=%{_bindir} \\\
