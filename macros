@@ -120,3 +120,7 @@ export LANG\
 #
 # Should unpackaged files in a build root terminate a build?
 %_unpackaged_files_terminate_build    1
+
+%__find_provides        /usr/lib/rpm/redhat/find-provides
+%__find_requires        /usr/lib/rpm/redhat/find-requires
+
