@@ -1,7 +1,7 @@
 Summary: Red Hat specific rpm configuration files.
 Name: redhat-rpm-config
 Version: 8.0.32
-Release: 1
+Release: 2
 License: GPL
 Group: Development/System
 Source: redhat-rpm-config-%{version}.tar.gz
@@ -20,6 +20,9 @@ rm -rf ${RPM_BUILD_ROOT}
 mkdir -p ${RPM_BUILD_ROOT}%{_prefix}/lib/rpm
 ( cd ${RPM_BUILD_ROOT}%{_prefix}/lib/rpm; tar xzf %{SOURCE0}; mv %{name}-%{version} redhat; rm -f redhat/*.spec )
 
+sed -i -e '/%%__global_cflags/s/$/ -D_FORTIFY_SOURCE=2/' \
+  ${RPM_BUILD_ROOT}%{_prefix}/lib/rpm/redhat/macros
+
 # fix perms of config.{guess,sub}
 chmod a+x ${RPM_BUILD_ROOT}%{_prefix}/lib/rpm/redhat/config.{guess,sub}
 
@@ -31,6 +34,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_prefix}/lib/rpm/redhat
 
 %changelog
+* Thu Nov 11 2004 Jakub Jelinek <jakub@redhat.com> 8.0.32-2
+- append -D_FORTIFY_SOURCE=2 to %%{__global_cflags}
+
 * Fri Oct  1 2004 Bill Nottingham <notting@redhat.com> 8.0.32-1
 - allow all symbol versioning in find_requires - matches RPM internal
   behavior
