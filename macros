@@ -152,3 +152,6 @@ unset DISPLAY\
 %__find_requires        /usr/lib/rpm/redhat/find-requires
 
 %__global_cflags	-O2 -g -pipe -Wp,-D_FORTIFY_SOURCE=2
+
+# Disable lookups
+%_hkp_keyserver  %{nil}
