@@ -1,6 +1,6 @@
 Summary: Red Hat specific rpm configuration files.
 Name: redhat-rpm-config
-Version: 8.0.16
+Version: 8.0.17
 Release: 1
 License: GPL
 Group: Development/System
@@ -27,6 +27,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_prefix}/lib/rpm/redhat
 
 %changelog
+* Thu Jan  9 2002 Bill Nottingham <notting@redhat.com> 8.0.17-1
+- add brp-strip-static-archive from rpm-4.2-0.54
+
 * Tue Dec 17 2002 Bill Nottingham <notting@redhat.com> 8.0.16-1
 - make -g in rpmrc conditional on debug_package
 
