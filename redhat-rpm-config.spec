@@ -1,7 +1,7 @@
 Summary: Red Hat specific rpm configuration files.
 Name: redhat-rpm-config
 Version: 7.3.91
-Release: 1
+Release: 2
 License: GPL
 Group: Development/System
 Source: redhat-rpm-config-%{version}.tar.gz
@@ -27,6 +27,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_prefix}/lib/rpm/redhat
 
 %changelog
+* Thu Jun 20 2002 Elliot Lee <sopwith@redhat.com> 7.3.91-2
+- find-lang error detection from Havoc
+
 * Wed Jun 12 2002 Elliot Lee <sopwith@redhat.com> 7.3.91-1
 - Update
 
