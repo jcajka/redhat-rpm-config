@@ -1,7 +1,7 @@
 Summary: Red Hat specific rpm configuration files.
 Name: redhat-rpm-config
 Version: 8.0.22
-Release: 1
+Release: 2
 License: GPL
 Group: Development/System
 Source: redhat-rpm-config-%{version}.tar.gz
@@ -28,7 +28,7 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_prefix}/lib/rpm/redhat
 
 %changelog
-* Thu May  1 2003 Jens Petersen <petersen@redhat.com> - 8.0.22-1
+* Thu May  1 2003 Jens Petersen <petersen@redhat.com> - 8.0.22-2
 - add config.guess and config.sub (2003-02-22) with s390 patch on config.sub
 - make %%configure use them
 
