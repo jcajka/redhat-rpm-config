@@ -1,12 +1,13 @@
 Summary: Red Hat specific rpm configuration files.
 Name: redhat-rpm-config
-Version: 8.0.17
+Version: 8.0.18
 Release: 1
 License: GPL
 Group: Development/System
 Source: redhat-rpm-config-%{version}.tar.gz
 BuildArch: noarch
 #Requires: rpmbuild(VendorConfig) <= 4.1
+Requires: mktemp
 BuildRoot: %{_tmppath}/%{name}-root
 
 %description
@@ -27,6 +28,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_prefix}/lib/rpm/redhat
 
 %changelog
+* Thu Jan 16 2003 Nalin Dahyabhai <nalin@redhat.com> 8.0.18-1
+- add brp-implant-ident-static, which requires mktemp
+
 * Thu Jan  9 2003 Bill Nottingham <notting@redhat.com> 8.0.17-1
 - add brp-strip-static-archive from rpm-4.2-0.54
 
