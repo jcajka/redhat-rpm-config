@@ -28,7 +28,7 @@ rm -rf ${RPM_BUILD_ROOT}
 
 %changelog
 * Wed Jun 26 2002 Jens Petersen <petersen@redhat.com> 7.3.92-4
-- fix %configure targetting for autoconf-2.5x (#58468)
+- fix %%configure targeting for autoconf-2.5x (#58468)
 - include ~/.rpmmacros in macrofiles file path again
 
 * Fri Jun 21 2002 Tim Powers <timp@redhat.com> 7.3.92-3
