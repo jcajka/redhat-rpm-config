@@ -123,4 +123,3 @@ export LANG\
 
 %__find_provides        /usr/lib/rpm/redhat/find-provides
 %__find_requires        /usr/lib/rpm/redhat/find-requires
-
