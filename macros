@@ -28,6 +28,9 @@
   CFLAGS="${CFLAGS:-%optflags}" ; export CFLAGS ; \
   CXXFLAGS="${CXXFLAGS:-%optflags}" ; export CXXFLAGS ; \
   FFLAGS="${FFLAGS:-%optflags}" ; export FFLAGS ; \
+  for i in $(find . -name config.guess 2>/dev/null) $(find . -name config.sub 2>/dev/null) ; do \
+           [ -f /usr/share/libtool/$(basename $i) ] && %{__rm} -f $i && %{__cp} -fv /usr/share/libtool/$(basename $i) $i ; \
+  done ; \
   ./configure --host=%{_host} --build=%{_build} \\\
 	--target=%{_target_platform} \\\
 	--program-prefix=%{?_program_prefix:%{_program_prefix}} \\\
