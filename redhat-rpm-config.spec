@@ -27,6 +27,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_prefix}/lib/rpm/redhat
 
 %changelog
+* Thu Jul 11 2002 Elliot Lee <sopwith@redhat.com> 7.3.92-6
+- find-lang.sh fix from 67368
+
 * Thu Jul 11 2002 Elliot Lee <sopwith@redhat.com> 7.3.92-5
 - Add /etc/rpm/macros back to make #67951 go away
 
