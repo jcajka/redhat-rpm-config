@@ -1,6 +1,6 @@
 Summary: Red Hat specific rpm configuration files.
 Name: redhat-rpm-config
-Version: 8.0.34
+Version: 8.0.35
 Release: 1
 License: GPL
 Group: Development/System
@@ -35,6 +35,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_prefix}/lib/rpm/redhat
 
 %changelog
+* Wed Apr  6 2005 Elliot Lee <sopwith@redhat.com> - 8.0.35-1
+- Fix #129025 (enable python byte compilation)
+
 * Wed Mar 23 2005 Elliot Lee <sopwith@redhat.com> 8.0.34-1
 - Bug fixes
 - Cflags change by drepper
