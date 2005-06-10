@@ -60,4 +60,9 @@ done | sort -u
 [ -x /usr/lib/rpm/redhat/tcl.prov -a -n "$tcllist" ] &&
     echo $tcllist | tr '[:blank:]' \\n | /usr/lib/rpm/redhat/tcl.prov | sort -u
 
+#
+# --- libtool
+[ -x /usr/lib/rpm/redhat/find-provides.libtool ] &&
+    echo $filelist | tr '[:blank:]' \\n | /usr/lib/rpm/redhat/find-provides.libtool | sort -u
+
 exit 0
