@@ -16,20 +16,20 @@ optflags: alphaev6 %{__global_cflags} -mieee -mcpu=ev6
 optflags: alphaev67 %{__global_cflags} -mieee -mcpu=ev67
 
 optflags: sparc %{__global_cflags} -m32 -mcpu=v7 -mtune=ultrasparc
-optflags: sparcv8 %{__global_cflags} -m32 -mcpu=ultrasparc -mv8
+optflags: sparcv8 %{__global_cflags} -m32 -mcpu=v8
 optflags: sparcv9 %{__global_cflags} -m32 -mcpu=ultrasparc
 optflags: sparc64 %{__global_cflags} -m64 -mcpu=ultrasparc
 
 optflags: m68k %{__global_cflags}
 
-optflags: ppc %{__global_cflags} -m32 -fsigned-char
-optflags: ppciseries %{__global_cflags} -m32 -fsigned-char
-optflags: ppcpseries %{__global_cflags} -m32 -fsigned-char
-optflags: ppc64 %{__global_cflags} -m64 -fsigned-char -mminimal-toc
-optflags: ppc64iseries %{__global_cflags} -m64 -fsigned-char -mminimal-toc
-optflags: ppc64pseries %{__global_cflags} -m64 -fsigned-char -mminimal-toc
-optflags: ppc8260 %{__global_cflags} -m32 -fsigned-char
-optflags: ppc8560 %{__global_cflags} -m32 -fsigned-char
+optflags: ppc %{__global_cflags} -m32
+optflags: ppciseries %{__global_cflags} -m32
+optflags: ppcpseries %{__global_cflags} -m32
+optflags: ppc64 %{__global_cflags} -m64 -mminimal-toc
+optflags: ppc64iseries %{__global_cflags} -m64 -mminimal-toc
+optflags: ppc64pseries %{__global_cflags} -m64 -mminimal-toc
+optflags: ppc8260 %{__global_cflags} -m32
+optflags: ppc8560 %{__global_cflags} -m32
 
 optflags: parisc %{__global_cflags} -mpa-risc-1-0
 optflags: hppa1.0 %{__global_cflags} -mpa-risc-1-0

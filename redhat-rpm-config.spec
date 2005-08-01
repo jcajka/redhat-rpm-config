@@ -1,6 +1,6 @@
 Summary: Red Hat specific rpm configuration files.
 Name: redhat-rpm-config
-Version: 8.0.36
+Version: 8.0.37
 Release: 1
 License: GPL
 Group: Development/System
@@ -35,6 +35,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_prefix}/lib/rpm/redhat
 
 %changelog
+* Mon Aug 01 2005 Elliot Lee <sopwith@redhat.com> - 8.0.37-1
+- Patch from Uli: enable stack protector, fix sparc & ppc cflags
+
 * Thu Jun 16 2005 Elliot Lee <sopwith@redhat.com> - 8.0.36-1
 - Fix the fix
 
