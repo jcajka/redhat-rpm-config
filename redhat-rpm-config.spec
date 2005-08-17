@@ -1,6 +1,6 @@
 Summary: Red Hat specific rpm configuration files.
 Name: redhat-rpm-config
-Version: 8.0.38
+Version: 8.0.39
 Release: 1
 License: GPL
 Group: Development/System
@@ -35,6 +35,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_prefix}/lib/rpm/redhat
 
 %changelog
+* Tue Aug 16 2005 Elliot Lee <sopwith@redhat.com> - 8.0.39-1
+- Fix #165416
+
 * Mon Aug 01 2005 Elliot Lee <sopwith@redhat.com> - 8.0.38-1
 - Add -Wall into cflags
 
