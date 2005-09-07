@@ -6,8 +6,6 @@ License: GPL
 Group: Development/System
 Source: redhat-rpm-config-%{version}.tar.gz
 BuildArch: noarch
-#Requires: rpmbuild(VendorConfig) <= 4.1
-#Requires: mktemp
 BuildRoot: %{_tmppath}/%{name}-root
 # rpmrc passes -mtune which first appeared in gcc 3.4
 %ifarch i386 i686 sparc
