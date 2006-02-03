@@ -1,6 +1,6 @@
 Summary: Red Hat specific rpm configuration files.
 Name: redhat-rpm-config
-Version: 8.0.39
+Version: 8.0.40
 Release: 1
 License: GPL
 Group: Development/System
@@ -35,6 +35,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_prefix}/lib/rpm/redhat
 
 %changelog
+* Fri Feb  3 2006 Jeremy Katz <katzj@redhat.com> - 8.0.40-1
+- use -mtune=generic for x86 and x86_64
+
 * Tue Aug 16 2005 Elliot Lee <sopwith@redhat.com> - 8.0.39-1
 - Fix #165416
 
