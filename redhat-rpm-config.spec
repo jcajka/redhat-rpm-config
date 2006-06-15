@@ -1,6 +1,6 @@
 Summary: Red Hat specific rpm configuration files.
 Name: redhat-rpm-config
-Version: 8.0.42
+Version: 8.0.43
 Release: 1
 License: GPL
 Group: Development/System
@@ -35,6 +35,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_prefix}/lib/rpm/redhat
 
 %changelog
+* Thu Jun 15 2006 Jon Masters <jcm@redhat.com> - 8.0.43-1
+- Workaround bug in find-requires/find-provides for kmods.
+
 * Thu Jun 15 2006 Jon Masters <jcm@redhat.com> - 8.0.42-1
 - Fix a typo in KMP find-requires.
 
