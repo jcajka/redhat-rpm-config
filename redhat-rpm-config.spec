@@ -1,10 +1,12 @@
 Summary: Red Hat specific rpm configuration files.
 Name: redhat-rpm-config
 Version: 8.0.45
-Release: 1
+Release: 2
 License: GPL
 Group: Development/System
 Source: redhat-rpm-config-%{version}.tar.gz
+Source1: brp-java-repack-jars
+Patch0: redhat-rpm-config-java.patch
 BuildArch: noarch
 #Requires: rpmbuild(VendorConfig) <= 4.1
 #Requires: mktemp
@@ -27,6 +29,9 @@ mkdir -p ${RPM_BUILD_ROOT}%{_prefix}/lib/rpm
 # fix perms of config.{guess,sub}
 chmod a+x ${RPM_BUILD_ROOT}%{_prefix}/lib/rpm/redhat/config.{guess,sub}
 
+(cd ${RPM_BUILD_ROOT}%{_prefix}/lib/rpm/redhat ; patch -p1 -i %{PATCH0})
+install -m 755 %{SOURCE1} ${RPM_BUILD_ROOT}/%{_prefix}/lib/rpm/redhat/
+
 %clean
 rm -rf ${RPM_BUILD_ROOT}
 
@@ -35,6 +40,10 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_prefix}/lib/rpm/redhat
 
 %changelog
+* Tue Sep  5 2006 Jeremy Katz <katzj@redhat.com> - 8.0.45-2
+- Add script from Ben Konrath <bkonrath@redhat.com> to repack jars to 
+  avoid multilib conflicts
+
 * Sun Jul 30 2006 Jon Masters <jcm@redhat.com> - 8.0.45-1
 - Fix inverted kernel test.
 
