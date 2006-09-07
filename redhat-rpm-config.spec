@@ -1,7 +1,7 @@
 Summary: Red Hat specific rpm configuration files.
 Name: redhat-rpm-config
 Version: 8.0.45
-Release: 3
+Release: 4
 License: GPL
 Group: Development/System
 Source: redhat-rpm-config-%{version}.tar.gz
@@ -40,6 +40,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_prefix}/lib/rpm/redhat
 
 %changelog
+* Thu Sep  7 2006 Ben Konrath <bkonrath@redhat.com> - 8.0.45-4
+- Fix bug in repack jars script. 
+
 * Wed Sep  6 2006 Jeremy Katz <katzj@redhat.com> - 8.0.45-3
 - path fix
 
