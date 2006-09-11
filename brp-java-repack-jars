@@ -66,7 +66,7 @@ if [ ! -z "$JARS" ]; then
 
 		# make the jar
 		pushd $JARDIR > /dev/null
-		find . -print -type f | LC_ALL=C sort | /usr/bin/zip -q -X -9 $j -@
+		find . -type f -print | LC_ALL=C sort | /usr/bin/zip -q -X -9 $j -@
 		popd > /dev/null
 
 		# Cleanup.
