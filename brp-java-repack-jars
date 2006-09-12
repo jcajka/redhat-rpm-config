@@ -42,16 +42,23 @@ if [ ! -z "$JARS" ]; then
 
 		# Get the modtime from the newest ChangeLog. If the project
 		# doesn't have a ChangeLog, Jan 1, 1970 will be used.
-		CHANGELOGS=`find $RPM_BUILD_DIR/$RPM_PACKAGE_NAME-$RPM_PACKAGE_VERSION -type f -name ChangeLog`
 		DATE="1970-01-01 UTC"
-		if [ ! -z "$CHANGELOGS" ]; then
-			for c in $CHANGELOGS; do
-				TMPDATE=`stat -c %y $c | cut -d " " -f 1-2`
-				if [ `date --date="$TMPDATE" +%s` -gt `date --date="$DATE" +%s` ]; then
-					DATE="$TMPDATE"
-				fi
-			done
-		fi 
+
+		if [ -z $_PACKAGE_BUILD_DIR ]; then
+			_PACKAGE_BUILD_DIR=$RPM_BUILD_DIR/$RPM_PACKAGE_NAME-$RPM_PACKAGE_VERSION
+		fi
+
+		if [ -d $_PACKAGE_BUILD_DIR ]; then
+			CHANGELOGS=`find $_PACKAGE_BUILD_DIR -type f -name ChangeLog`
+			if [ ! -z "$CHANGELOGS" ]; then
+				for c in $CHANGELOGS; do
+					TMPDATE=`stat -c %y $c | cut -d " " -f 1-2`
+					if [ `date --date="$TMPDATE" +%s` -gt `date --date="$DATE" +%s` ]; then
+						DATE="$TMPDATE"
+					fi
+				done
+			fi 
+		fi
 
 		# move the contents over to the a new directory in order and set
 		# the times. 
@@ -66,7 +73,13 @@ if [ ! -z "$JARS" ]; then
 
 		# make the jar
 		pushd $JARDIR > /dev/null
-		find . -type f -print | LC_ALL=C sort | /usr/bin/zip -q -X -9 $j -@
+
+		if [ -n "`find -type f`" ]; then
+			find -type f -print | LC_ALL=C sort | /usr/bin/zip -q -X -9 $j -@
+		else
+			# Put the empty jar back
+			touch $j
+		fi
 		popd > /dev/null
 
 		# Cleanup.
