@@ -1,6 +1,6 @@
 Summary: Red Hat specific rpm configuration files.
 Name: redhat-rpm-config
-Version: 8.0.40
+Version: 8.0.45
 Release: 1
 License: GPL
 Group: Development/System
@@ -35,6 +35,21 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_prefix}/lib/rpm/redhat
 
 %changelog
+* Sun Jul 30 2006 Jon Masters <jcm@redhat.com> - 8.0.45-1
+- Fix inverted kernel test.
+
+* Sun Jul 30 2006 Jon Masters <jcm@redhat.com> - 8.0.44-1
+- Add a better check for a kernel vs. kmod.
+
+* Thu Jun 15 2006 Jon Masters <jcm@redhat.com> - 8.0.43-1
+- Workaround bug in find-requires/find-provides for kmods.
+
+* Thu Jun 15 2006 Jon Masters <jcm@redhat.com> - 8.0.42-1
+- Fix a typo in KMP find-requires.
+
+* Tue Jun 13 2006 Jon Masters <jcm@redhat.com> - 8.0.41-1
+- Add support for KMP Fedora Extras packaging.
+
 * Fri Feb  3 2006 Jeremy Katz <katzj@redhat.com> - 8.0.40-1
 - use -mtune=generic for x86 and x86_64
 

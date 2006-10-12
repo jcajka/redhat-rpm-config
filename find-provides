@@ -3,6 +3,11 @@
 # This script reads filenames from STDIN and outputs any relevant provides
 # information that needs to be included in the package.
 
+if [ "$1" ]
+then
+   package_name = "$1"
+fi
+
 [ -z "$OBJDUMP" ] && OBJDUMP=objdump
 
 filelist=`sed "s/['\"]/\\\&/g"`
@@ -69,5 +74,31 @@ done | sort -u
 # --- pkgconfig
 [ -x /usr/lib/rpm/redhat/find-provides.pkgconfig ] &&
     echo $filelist | tr '[:blank:]' \\n | /usr/lib/rpm/redhat/find-provides.pkgconfig | sort -u
+
+#
+# --- Kernel module imported symbols
+#
+# Since we don't (yet) get passed the name of the package being built, we
+# cheat a little here by looking first for a kernel, then for a kmod.
+#
+
+is_kmod=1
+for f in $filelist; do
+    if [ $(echo "$f" | sed -r -ne 's:^.*/lib/modules/(.*)/(.*).ko$:\2:p') ]
+    then
+        is_kernel=1;
+    fi
+    if [ $(echo "$f" | sed -r -ne 's:^.*/boot/(.*):\1:p') ]
+    then
+	unset is_kmod;
+    fi
+done
+if [ ! "$is_kernel" ] || [ "$package_name" == "kernel" ]
+then
+    unset is_kmod
+fi
+
+[ -x /usr/lib/rpm/redhat/find-provides.ksyms ] && [ "$is_kmod" ] &&
+    printf "%s\n" "${filelist[@]}" | /usr/lib/rpm/redhat/find-provides.ksyms
 
 exit 0
