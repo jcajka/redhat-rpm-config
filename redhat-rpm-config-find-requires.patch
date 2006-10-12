@@ -41,3 +41,18 @@ diff -urN redhat-rpm-config-8.0.45_orig/find-requires redhat-rpm-config-8.0.45/f
  
  [ -x /usr/lib/rpm/redhat/find-requires.ksyms ] && [ "$is_kmod" ] &&
      printf "%s\n" "${filelist[@]}" | /usr/lib/rpm/redhat/find-requires.ksyms
+diff -urN redhat-rpm-config-8.0.45_orig/symset-table redhat-rpm-config-8.0.45/symset-table
+--- redhat-rpm-config-8.0.45_orig/symset-table	2006-06-13 03:48:59.000000000 +0100
++++ redhat-rpm-config-8.0.45/symset-table	2006-10-12 06:53:11.000000000 +0100
+@@ -19,6 +19,11 @@
+     | tar xf -
+ done
+ 
++for symsets in /usr/src/kernels/*/symsets-*.tar.gz; do
++    zcat $symsets \
++    | tar xf -
++done
++
+ for symsets in *; do
+     krel=${symsets#symsets-}
+     for symset in $symsets/*; do

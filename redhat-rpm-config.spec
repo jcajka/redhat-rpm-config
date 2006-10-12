@@ -1,7 +1,7 @@
 Summary: Red Hat specific rpm configuration files.
 Name: redhat-rpm-config
 Version: 8.0.45
-Release: 7
+Release: 8
 License: GPL
 Group: Development/System
 Source: redhat-rpm-config-%{version}.tar.gz
@@ -42,7 +42,7 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_prefix}/lib/rpm/redhat
 
 %changelog
-* Thu Oct 12 2006 Jon Masters <jcm@redhat.com> 8.0.45-7
+* Thu Oct 12 2006 Jon Masters <jcm@redhat.com> 8.0.45-8
 - Added patch for find-requires. Waiting on write access to public CVS.
 
 * Tue Sep 12 2006 Deepak Bhole <dbhole@redhat.com> 8.0.45-6
