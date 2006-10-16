@@ -1,13 +1,15 @@
 Summary: Red Hat specific rpm configuration files.
 Name: redhat-rpm-config
 Version: 8.0.45
-Release: 8
+Release: 9
 License: GPL
 Group: Development/System
 Source: redhat-rpm-config-%{version}.tar.gz
 Source1: brp-java-repack-jars
+Source2: kmodtool
 Patch0: redhat-rpm-config-java.patch
 Patch1: redhat-rpm-config-find-requires.patch
+Patch2: redhat-rpm-config-kmp.patch
 BuildArch: noarch
 #Requires: rpmbuild(VendorConfig) <= 4.1
 #Requires: mktemp
@@ -32,7 +34,9 @@ chmod a+x ${RPM_BUILD_ROOT}%{_prefix}/lib/rpm/redhat/config.{guess,sub}
 
 (cd ${RPM_BUILD_ROOT}%{_prefix}/lib/rpm/redhat ; patch -p1 -i %{PATCH0})
 (cd ${RPM_BUILD_ROOT}%{_prefix}/lib/rpm/redhat ; patch -p1 -i %{PATCH1})
+(cd ${RPM_BUILD_ROOT}%{_prefix}/lib/rpm/redhat ; patch -p1 -i %{PATCH2})
 install -m 755 %{SOURCE1} ${RPM_BUILD_ROOT}/%{_prefix}/lib/rpm/redhat/
+install -m 755 %{SOURCE2} ${RPM_BUILD_ROOT}/%{_prefix}/lib/rpm/redhat/
 
 %clean
 rm -rf ${RPM_BUILD_ROOT}
@@ -42,6 +46,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_prefix}/lib/rpm/redhat
 
 %changelog
+* Mon Oct 16 2006 Jon Masters <jcm@redhat.com> 8.0.45-9
+- Added kernel_module_package macro. Working on unified packaging.
+
 * Thu Oct 12 2006 Jon Masters <jcm@redhat.com> 8.0.45-8
 - Added patch for find-requires. Waiting on write access to public CVS.
 

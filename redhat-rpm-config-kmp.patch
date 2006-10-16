@@ -1,0 +1,47 @@
+--- redhat-rpm-config-8.0.45/macros	2005-08-16 20:27:33.000000000 -0400
++++ redhat-rpm-config-8.0.45_wip/macros	2006-10-16 16:52:35.000000000 -0400
+@@ -156,3 +157,44 @@
+ 
+ # Disable lookups
+ %_hkp_keyserver  %{nil}
++
++# kernel_source kversion kflavor
++%kernel_source(v:f:) %{expand:%( \
++	if [ "default" = "%{-f*}" ]
++	then
++		echo "/usr/src/kernels/%{-v*}-%{_target_cpu}"
++	else
++		echo "/usr/src/kernels/%{-v*}-%{-f*}-%{_target_cpu}"
++	fi
++)}
++
++%kmodtool	/usr/lib/rpm/redhat/kmodtool
++
++# kernel_module_package [ -n name ]
++
++%kernel_module_package(n:v:r:s:f:xp:) %{expand:%( \
++	machine=`uname -m` \
++	%{!?kversion: %{expand: %%define kversion %(uname -r)}} \
++	flavors="default" \
++	if [ "i686" == "$machine" ] \
++	then
++		flavors="$flavors smp" \
++	fi
++	if [ "i686" == "$machine" ] || [ "x86_64" == "$machine" ] \
++	then \
++		xenver=$(rpm -q --qf '%{VERSION}-%{RELEASE}' kernel-xen-devel)\
++		kdver=$(rpm -q --qf '%{VERSION}-%{RELEASE}' kernel-kdump-devel)\
++		if [ "$kversion" == "$xenver" ] \
++		then \
++			flavors="$flavors xen0" \
++		fi \
++		if [ "$kversion" == "$kdver" ] \
++		then \
++			flavors="$flavors kdump" \
++		fi \
++	fi \
++	flavors_to_build=$flavors \
++	echo "%%global flavors_to_build ${flavors_to_build:-%%nil}" \
++	%define kverrel %(%{kmodtool} verrel %{?kversion} 2>/dev/null) \
++	%{kmodtool} rpmtemplate_kmp %{-n*} %{kverrel} $flavors_to_build 2>/dev/null \
++)}
