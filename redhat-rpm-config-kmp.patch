@@ -1,27 +1,49 @@
---- redhat-rpm-config-8.0.45/macros	2005-08-16 20:27:33.000000000 -0400
-+++ redhat-rpm-config-8.0.45_wip/macros	2006-10-16 16:52:35.000000000 -0400
-@@ -156,3 +157,44 @@
+diff -urN redhat-rpm-config-8.0.45_orig/macros redhat-rpm-config-8.0.45/macros
+--- redhat-rpm-config-8.0.45_orig/macros	2005-08-16 20:27:33.000000000 -0400
++++ redhat-rpm-config-8.0.45/macros	2006-10-17 20:15:08.000000000 -0400
+@@ -156,3 +157,82 @@
  
  # Disable lookups
  %_hkp_keyserver  %{nil}
 +
-+# kernel_source kversion kflavor
-+%kernel_source(v:f:) %{expand:%( \
-+	if [ "default" = "%{-f*}" ]
-+	then
-+		echo "/usr/src/kernels/%{-v*}-%{_target_cpu}"
-+	else
-+		echo "/usr/src/kernels/%{-v*}-%{-f*}-%{_target_cpu}"
-+	fi
++%ktest() %{expand:%( \
++	echo "%1" \
 +)}
 +
-+%kmodtool	/usr/lib/rpm/redhat/kmodtool
++# kernel_source kversion kflavor
++%old_kernel_source() %{expand:%( \
++	if [ "default" == "%2" ] \
++	then \
++		echo "/usr/src/kernels/%1-%{_target_cpu}" \
++	else \
++		echo "/usr/src/kernels/%1-%2-%{_target_cpu}" \
++	fi \
++)}
 +
-+# kernel_module_package [ -n name ]
++# Use these macros to differentiate between RH and other KMP implementation(s).
++redhat_kernel_module_package	1
++kernel_module_package_release	1
++
++# kernel_module_package [ -n name ] [ -v version ] [ -r release ] [ -s script ]
++			[ -f filelist] [ -x ] [ -p preamble ] flavor flavor ...
++
++%kernel_module_script kernel_source() { \
++	if [ "default" == "$1" ]; then \
++		echo "/usr/src/kernels/%kverrel-%{_target_cpu}" ; \
++	else \
++		echo "/usr/src/kernels/%kverrel-$1-%{_target_cpu}" ; \
++	fi }
 +
 +%kernel_module_package(n:v:r:s:f:xp:) %{expand:%( \
++	%global __spec_prep_pre %{__spec_prep_pre};%{kernel_module_script}
++	%global __spec_build_pre %{__spec_build_pre};%{kernel_module_script}
++	%global __spec_install_pre %{__spec_install_pre};%{kernel_module_script}
++	%define kmodtool %{-s*}%{!-s:/usr/lib/rpm/redhat/kmodtool} \
++	%define kmp_version %{-v*}%{!-v:%{version}} \
++	%define kmp_release %{-r*}%{!-r:%{release}} \
 +	machine=`uname -m` \
-+	%{!?kversion: %{expand: %%define kversion %(uname -r)}} \
++	%{!?kversion: %{expand: %%global kversion %(uname -r)}} \
++	%global kverrel %(%{kmodtool} verrel %{?kversion} 2>/dev/null) \
 +	flavors="default" \
 +	if [ "i686" == "$machine" ] \
 +	then
@@ -29,19 +51,36 @@
 +	fi
 +	if [ "i686" == "$machine" ] || [ "x86_64" == "$machine" ] \
 +	then \
-+		xenver=$(rpm -q --qf '%{VERSION}-%{RELEASE}' kernel-xen-devel)\
-+		kdver=$(rpm -q --qf '%{VERSION}-%{RELEASE}' kernel-kdump-devel)\
-+		if [ "$kversion" == "$xenver" ] \
++		xenver=$(rpm -q kernel-xen-devel-%{kverrel}|head -n 1)\
++		kdver=$(rpm -q kernel-kdump-devel-%{kverrel}|head -n 1)\
++		if [ "kernel-xen-devel-%{kverrel}" == "$xenver" ] \
 +		then \
-+			flavors="$flavors xen0" \
++			flavors="$flavors xen" \
 +		fi \
-+		if [ "$kversion" == "$kdver" ] \
++		if [ "kernel-kdump-devel-%{kverrel}" == "$kdver" ] \
 +		then \
 +			flavors="$flavors kdump" \
 +		fi \
 +	fi \
-+	flavors_to_build=$flavors \
++	if [ -z "%*" ]; then \
++		flavors_to_build=$flavors \
++	elif [ -z "%{-x}" ]; then \
++		flavors_to_build="%*" \
++	else \
++		flavors_to_build=$flavors \
++		for i in %* \
++		do \
++			flavors_to_build=${flavors_to_build//$i/} \
++		done \
++	fi \
 +	echo "%%global flavors_to_build ${flavors_to_build:-%%nil}" \
-+	%define kverrel %(%{kmodtool} verrel %{?kversion} 2>/dev/null) \
-+	%{kmodtool} rpmtemplate_kmp %{-n*} %{kverrel} $flavors_to_build 2>/dev/null \
++	if [ ! -z "%{-f*}" ] \
++	then \
++		filelist="%{-f*}" \
++	fi \
++	if [ ! -z "%{-p*}" ] \
++	then \
++		preamble="%{-p*}" \
++	fi \
++	kmp_override_filelist="$filelist" kmp_override_preamble="$preamble" %{kmodtool} rpmtemplate_kmp %{-n*}%{!-n:%name} %{kverrel} $flavors_to_build 2>/dev/null \
 +)}

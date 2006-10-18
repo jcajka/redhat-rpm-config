@@ -28,7 +28,7 @@ shopt -s extglob
 
 myprog="kmodtool"
 myver="0.10.10_kmp2"
-knownvariants=@(BOOT|PAE|@(big|huge)mem|debug|enterprise|kdump|?(large)smp|uml|xen[0U]?(-PAE))
+knownvariants=@(BOOT|PAE|@(big|huge)mem|debug|enterprise|kdump|?(large)smp|uml|xen[0U]?(-PAE)|xen)
 kmod_name=
 kver=
 verrel=
@@ -66,14 +66,25 @@ get_rpmtemplate ()
     local variant="${1}"
     local dashvariant="${variant:+-${variant}}"
     case "$verrel" in
+        *.el*) kdep="kernel${dashvariant}-%{_target_cpu} = ${verrel}" ;;
         *.EL*) kdep="kernel${dashvariant}-%{_target_cpu} = ${verrel}" ;;
         *)     kdep="kernel-%{_target_cpu} = ${verrel}${variant}"     ;;
     esac
-    cat <<EOF
-%package       -n kmod-${kmod_name}${dashvariant}
-Summary:          ${kmod_name} kernel module(s)
-Group:            System Environment/Kernel
-EOF
+
+    echo "%package       -n kmod-${kmod_name}${dashvariant}"
+
+    if [ -z "$kmp_provides_summary" ]; then
+        echo "Summary:          ${kmod_name} kernel module(s)"
+    fi
+
+    if [ -z "$kmp_provides_group" ]; then
+        echo "Group:            System Environment/Kernel"
+    fi
+
+    if [ ! -z "$kmp" ]; then
+        echo "Version: %{kmp_version}"
+        echo "Release: %{kmp_release}"
+    fi
     
     if [ ! -z "$kmp" ]; then
         echo "%global _use_internal_dependency_generator 0"
@@ -93,6 +104,14 @@ Requires:         ${kmod_name}-kmod-common >= %{?epoch:%{epoch}:}%{version}
 Requires(post):   /sbin/depmod
 Requires(postun): /sbin/depmod
 BuildRequires:    kernel${dashvariant}-devel-%{_target_cpu} = ${verrel}
+EOF
+
+if [ "" != "$kmp_override_preamble" ]
+then
+    cat "$kmp_override_preamble"
+fi
+
+cat <<EOF
 %description   -n kmod-${kmod_name}${dashvariant}
 This package provides the ${kmod_name} kernel modules built for the Linux
 kernel ${verrel}${variant} for the %{_target_cpu} family of processors.
@@ -131,12 +150,16 @@ if [ -x "/sbin/weak-modules" ]; then
 fi
 EOF
     fi
-    
-    cat <<EOF
-%files         -n kmod-${kmod_name}${dashvariant}
-%defattr(644,root,root,755)
-/lib/modules/${verrel}${variant}/
-EOF
+
+echo "%files         -n kmod-${kmod_name}${dashvariant}"
+
+if [ "" == "$kmp_override_filelist" ];
+then
+    echo "%defattr(644,root,root,755)"
+    echo "/lib/modules/${verrel}${variant}/"
+else
+    cat "$kmp_override_filelist"
+fi
 }
 
 print_rpmtemplate ()
