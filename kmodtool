@@ -103,8 +103,12 @@ EOF
 Requires:         ${kmod_name}-kmod-common >= %{?epoch:%{epoch}:}%{version}
 Requires(post):   /sbin/depmod
 Requires(postun): /sbin/depmod
-BuildRequires:    kernel${dashvariant}-devel-%{_target_cpu} = ${verrel}
 EOF
+
+if [ "no" != "$kmp_nobuildreqs" ]
+then
+    echo "BuildRequires: kernel${dashvariant}-devel-%{_target_cpu} = ${verrel}"
+fi
 
 if [ "" != "$kmp_override_preamble" ]
 then
