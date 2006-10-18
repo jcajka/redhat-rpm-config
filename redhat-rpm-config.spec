@@ -1,7 +1,7 @@
 Summary: Red Hat specific rpm configuration files.
 Name: redhat-rpm-config
 Version: 8.0.45
-Release: 11%{dist}
+Release: 12%{dist}
 License: GPL
 Group: Development/System
 Source: redhat-rpm-config-%{version}.tar.gz
@@ -46,7 +46,7 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_prefix}/lib/rpm/redhat
 
 %changelog
-* Wed Oct 18 2006 Jon Masters <jcm@redhat.com> 8.0.45-11
+* Wed Oct 18 2006 Jon Masters <jcm@redhat.com> 8.0.45-12
 - Synced kernel_module_package semantics with SuSE.
 - Updated kmodtool.
 
