@@ -46,7 +46,7 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_prefix}/lib/rpm/redhat
 
 %changelog
-* Tue Mar 13 2006 Ben Konrath <bkonrath@redhat.com> 8.0.45-13
+* Tue Mar 13 2007 Ben Konrath <bkonrath@redhat.com> 8.0.45-13
 - Update brp-java-repack-jars to fix issue with tomcat. 
 
 * Wed Oct 18 2006 Jon Masters <jcm@redhat.com> 8.0.45-12
