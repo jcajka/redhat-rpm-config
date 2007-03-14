@@ -74,8 +74,8 @@ if [ ! -z "$JARS" ]; then
 		# make the jar
 		pushd $JARDIR > /dev/null
 
-		if [ -n "`find -type f`" ]; then
-			find -type f -print | LC_ALL=C sort | /usr/bin/zip -q -X -9 $j -@
+		if [ -n "`find -not -name '.'`" ]; then
+			find * -not -name '.' | LC_ALL=C sort | /usr/bin/zip -q -X -9 $j -@
 		else
 			# Put the empty jar back
 			touch $j
