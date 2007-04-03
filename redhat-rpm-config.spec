@@ -1,7 +1,7 @@
 Summary: Red Hat specific rpm configuration files.
 Name: redhat-rpm-config
 Version: 8.0.45
-Release: 13%{dist}
+Release: 14%{dist}
 License: GPL
 Group: Development/System
 Source: redhat-rpm-config-%{version}.tar.gz
@@ -10,6 +10,7 @@ Source2: kmodtool
 Patch0: redhat-rpm-config-java.patch
 Patch1: redhat-rpm-config-find-requires.patch
 Patch2: redhat-rpm-config-kmp.patch
+Patch3: redhat-rpm-config-fedora-version-fc71.patch
 BuildArch: noarch
 #Requires: rpmbuild(VendorConfig) <= 4.1
 #Requires: mktemp
@@ -35,6 +36,7 @@ chmod a+x ${RPM_BUILD_ROOT}%{_prefix}/lib/rpm/redhat/config.{guess,sub}
 (cd ${RPM_BUILD_ROOT}%{_prefix}/lib/rpm/redhat ; patch -p1 -i %{PATCH0})
 (cd ${RPM_BUILD_ROOT}%{_prefix}/lib/rpm/redhat ; patch -p1 -i %{PATCH1})
 (cd ${RPM_BUILD_ROOT}%{_prefix}/lib/rpm/redhat ; patch -p1 -i %{PATCH2})
+(cd ${RPM_BUILD_ROOT}%{_prefix}/lib/rpm/redhat ; patch -p1 -i %{PATCH3})
 install -m 755 %{SOURCE1} ${RPM_BUILD_ROOT}/%{_prefix}/lib/rpm/redhat/
 install -m 755 %{SOURCE2} ${RPM_BUILD_ROOT}/%{_prefix}/lib/rpm/redhat/
 
@@ -46,6 +48,11 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_prefix}/lib/rpm/redhat
 
 %changelog
+* Tue Apr 03 2007 Jon Masters <jcm@redhat.com> 8.0.45-14
+- Rebased all previous patches (since java fix introduced offset).
+- Added Fedora per-release macros to platforms section of macros.
+  Further debate may see these move elsewhere in the ordering.
+
 * Tue Mar 13 2007 Ben Konrath <bkonrath@redhat.com> 8.0.45-13
 - Update brp-java-repack-jars to fix issue with tomcat. 
 

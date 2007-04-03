@@ -1,7 +1,7 @@
-diff -urN redhat-rpm-config-8.0.45_orig/macros redhat-rpm-config-8.0.45/macros
---- redhat-rpm-config-8.0.45_orig/macros	2005-08-16 20:27:33.000000000 -0400
-+++ redhat-rpm-config-8.0.45/macros	2006-10-18 14:11:55.000000000 -0400
-@@ -156,3 +157,67 @@
+diff -urNp redhat-rpm-config-8.0.45_orig/macros redhat-rpm-config-8.0.45/macros
+--- redhat-rpm-config-8.0.45_orig/macros	2007-04-03 00:00:03.000000000 -0400
++++ redhat-rpm-config-8.0.45/macros	2007-04-03 00:01:18.000000000 -0400
+@@ -157,3 +157,67 @@ unset DISPLAY\
  
  # Disable lookups
  %_hkp_keyserver  %{nil}
