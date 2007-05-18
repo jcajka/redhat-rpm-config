@@ -5,9 +5,9 @@ diff -urNp redhat-rpm-config-8.0.45_orig/macros redhat-rpm-config-8.0.45/macros
  %_gnu			-gnu
  %_target_platform	%{_target_cpu}-%{_vendor}-%{_target_os}%{?_gnu}
  
-+%fedora			7
-+%dist			.fc7
-+%fc7			1
++%fedora			8
++%dist			.fc8
++%fc8			1
 +
  #==============================================================================
  # ---- configure macros.  note that most of these are inherited

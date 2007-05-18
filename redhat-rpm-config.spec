@@ -1,7 +1,7 @@
 Summary: Red Hat specific rpm configuration files.
 Name: redhat-rpm-config
-Version: 8.0.45
-Release: 15%{dist}
+Version: 8.0.45.fc8
+Release: 16
 License: GPL
 Group: Development/System
 Source: redhat-rpm-config-%{version}.tar.gz
@@ -51,6 +51,10 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_prefix}/lib/rpm/redhat
 
 %changelog
+* Fri May 18 2007 Jesse Keating <jkeating@redhat.com> 8.0.45-16
+- Update macros for F8
+- hardcode dist in release string, as we provide it.  chicken/egg.
+
 * Wed Apr 11 2007 Jon Masters <jcm@redhat.com> 8.0.45-15
 - Add modalias tags to kernel module packages (kmods) for tracking.
 - Further information is available at http://www.kerneldrivers.org/.
