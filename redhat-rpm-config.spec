@@ -1,6 +1,6 @@
 Summary: Red Hat specific rpm configuration files.
 Name: redhat-rpm-config
-Version: 8.0.45
+Version: 8.1.0
 Release: 1
 License: GPL
 Group: Development/System
@@ -35,6 +35,10 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_prefix}/lib/rpm/redhat
 
 %changelog
+* Tue Jun 19 2007 Jeremy Katz <katzj@redhat.com> - 8.1.0-1
+- add modalias tags to kmod packages and other kmod changes (jcm)
+- recompress jars to avoid multilib conflicts (bkonrath)
+
 * Sun Jul 30 2006 Jon Masters <jcm@redhat.com> - 8.0.45-1
 - Fix inverted kernel test.
 
