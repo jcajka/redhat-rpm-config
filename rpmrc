@@ -43,6 +43,10 @@ optflags: mipsel %{__global_cflags}
 optflags: armv3l %{__global_cflags} -fsigned-char -march=armv3
 optflags: armv4b %{__global_cflags} -fsigned-char -march=armv4
 optflags: armv4l %{__global_cflags} -fsigned-char -march=armv4
+optflags: armv4tl %{__global_cflags} -march=armv4t
+optflags: armv5tel %{__global_cflags} -march=armv5te
+optflags: armv5tejl %{__global_cflags} -march=armv5te
+optflags: armv6l %{__global_cflags} -march=armv6
 
 optflags: atarist %{__global_cflags}
 optflags: atariste %{__global_cflags}
