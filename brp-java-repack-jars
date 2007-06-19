@@ -27,11 +27,11 @@ if [ ! -z "$JARS" ]; then
 	# repack the jar
 	for j in $JARS ; do
 		JARNAME=`basename $j`
-		TMPDIR=`mktemp -d -p $RPM_BUILD_ROOT/tmp $JARNAME.tmpdir.XXXXXXXXXX` || exit 1
+		JTMPDIR=`mktemp -d -p $RPM_BUILD_ROOT/tmp $JARNAME.tmpdir.XXXXXXXXXX` || exit 1
 		JARDIR=`mktemp -d -p $RPM_BUILD_ROOT/tmp $JARNAME.jardir.XXXXXXXXXX` || exit 1
 		TIMEREF=`mktemp -p $RPM_BUILD_ROOT/tmp $JARNAME.timeref.XXXXXXXXXX` || exit 1
 		
-		pushd $TMPDIR > /dev/null
+		pushd $JTMPDIR > /dev/null
 		/usr/bin/unzip -qq -o $j
 		rm -f $j
 		
@@ -83,7 +83,7 @@ if [ ! -z "$JARS" ]; then
 		popd > /dev/null
 
 		# Cleanup.
-		rm -rf $TMPDIR
+		rm -rf $JTMPDIR
 		rm -rf $JARDIR
 		rm -f $TIMEREF
 	done
