@@ -809,7 +809,14 @@ EOF
 	echo ${UNAME_MACHINE}-pc-minix
 	exit 0 ;;
     arm*:Linux:*:*)
-	echo ${UNAME_MACHINE}-unknown-linux-gnu
+	eval $set_cc_for_build
+	if echo __ARM_EABI__ | $CC_FOR_BUILD -E - 2>/dev/null \
+		| grep __ARM_EABI__ >/dev/null
+	then
+		echo ${UNAME_MACHINE}-${VENDOR:-unknown}-linux-gnu
+	else
+		echo ${UNAME_MACHINE}-${VENDOR:-unknown}-linux-gnueabi
+	fi
 	exit 0 ;;
     cris:Linux:*:*)
 	echo cris-axis-linux-gnu
