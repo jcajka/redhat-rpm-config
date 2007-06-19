@@ -8,17 +8,11 @@ CVSTAG = REDHAT_RPM_CONFIG_$(subst .,_,$(VERSION))
 all:
 
 tag-archive:
-	cvs -Q tag -F $(CVSTAG)
+	git-tag -a $(CVSTAG)
 
 create-archive:
-	@rm -rf /tmp/$(NAME)
-	@cd /tmp ; cvs -Q -d $(CVSROOT) export -r$(CVSTAG) $(NAME) || echo "Um... export aborted."
-	@mv /tmp/$(NAME) /tmp/$(NAME)-$(VERSION)
-	@cd /tmp ; tar -czSpf $(NAME)-$(VERSION).tar.gz $(NAME)-$(VERSION)
-	@rm -rf /tmp/$(NAME)-$(VERSION)
-	@cp /tmp/$(NAME)-$(VERSION).tar.gz .
-	@rm -f /tmp/$(NAME)-$(VERSION).tar.gz
-	@echo ""
-	@echo "The final archive is in $(NAME)-$(VERSION).tar.gz"
+	git-archive --format=tar --prefix=redhat-rpm-config-$(VERSION)/ HEAD | bzip2 -9v > redhat-rpm-config-$(VERSION).tar.bz2
+	@echo "The final archive is in $(NAME)-$(VERSION).tar.bz2"
 
 archive: tag-archive create-archive
+dist: create-archive
