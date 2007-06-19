@@ -1,17 +1,10 @@
 Summary: Red Hat specific rpm configuration files.
 Name: redhat-rpm-config
-Version: 8.0.45
-Release: 16.fc8
+Version: 8.1.0
+Release: 1.fc8
 License: GPL
 Group: Development/System
 Source: redhat-rpm-config-%{version}.tar.gz
-Source1: brp-java-repack-jars
-Source2: kmodtool
-Patch0: redhat-rpm-config-java.patch
-Patch1: redhat-rpm-config-find-requires.patch
-Patch2: redhat-rpm-config-kmp.patch
-Patch3: redhat-rpm-config-fedora-version-fc71.patch
-Patch4: redhat-rpm-config-find-provides.patch
 BuildArch: noarch
 #Requires: rpmbuild(VendorConfig) <= 4.1
 #Requires: mktemp
@@ -33,15 +26,16 @@ mkdir -p ${RPM_BUILD_ROOT}%{_prefix}/lib/rpm
 
 # fix perms of config.{guess,sub}
 chmod a+x ${RPM_BUILD_ROOT}%{_prefix}/lib/rpm/redhat/config.{guess,sub}
+chmod a+x ${RPM_BUILD_ROOT}%{_prefix}/lib/rpm/redhat/brp*
 
-(cd ${RPM_BUILD_ROOT}%{_prefix}/lib/rpm/redhat ; patch -p1 -i %{PATCH0})
-(cd ${RPM_BUILD_ROOT}%{_prefix}/lib/rpm/redhat ; patch -p1 -i %{PATCH1})
-(cd ${RPM_BUILD_ROOT}%{_prefix}/lib/rpm/redhat ; patch -p1 -i %{PATCH2})
-(cd ${RPM_BUILD_ROOT}%{_prefix}/lib/rpm/redhat ; patch -p1 -i %{PATCH3})
-(cd ${RPM_BUILD_ROOT}%{_prefix}/lib/rpm/redhat ; patch -p1 -i %{PATCH4})
-install -m 755 %{SOURCE1} ${RPM_BUILD_ROOT}/%{_prefix}/lib/rpm/redhat/
-install -m 755 %{SOURCE2} ${RPM_BUILD_ROOT}/%{_prefix}/lib/rpm/redhat/
-chmod a+x ${RPM_BUILD_ROOT}%{_prefix}/lib/rpm/redhat/find-*.d/*.prov
+cat >> ${RPM_BUILD_ROOT}%{_prefix}/lib/rpm/redhat/macros << EOF
+
+#
+# dist macros
+%%fedora   8
+%%dist     .fc8
+%%fc8      1
+EOF
 
 %clean
 rm -rf ${RPM_BUILD_ROOT}
@@ -51,6 +45,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_prefix}/lib/rpm/redhat
 
 %changelog
+* Tue Jun 19 2007 Jeremy Katz <katzj@redhat.com> - 8.1.0-1.fc8
+- integrate patches into upstream CVS.
+
 * Fri May 18 2007 Jesse Keating <jkeating@redhat.com> 8.0.45-16
 - Update macros for F8
 - hardcode dist in release string, as we provide it.  chicken/egg.
