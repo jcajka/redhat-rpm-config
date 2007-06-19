@@ -136,7 +136,7 @@ export LANG\
 unset DISPLAY\
 %{nil}
 
-%find_lang      /usr/lib/rpm/redhat/find-lang.sh %{buildroot}
+%find_lang      /usr/lib/rpm/find-lang.sh %{buildroot}
 
 #
 # use internal dep generator?
