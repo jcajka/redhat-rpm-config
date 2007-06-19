@@ -7,6 +7,15 @@ CVSTAG = REDHAT_RPM_CONFIG_$(subst .,_,$(VERSION))
 
 all:
 
+clean:
+	rm -f *~ 
+
+install:
+	mkdir -p $(DESTDIR)/usr/lib/rpm/redhat
+	cp -pr * $(DESTDIR)/usr/lib/rpm/redhat/
+	rm -f $(DESTDIR)/usr/lib/rpm/redhat/Makefile
+	rm -f $(DESTDIR)/usr/lib/rpm/redhat/redhat-rpm-config.spec
+
 tag-archive:
 	git-tag -a $(CVSTAG)
 

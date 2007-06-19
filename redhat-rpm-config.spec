@@ -4,10 +4,9 @@ Version: 8.1.0
 Release: 1
 License: GPL
 Group: Development/System
-Source: redhat-rpm-config-%{version}.tar.gz
+Source: redhat-rpm-config-%{version}.tar.bz2
 BuildArch: noarch
-#Requires: rpmbuild(VendorConfig) <= 4.1
-#Requires: mktemp
+Requires: mktemp
 BuildRoot: %{_tmppath}/%{name}-root
 # rpmrc passes -mtune which first appeared in gcc 3.4
 %ifarch i386 i686 sparc
@@ -18,14 +17,10 @@ Conflicts: gcc < 3.4
 Red Hat specific rpm configuration files.
 
 %prep
+%setup -q
 
 %install
-rm -rf ${RPM_BUILD_ROOT}
-mkdir -p ${RPM_BUILD_ROOT}%{_prefix}/lib/rpm
-( cd ${RPM_BUILD_ROOT}%{_prefix}/lib/rpm; tar xzf %{SOURCE0}; mv %{name}-%{version} redhat; rm -f redhat/*.spec )
-
-# fix perms of config.{guess,sub}
-chmod a+x ${RPM_BUILD_ROOT}%{_prefix}/lib/rpm/redhat/config.{guess,sub}
+make DESTDIR=${RPM_BUILD_ROOT} install
 
 %clean
 rm -rf ${RPM_BUILD_ROOT}
