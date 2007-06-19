@@ -5,7 +5,6 @@
 #
 %_vendor		redhat
 %_os			linux
-%_gnu			-gnu
 %_target_platform	%{_target_cpu}-%{_vendor}-%{_target_os}%{?_gnu}
 
 #==============================================================================
