@@ -87,7 +87,7 @@
     /usr/lib/rpm/redhat/brp-strip-comment-note %{__strip} %{__objdump} \
     /usr/lib/rpm/brp-python-bytecompile \
     /usr/lib/rpm/redhat/brp-python-hardlink \
-    /usr/lib/rpm/redhat/brp-java-repack-jars \
+    %{!?__jar_repack:/usr/lib/rpm/redhat/brp-java-repack-jars} \
 %{nil}
 
 #    /usr/lib/rpm/redhat/brp-implant-ident-static
