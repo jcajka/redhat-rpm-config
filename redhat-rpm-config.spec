@@ -1,7 +1,7 @@
 Summary: Red Hat specific rpm configuration files.
 Name: redhat-rpm-config
-Version: 8.1.0
-Release: 1
+Version: 9.0.0
+Release: 1.fc8
 License: GPL
 Group: Development/System
 Source: redhat-rpm-config-%{version}.tar.bz2
@@ -22,6 +22,15 @@ Red Hat specific rpm configuration files.
 %install
 make DESTDIR=${RPM_BUILD_ROOT} install
 
+cat >> ${RPM_BUILD_ROOT}%{_prefix}/lib/rpm/redhat/macros << EOF
+
+#
+# dist macros
+%%fedora   8
+%%dist     .fc8
+%%fc8      1
+EOF
+
 %clean
 rm -rf ${RPM_BUILD_ROOT}
 
@@ -30,9 +39,62 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_prefix}/lib/rpm/redhat
 
 %changelog
+* Tue Jun 19 2007 Jeremy Katz <katzj@redhat.com> - 9.0.0-1
+- use stock find-lang.sh (#213041)
+- arm fixes (Lennert Buytenhek, #243523)
+- allow jar repacking to be disabled (#219731)
+- fix running dist.sh --fc (#223651)
+- hardlink identical .pyc and .pyo files to save space (Ville Skyttä)
+- fix TMPDIR usage (Matthew Miller, #235614)
+
 * Tue Jun 19 2007 Jeremy Katz <katzj@redhat.com> - 8.1.0-1
 - add modalias tags to kmod packages and other kmod changes (jcm)
 - recompress jars to avoid multilib conflicts (bkonrath)
+
+* Fri May 18 2007 Jesse Keating <jkeating@redhat.com> 8.0.45-16
+- Update macros for F8
+- hardcode dist in release string, as we provide it.  chicken/egg.
+
+* Wed Apr 11 2007 Jon Masters <jcm@redhat.com> 8.0.45-15
+- Add modalias tags to kernel module packages (kmods) for tracking.
+- Further information is available at http://www.kerneldrivers.org/.
+
+* Tue Apr 03 2007 Jon Masters <jcm@redhat.com> 8.0.45-14
+- Rebased all previous patches (since java fix introduced offset).
+- Added Fedora per-release macros to platforms section of macros.
+  Further debate may see these move elsewhere in the ordering.
+
+* Tue Mar 13 2007 Ben Konrath <bkonrath@redhat.com> 8.0.45-13
+- Update brp-java-repack-jars to fix issue with tomcat. 
+
+* Wed Oct 18 2006 Jon Masters <jcm@redhat.com> 8.0.45-12
+- Synced kernel_module_package semantics with SuSE.
+- Updated kmodtool.
+
+* Tue Oct 17 2006 Jon Masters <jcm@redhat.com> 8.0.45-10
+- Updated kernel_module_package.
+
+* Mon Oct 16 2006 Jon Masters <jcm@redhat.com> 8.0.45-9
+- Added kernel_module_package macro. Working on unified packaging.
+
+* Thu Oct 12 2006 Jon Masters <jcm@redhat.com> 8.0.45-8
+- Added patch for find-requires. Waiting on write access to public CVS.
+
+* Tue Sep 12 2006 Deepak Bhole <dbhole@redhat.com> 8.0.45-6
+- Fix brp-java-repack-jars to work with builddirs that aren't %name-%version
+
+* Mon Sep 11 2006 Fernando Nasser <fnasser@redhat.com> - 8.0.45-5
+- Fix order of tokens in find command (thanks mikeb@redhat.com)
+
+* Thu Sep  7 2006 Ben Konrath <bkonrath@redhat.com> - 8.0.45-4
+- Fix bug in repack jars script. 
+
+* Wed Sep  6 2006 Jeremy Katz <katzj@redhat.com> - 8.0.45-3
+- path fix
+
+* Tue Sep  5 2006 Jeremy Katz <katzj@redhat.com> - 8.0.45-2
+- Add script from Ben Konrath <bkonrath@redhat.com> to repack jars to 
+  avoid multilib conflicts
 
 * Sun Jul 30 2006 Jon Masters <jcm@redhat.com> - 8.0.45-1
 - Fix inverted kernel test.
