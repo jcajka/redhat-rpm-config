@@ -49,7 +49,7 @@ fi
 
 case "$1" in
     --el) echo -n "$DISTRHEL" ;;
-    --fc) echo -n "$DISTFEDORA" ;;
+    --fc) echo -n "$DISTFC" ;;
     --rhl) echo -n "$DISTRHL" ;;
     --distnum) echo -n "$DISTNUM" ;;
     --disttype) echo -n "$DISTTYPE" ;;
