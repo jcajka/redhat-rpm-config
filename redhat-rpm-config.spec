@@ -1,13 +1,12 @@
 Summary: Red Hat specific rpm configuration files.
 Name: redhat-rpm-config
-Version: 8.1.0
+Version: 9.0.0
 Release: 1.fc8
 License: GPL
 Group: Development/System
-Source: redhat-rpm-config-%{version}.tar.gz
+Source: redhat-rpm-config-%{version}.tar.bz2
 BuildArch: noarch
-#Requires: rpmbuild(VendorConfig) <= 4.1
-#Requires: mktemp
+Requires: mktemp
 BuildRoot: %{_tmppath}/%{name}-root
 # rpmrc passes -mtune which first appeared in gcc 3.4
 %ifarch i386 i686 sparc
@@ -18,15 +17,10 @@ Conflicts: gcc < 3.4
 Red Hat specific rpm configuration files.
 
 %prep
+%setup -q
 
 %install
-rm -rf ${RPM_BUILD_ROOT}
-mkdir -p ${RPM_BUILD_ROOT}%{_prefix}/lib/rpm
-( cd ${RPM_BUILD_ROOT}%{_prefix}/lib/rpm; tar xzf %{SOURCE0}; mv %{name}-%{version} redhat; rm -f redhat/*.spec )
-
-# fix perms of config.{guess,sub}
-chmod a+x ${RPM_BUILD_ROOT}%{_prefix}/lib/rpm/redhat/config.{guess,sub}
-chmod a+x ${RPM_BUILD_ROOT}%{_prefix}/lib/rpm/redhat/brp*
+make DESTDIR=${RPM_BUILD_ROOT} install
 
 cat >> ${RPM_BUILD_ROOT}%{_prefix}/lib/rpm/redhat/macros << EOF
 
@@ -45,8 +39,17 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_prefix}/lib/rpm/redhat
 
 %changelog
-* Tue Jun 19 2007 Jeremy Katz <katzj@redhat.com> - 8.1.0-1.fc8
-- integrate patches into upstream CVS.
+* Tue Jun 19 2007 Jeremy Katz <katzj@redhat.com> - 9.0.0-1
+- use stock find-lang.sh (#213041)
+- arm fixes (Lennert Buytenhek, #243523)
+- allow jar repacking to be disabled (#219731)
+- fix running dist.sh --fc (#223651)
+- hardlink identical .pyc and .pyo files to save space (Ville Skyttä)
+- fix TMPDIR usage (Matthew Miller, #235614)
+
+* Tue Jun 19 2007 Jeremy Katz <katzj@redhat.com> - 8.1.0-1
+- add modalias tags to kmod packages and other kmod changes (jcm)
+- recompress jars to avoid multilib conflicts (bkonrath)
 
 * Fri May 18 2007 Jesse Keating <jkeating@redhat.com> 8.0.45-16
 - Update macros for F8
