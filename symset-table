@@ -19,6 +19,11 @@ for symsets in /boot/symsets-*.tar.gz; do
     | tar xf -
 done
 
+for symsets in /usr/src/kernels/*/symsets-*.tar.gz; do
+    zcat $symsets \
+    | tar xf -
+done
+
 for symsets in *; do
     krel=${symsets#symsets-}
     for symset in $symsets/*; do
