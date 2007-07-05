@@ -1,12 +1,14 @@
 Summary: Red Hat specific rpm configuration files.
 Name: redhat-rpm-config
-Version: 9.0.0
-Release: 1.fc8
+Version: 9.0.1
+Release: 1%{?dist}
 License: GPL
 Group: Development/System
 Source: redhat-rpm-config-%{version}.tar.bz2
 BuildArch: noarch
 Requires: mktemp
+# We need newer rpm-build for post-build buildroot checking
+Requires: rpm-build >= 4.4.2.1-0.4.rc2
 BuildRoot: %{_tmppath}/%{name}-root
 # rpmrc passes -mtune which first appeared in gcc 3.4
 %ifarch i386 i686 sparc
@@ -22,15 +24,6 @@ Red Hat specific rpm configuration files.
 %install
 make DESTDIR=${RPM_BUILD_ROOT} install
 
-cat >> ${RPM_BUILD_ROOT}%{_prefix}/lib/rpm/redhat/macros << EOF
-
-#
-# dist macros
-%%fedora   8
-%%dist     .fc8
-%%fc8      1
-EOF
-
 %clean
 rm -rf ${RPM_BUILD_ROOT}
 
@@ -39,6 +32,10 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_prefix}/lib/rpm/redhat
 
 %changelog
+* Thu Jul 05 2007 Jesse Keating <jkeating@redhat.com> - 9.0.1-1
+- Remove dist defines, fedora-release does that now
+- Enable post-build buildroot checking by default
+
 * Tue Jun 19 2007 Jeremy Katz <katzj@redhat.com> - 9.0.0-1
 - use stock find-lang.sh (#213041)
 - arm fixes (Lennert Buytenhek, #243523)
