@@ -77,7 +77,7 @@
 #	Expanded at end of %install scriptlet.
 #
 
-%__arch_install_post   %{nil}
+%__arch_install_post   /usr/lib/rpm/check-buildroot
 
 %__os_install_post    \
     /usr/lib/rpm/redhat/brp-compress \
