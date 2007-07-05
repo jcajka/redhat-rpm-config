@@ -7,8 +7,9 @@ Group: Development/System
 Source: redhat-rpm-config-%{version}.tar.bz2
 BuildArch: noarch
 Requires: mktemp
-# We need newer rpm-build for post-build buildroot checking
-Requires: rpm-build >= 4.4.2.1-0.4.rc2
+# if rpm-build is present (thus building rpms), we need newer for 
+# check buildroot 
+Conflicts: rpm-build < 4.4.2.1-0.4.rc2
 BuildRoot: %{_tmppath}/%{name}-root
 # rpmrc passes -mtune which first appeared in gcc 3.4
 %ifarch i386 i686 sparc
