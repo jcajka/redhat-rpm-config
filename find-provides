@@ -5,7 +5,7 @@
 
 if [ "$1" ]
 then
-   package_name = "$1"
+   package_name="$1"
 fi
 
 [ -z "$OBJDUMP" ] && OBJDUMP=objdump
