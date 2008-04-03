@@ -81,8 +81,11 @@ get_rpmtemplate ()
         echo "Group:            System Environment/Kernel"
     fi
 
-    if [ ! -z "$kmp" ]; then
+    if [ ! -z "$kmp_version" ]; then
         echo "Version: %{kmp_version}"
+    fi
+
+    if [ ! -z "$kmp_release" ]; then
         echo "Release: %{kmp_release}"
     fi
     
@@ -98,9 +101,13 @@ EOF
     if [ -z "$kmp" ]; then
         echo "Requires:         ${kdep}"
     fi
-    
+
+#
+# RHEL5 - Remove common package requirement on general kmod packages.
+# Requires: ${kmod_name}-kmod-common >= %{?epoch:%{epoch}:}%{version}
+#
+
     cat <<EOF
-Requires:         ${kmod_name}-kmod-common >= %{?epoch:%{epoch}:}%{version}
 Requires(post):   /sbin/depmod
 Requires(postun): /sbin/depmod
 EOF
@@ -127,13 +134,14 @@ EOF
     
     if [ ! -z "$kmp" ]; then
         cat <<EOF
-modules=( \$(rpm -ql kmod-${kmod_name}${dashvariant} | grep '\.ko$') )
+
+modules=( \$(find /lib/modules/${verrel}${variant}/extra/${kmod_name}) )
 if [ -x "/sbin/weak-modules" ]; then
     printf '%s\n' "\${modules[@]}" \
     | /sbin/weak-modules --add-modules
 fi
 %preun         -n kmod-${kmod_name}${dashvariant}
-find /lib/modules/${verrel}${variant}/extra/${kmod_name} | grep '\.ko$' \
+rpm -ql kmod-${kmod_name}${dashvariant} | grep '\.ko$' \
     > /var/run/rpm-kmod-${kmod_name}${dashvariant}-modules
 EOF
         
@@ -161,6 +169,7 @@ if [ "" == "$kmp_override_filelist" ];
 then
     echo "%defattr(644,root,root,755)"
     echo "/lib/modules/${verrel}${variant}/"
+    echo "/lib/firmware/"
 else
     cat "$kmp_override_filelist"
 fi

@@ -1,7 +1,7 @@
 Summary: Red Hat specific rpm configuration files.
 Name: redhat-rpm-config
 Version: 9.0.1
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: Development/System
 Source: redhat-rpm-config-%{version}.tar.bz2
@@ -33,6 +33,11 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_prefix}/lib/rpm/redhat
 
 %changelog
+* Thu Apr 03 2008 Jon Masters <jcm@redhat.com> - 9.0.1-2
+- Remove smp dependencies
+- Update config.guess|sub files
+- Don't call find-requires.ksyms for kmod packages (kernel kABI scripts).
+
 * Thu Jul 05 2007 Jesse Keating <jkeating@redhat.com> - 9.0.1-1
 - Remove dist defines, fedora-release does that now
 - Enable post-build buildroot checking by default

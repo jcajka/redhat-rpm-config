@@ -152,7 +152,8 @@ for f in $filelist; do
     fi
 done
 
-[ -x /usr/lib/rpm/redhat/find-requires.ksyms ] && [ "$is_kmod" ] &&
-    printf "%s\n" "${filelist[@]}" | /usr/lib/rpm/redhat/find-requires.ksyms
+# Disabling for now while the Fedora kernel doesn't produce kABI deps.
+#[ -x /usr/lib/rpm/redhat/find-requires.ksyms ] && [ "$is_kmod" ] &&
+#    printf "%s\n" "${filelist[@]}" | /usr/lib/rpm/redhat/find-requires.ksyms
 
 exit 0
