@@ -1,6 +1,6 @@
 Summary: Red Hat specific rpm configuration files.
 Name: redhat-rpm-config
-Version: 9.0.2
+Version: 9.0.3
 Release: 1%{?dist}
 License: GPL
 Group: Development/System
@@ -33,6 +33,12 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_prefix}/lib/rpm/redhat
 
 %changelog
+* Tue May 06 2008 Jon Masters <jcm@redhat.com> - 9.0.3-1
+- Ensure Java Jar files have readable files within.
+- Remove overwritten config.guess|sub files (testing).
+- Fix Fortran flags for building using _fmoddir.
+- Pull in objdump fix to upstream find-requires.
+
 * Thu Apr 03 2008 Jon Masters <jcm@redhat.com> - 9.0.2-1
 - Remove smp dependencies
 - Update config.guess|sub files
