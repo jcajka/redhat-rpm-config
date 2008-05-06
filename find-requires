@@ -114,6 +114,7 @@ for f in $liblist $exelist ; do
 	(START==2) && (LIBNAME!="") && ($4!="") {
 	    print LIBNAME "(" $4 ")'$lib64'";
 	}
+	/^[A-Za-z]/ { START=3; }
     '
 done | sort -u
 

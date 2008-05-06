@@ -20,6 +20,8 @@
 
 %_defaultdocdir		%{_usr}/share/doc
 
+%_fmoddir		%{_libdir}/gfortran/modules
+
 %_enable_debug_packages 1
 
 #==============================================================================
@@ -28,10 +30,7 @@
 %configure \
   CFLAGS="${CFLAGS:-%optflags}" ; export CFLAGS ; \
   CXXFLAGS="${CXXFLAGS:-%optflags}" ; export CXXFLAGS ; \
-  FFLAGS="${FFLAGS:-%optflags}" ; export FFLAGS ; \
-  for i in $(find . -name config.guess -o -name config.sub) ; do \
-           [ -f /usr/lib/rpm/redhat/$(basename $i) ] && %{__rm} -f $i && %{__cp} -fv /usr/lib/rpm/redhat/$(basename $i) $i ; \
-  done ; \
+  FFLAGS="${FFLAGS:-%optflags -I%_fmoddir}" ; export FFLAGS ; \
   ./configure --build=%{_build} --host=%{_host} \\\
 	--target=%{_target_platform} \\\
 	--program-prefix=%{?_program_prefix} \\\
@@ -106,6 +105,7 @@
 %package debuginfo \
 Summary: Debug information for package %{name}\
 Group: Development/Debug\
+AutoReqProv: 0\
 %description debuginfo\
 This package provides debug information for package %{name}.\
 Debug information is useful when developing applications that use this\
@@ -136,6 +136,10 @@ export LANG\
 unset DISPLAY\
 %{nil}
 
+%check %%check\
+unset DISPLAY\
+%{nil}
+
 %find_lang      /usr/lib/rpm/find-lang.sh %{buildroot}
 
 #
@@ -145,6 +149,9 @@ unset DISPLAY\
 #
 # Should missing %doc files terminate a build?
 %_missing_doc_files_terminate_build    1
+#
+# Should missing buildids terminate a build?
+%_missing_build_ids_terminate_build    1
 
 #
 # Should unpackaged files in a build root terminate a build?
