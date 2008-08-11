@@ -1,10 +1,11 @@
 Summary: Red Hat specific rpm configuration files.
 Name: redhat-rpm-config
 Version: 9.0.3
-Release: 1%{?dist}
+Release: 2%{?dist}
 License: GPL
 Group: Development/System
 Source: redhat-rpm-config-%{version}.tar.bz2
+Patch0: redhat-rpm-config-9.0.3-fix-requires.patch
 BuildArch: noarch
 Requires: mktemp
 # if rpm-build is present (thus building rpms), we need newer for 
@@ -21,6 +22,7 @@ Red Hat specific rpm configuration files.
 
 %prep
 %setup -q
+%patch0 -p0
 
 %install
 make DESTDIR=${RPM_BUILD_ROOT} install
@@ -33,6 +35,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_prefix}/lib/rpm/redhat
 
 %changelog
+* Mon Aug 11 2008 Panu Matilainen <pmatilai@redhat.com> - 9.0.3-2
+- Unbreak find-requires (#443015)
+
 * Tue May 06 2008 Jon Masters <jcm@redhat.com> - 9.0.3-1
 - Ensure Java Jar files have readable files within.
 - Remove overwritten config.guess|sub files (testing).
