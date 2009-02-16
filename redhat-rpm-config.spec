@@ -1,22 +1,28 @@
 Summary: Red Hat specific rpm configuration files.
 Name: redhat-rpm-config
-Version: 9.0.3
-Release: 3%{?dist}
-# No version specified.
-License: GPL+
+Version: 9.0.2
+Release: 2%{?dist}
+License: GPL
 Group: Development/System
 Source: redhat-rpm-config-%{version}.tar.bz2
-Patch0: redhat-rpm-config-9.0.3-fix-requires.patch
+Patch0: limit-smp-16-threads.patch
 BuildArch: noarch
 Requires: mktemp
+# if rpm-build is present (thus building rpms), we need newer for 
+# check buildroot 
+Conflicts: rpm-build < 4.4.2.1-0.4.rc2
 BuildRoot: %{_tmppath}/%{name}-root
+# rpmrc passes -mtune which first appeared in gcc 3.4
+%ifarch i386 i686 sparc
+Conflicts: gcc < 3.4
+%endif
 
 %description
 Red Hat specific rpm configuration files.
 
 %prep
 %setup -q
-%patch0 -p0
+%patch0 -p1
 
 %install
 make DESTDIR=${RPM_BUILD_ROOT} install
@@ -29,18 +35,8 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_prefix}/lib/rpm/redhat
 
 %changelog
-* Wed Sep  3 2008 Tom "spot" Callaway <tcallawa@redhat.com> - 9.0.3-3
-- fix license tag
-- nuke ancient conflicts
-
-* Mon Aug 11 2008 Panu Matilainen <pmatilai@redhat.com> - 9.0.3-2
-- Unbreak find-requires (#443015)
-
-* Tue May 06 2008 Jon Masters <jcm@redhat.com> - 9.0.3-1
-- Ensure Java Jar files have readable files within.
-- Remove overwritten config.guess|sub files (testing).
-- Fix Fortran flags for building using _fmoddir.
-- Pull in objdump fix to upstream find-requires.
+* Tue May 20 2008 Dennis Gilmore <dennis@ausil.us> - 9.0.2-2
+- limit smp to 16 threads
 
 * Thu Apr 03 2008 Jon Masters <jcm@redhat.com> - 9.0.2-1
 - Remove smp dependencies
