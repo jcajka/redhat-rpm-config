@@ -1,13 +1,14 @@
 Summary: Red Hat specific rpm configuration files.
 Name: redhat-rpm-config
 Version: 9.0.3
-Release: 4%{?dist}
+Release: 5%{?dist}
 # No version specified.
 License: GPL+
 Group: Development/System
 Source: redhat-rpm-config-%{version}.tar.bz2
 Patch0: redhat-rpm-config-9.0.3-fix-requires.patch
-Patch1: limit-smp-16-threads.patch 
+Patch1: limit-smp-16-threads.patch
+Patch2: redhat-rpm-config-9.0.3-F-11-Architectures.patch
 BuildArch: noarch
 Requires: mktemp
 BuildRoot: %{_tmppath}/%{name}-root
@@ -19,6 +20,7 @@ Red Hat specific rpm configuration files.
 %setup -q
 %patch0 -p0
 %patch1 -p1
+%patch2 -p1
 
 %install
 make DESTDIR=${RPM_BUILD_ROOT} install
@@ -31,6 +33,11 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_prefix}/lib/rpm/redhat
 
 %changelog
+* Mon Feb 16 2009 Dennis Gilmore <dennis@ausil.us> - 9.0.3-5
+- apply fedora 11 default buildflags
+- set 32 bit intel build arch to i586 on compatiable hardware
+- set 32 bit sparc build arch to sparcv9 on compatiable hardware
+
 * Mon Feb 16 2009 Dennis Gilmore <dennis@ausil.us> - 9.0.3-4
 - limit _smp_flags to -j16
 
