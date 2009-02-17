@@ -1,7 +1,7 @@
 Summary: Red Hat specific rpm configuration files.
 Name: redhat-rpm-config
 Version: 9.0.3
-Release: 5%{?dist}
+Release: 6%{?dist}
 # No version specified.
 License: GPL+
 Group: Development/System
@@ -33,6 +33,10 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_prefix}/lib/rpm/redhat
 
 %changelog
+* Tue Feb 17 2009 Dennis Gilmore <dennis@ausil.us> - 9.0.3-6
+- add missing armv7l arch  
+- set the default build arch to match fedora arm build target
+
 * Mon Feb 16 2009 Dennis Gilmore <dennis@ausil.us> - 9.0.3-5
 - apply fedora 11 default buildflags
 - set 32 bit intel build arch to i586 on compatiable hardware
