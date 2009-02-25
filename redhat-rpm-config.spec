@@ -1,7 +1,7 @@
 Summary: Red Hat specific rpm configuration files.
 Name: redhat-rpm-config
 Version: 9.0.3
-Release: 7%{?dist}
+Release: 8%{?dist}
 # No version specified.
 License: GPL+
 Group: Development/System
@@ -35,6 +35,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_prefix}/lib/rpm/redhat
 
 %changelog
+* Wed Feb 25 2009 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 9.0.3-8
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_11_Mass_Rebuild
+
 * Mon Feb 23 2009 Jon Masters <jcm@redhat.com> - 9.0.3-7
 - Change default hashing algorithm in file digests to SHA-256
 - Resolves: #485826.
