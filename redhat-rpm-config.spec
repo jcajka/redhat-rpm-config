@@ -1,7 +1,7 @@
 Summary: Red Hat specific rpm configuration files.
 Name: redhat-rpm-config
 Version: 9.0.3
-Release: 9%{?dist}
+Release: 10%{?dist}
 # No version specified.
 License: GPL+
 Group: Development/System
