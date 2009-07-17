@@ -10,6 +10,7 @@ Patch0: redhat-rpm-config-9.0.3-fix-requires.patch
 Patch1: limit-smp-16-threads.patch
 Patch2: redhat-rpm-config-9.0.3-F-11-Architectures.patch
 Patch3: redhat-rpm-config-9.0.3-F-11-StrongerHashes.patch
+Patch4: redhat-rpm-config-9.0.3-F-12-Architectures.patch
 BuildArch: noarch
 Requires: mktemp
 BuildRoot: %{_tmppath}/%{name}-root
@@ -23,6 +24,7 @@ Red Hat specific rpm configuration files.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 
 %install
 make DESTDIR=${RPM_BUILD_ROOT} install
@@ -35,6 +37,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_prefix}/lib/rpm/redhat
 
 %changelog
+* Fri Jul 17 2009 Bill Nottingham <notting@redhat.com> 9.0.3-10
+- apply fedora 12 default buildflags
+
 * Wed Jun 03 2009 Adam Jackson <ajax@redhat.com> 9.0.3-9
 - limit-smp-16-threads.patch: Rediff so we don't ship a .orig file (#500316)
 
