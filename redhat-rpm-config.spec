@@ -41,7 +41,7 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_prefix}/lib/rpm/redhat
 
 %changelog
-* Wed Jul 22 2009 Bill Nottingham <notting@redhat.com> 9.0.3-11
+* Wed Jul 22 2009 Bill Nottingham <notting@redhat.com> 9.0.3-12
 - use XZ payload compression for binary packages
 
 * Tue Jul 21 2009 Tom "spot" Callaway <tcallawa@redhat.com> - 9.0.3-10
