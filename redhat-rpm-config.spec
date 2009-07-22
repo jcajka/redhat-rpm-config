@@ -1,7 +1,7 @@
 Summary: Red Hat specific rpm configuration files.
 Name: redhat-rpm-config
 Version: 9.0.3
-Release: 11%{?dist}
+Release: 12%{?dist}
 # No version specified.
 License: GPL+
 Group: Development/System
@@ -12,6 +12,7 @@ Patch2: redhat-rpm-config-9.0.3-F-11-Architectures.patch
 Patch3: redhat-rpm-config-9.0.3-F-11-StrongerHashes.patch
 Patch4: redhat-rpm-config-9.0.3-F-12-Architectures.patch
 Patch5: redhat-rpm-config-9.0.3-always_delete_buildroot_at_install.patch
+Patch6:	redhat-rpm-config-9.0.3-xz-payload.patch
 BuildArch: noarch
 Requires: mktemp
 BuildRoot: %{_tmppath}/%{name}-root
@@ -27,6 +28,7 @@ Red Hat specific rpm configuration files.
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
+%patch6 -p1
 
 %install
 make DESTDIR=${RPM_BUILD_ROOT} install
@@ -39,6 +41,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_prefix}/lib/rpm/redhat
 
 %changelog
+* Wed Jul 22 2009 Bill Nottingham <notting@redhat.com> 9.0.3-11
+- use XZ payload compression for binary packages
+
 * Tue Jul 21 2009 Tom "spot" Callaway <tcallawa@redhat.com> - 9.0.3-10
 - always delete %%buildroot as first step of %%install (as long as %buildroot is not /)
 
