@@ -1,7 +1,7 @@
 Summary: Red Hat specific rpm configuration files.
 Name: redhat-rpm-config
 Version: 9.0.3
-Release: 12%{?dist}
+Release: 13%{?dist}
 # No version specified.
 License: GPL+
 Group: Development/System
@@ -41,6 +41,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_prefix}/lib/rpm/redhat
 
 %changelog
+* Sun Jul 26 2009 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 9.0.3-13
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_12_Mass_Rebuild
+
 * Wed Jul 22 2009 Bill Nottingham <notting@redhat.com> 9.0.3-12
 - use XZ payload compression for binary packages
 
