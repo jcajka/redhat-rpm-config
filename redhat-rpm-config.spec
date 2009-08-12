@@ -1,7 +1,7 @@
 Summary: Red Hat specific rpm configuration files.
 Name: redhat-rpm-config
 Version: 9.0.3
-Release: 13%{?dist}
+Release: 14%{?dist}
 # No version specified.
 License: GPL+
 Group: Development/System
@@ -13,6 +13,7 @@ Patch3: redhat-rpm-config-9.0.3-F-11-StrongerHashes.patch
 Patch4: redhat-rpm-config-9.0.3-F-12-Architectures.patch
 Patch5: redhat-rpm-config-9.0.3-always_delete_buildroot_at_install.patch
 Patch6:	redhat-rpm-config-9.0.3-xz-payload.patch
+Patch7: redhat-rpm-config-9.0.3-jars-with-spaces.patch
 BuildArch: noarch
 Requires: mktemp
 BuildRoot: %{_tmppath}/%{name}-root
@@ -29,6 +30,7 @@ Red Hat specific rpm configuration files.
 %patch4 -p1
 %patch5 -p1
 %patch6 -p1
+%patch7 -p5
 
 %install
 make DESTDIR=${RPM_BUILD_ROOT} install
@@ -41,6 +43,10 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_prefix}/lib/rpm/redhat
 
 %changelog
+* Wed Aug 12 2009 Adam Jackson <ajax@redhat.com> 9.0.3-14
+- redhat-rpm-config-9.0.3-jars-with-spaces.patch: Handle repacking jars
+  whose filenames contain spaces. (#461854)
+
 * Sun Jul 26 2009 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 9.0.3-13
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_12_Mass_Rebuild
 
