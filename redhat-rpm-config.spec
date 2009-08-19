@@ -1,7 +1,7 @@
 Summary: Red Hat specific rpm configuration files.
 Name: redhat-rpm-config
 Version: 9.0.3
-Release: 15%{?dist}
+Release: 16%{?dist}
 # No version specified.
 License: GPL+
 Group: Development/System
@@ -15,6 +15,7 @@ Patch5: redhat-rpm-config-9.0.3-always_delete_buildroot_at_install.patch
 Patch6:	redhat-rpm-config-9.0.3-xz-payload.patch
 Patch7: redhat-rpm-config-9.0.3-jars-with-spaces.patch
 Patch8: redhat-rpm-config-9.0.3-brpssa-speedup.patch
+Patch9: redhat-rpm-config-9.0.3-filtering-macros.patch 
 BuildArch: noarch
 Requires: mktemp
 BuildRoot: %{_tmppath}/%{name}-root
@@ -33,6 +34,7 @@ Red Hat specific rpm configuration files.
 %patch6 -p1
 %patch7 -p5
 %patch8 -p1
+%patch9 -p1
 
 %install
 make DESTDIR=${RPM_BUILD_ROOT} install
@@ -45,6 +47,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_prefix}/lib/rpm/redhat
 
 %changelog
+* Tue Aug 18 2009 Chris Weyl <cweyl@alumni.drew.edu> 9.0.3-16
+- add the filtering framework approved by the FPC/FESCo. (#516240)
+
 * Thu Aug 13 2009 Adam Jackson <ajax@redhat.com> 9.0.3-15
 - redhat-rpm-config-9.0.4-brpssa-speedup.patch: When looking for static
   archives, only run file(1) on files named *.a. (#517101)
