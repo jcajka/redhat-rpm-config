@@ -65,7 +65,7 @@ rm -rf ${RPM_BUILD_ROOT}
 - use XZ payload compression for binary packages
 
 * Tue Jul 21 2009 Tom "spot" Callaway <tcallawa@redhat.com> - 9.0.3-10
-- always delete %%buildroot as first step of %%install (as long as %buildroot is not /)
+- always delete %%buildroot as first step of %%install (as long as %%buildroot is not /)
 
 * Fri Jul 17 2009 Bill Nottingham <notting@redhat.com> 9.0.3-10
 - apply fedora 12 default buildflags
