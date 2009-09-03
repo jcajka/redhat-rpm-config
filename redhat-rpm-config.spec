@@ -40,6 +40,7 @@ Red Hat specific rpm configuration files.
 
 %install
 make DESTDIR=${RPM_BUILD_ROOT} install
+find ${RPM_BUILD_ROOT} -name \*.orig -delete
 
 %clean
 rm -rf ${RPM_BUILD_ROOT}
@@ -49,6 +50,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_prefix}/lib/rpm/redhat
 
 %changelog
+* Thu Sep 03 2009 Adam Jackson <ajax@redhat.com>
+- Delete *.orig in %%install
+
 * Thu Sep 03 2009 Paul Howarth <paul@city-fan.org> 9.0.3-17
 - redhat-rpm-config-9.0.3-filtering-macros.patch: Rediff so we don't ship a .orig file
 - add (empty) %%build section
