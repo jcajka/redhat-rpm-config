@@ -6,7 +6,7 @@ diff -up redhat-rpm-config-9.0.3/macros.fu redhat-rpm-config-9.0.3/macros
  %_binary_filedigest_algorithm 8
  
 +# Use XZ compression for binary payloads
-+%_binary_payload w7.xzdio
++%_binary_payload w2.xzdio
 +
  %__find_provides        /usr/lib/rpm/redhat/find-provides
  %__find_requires        /usr/lib/rpm/redhat/find-requires

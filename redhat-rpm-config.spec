@@ -1,7 +1,7 @@
 Summary: Red Hat specific rpm configuration files
 Name: redhat-rpm-config
 Version: 9.0.3
-Release: 17%{?dist}
+Release: 18%{?dist}
 # No version specified.
 License: GPL+
 Group: Development/System
@@ -50,6 +50,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_prefix}/lib/rpm/redhat
 
 %changelog
+* Mon Sep 28 2009 Bill Nottingham <notting@redhat.com>
+- Drop xz compression level to 2
+
 * Thu Sep 03 2009 Adam Jackson <ajax@redhat.com>
 - Delete *.orig in %%install
 
