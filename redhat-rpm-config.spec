@@ -1,7 +1,7 @@
 Summary: Red Hat specific rpm configuration files
 Name: redhat-rpm-config
 Version: 9.0.3
-Release: 18%{?dist}
+Release: 19%{?dist}
 # No version specified.
 License: GPL+
 Group: Development/System
@@ -16,6 +16,7 @@ Patch6:	redhat-rpm-config-9.0.3-xz-payload.patch
 Patch7: redhat-rpm-config-9.0.3-jars-with-spaces.patch
 Patch8: redhat-rpm-config-9.0.3-brpssa-speedup.patch
 Patch9: redhat-rpm-config-9.0.3-filtering-macros.patch 
+Patch10: redhat-rpm-config-9.0.3-configure.patch
 BuildArch: noarch
 Requires: mktemp
 BuildRoot: %{_tmppath}/%{name}-root
@@ -35,6 +36,7 @@ Red Hat specific rpm configuration files.
 %patch7 -p5
 %patch8 -p1
 %patch9 -p1
+%patch10 -p1
 
 %build
 
@@ -50,6 +52,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_prefix}/lib/rpm/redhat
 
 %changelog
+* Mon Nov 23 2009 Orion Poplawski <orion@cora.nwra.com> - 9.0.3-19
+- Change configure macro to use _configure to allow override (bug #489942)
+
 * Mon Sep 28 2009 Bill Nottingham <notting@redhat.com>
 - Drop xz compression level to 2
 
