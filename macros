@@ -27,11 +27,12 @@
 #==============================================================================
 # ---- configure and makeinstall.
 #
+%_configure ./configure
 %configure \
   CFLAGS="${CFLAGS:-%optflags}" ; export CFLAGS ; \
   CXXFLAGS="${CXXFLAGS:-%optflags}" ; export CXXFLAGS ; \
   FFLAGS="${FFLAGS:-%optflags -I%_fmoddir}" ; export FFLAGS ; \
-  ./configure --build=%{_build} --host=%{_host} \\\
+  %{_configure} --build=%{_build} --host=%{_host} \\\
 	--target=%{_target_platform} \\\
 	--program-prefix=%{?_program_prefix} \\\
 	--prefix=%{_prefix} \\\
