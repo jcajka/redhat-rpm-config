@@ -33,7 +33,6 @@
   CXXFLAGS="${CXXFLAGS:-%optflags}" ; export CXXFLAGS ; \
   FFLAGS="${FFLAGS:-%optflags -I%_fmoddir}" ; export FFLAGS ; \
   %{_configure} --build=%{_build} --host=%{_host} \\\
-	--target=%{_target_platform} \\\
 	--program-prefix=%{?_program_prefix} \\\
 	--prefix=%{_prefix} \\\
 	--exec-prefix=%{_exec_prefix} \\\
