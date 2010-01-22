@@ -152,8 +152,6 @@ unset DISPLAY\
 unset DISPLAY\
 %{nil}
 
-%find_lang      /usr/lib/rpm/find-lang.sh %{buildroot}
-
 #
 # use internal dep generator?
 %_use_internal_dependency_generator 1
