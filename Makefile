@@ -1,8 +1,6 @@
 NAME=redhat-rpm-config
 VERSION=$(shell awk '/Version:/ { print $$2 }' $(NAME).spec)
 
-CVSROOT = $(shell cat CVS/Root 2>/dev/null || :)
-
 CVSTAG = REDHAT_RPM_CONFIG_$(subst .,_,$(VERSION))
 
 all:
