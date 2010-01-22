@@ -15,10 +15,10 @@ install:
 	rm -f $(DESTDIR)/usr/lib/rpm/redhat/redhat-rpm-config.spec
 
 tag-archive:
-	git-tag -a $(CVSTAG)
+	git tag -a $(CVSTAG)
 
 create-archive:
-	git-archive --format=tar --prefix=redhat-rpm-config-$(VERSION)/ HEAD | bzip2 -9v > redhat-rpm-config-$(VERSION).tar.bz2
+	git archive --format=tar --prefix=redhat-rpm-config-$(VERSION)/ HEAD | bzip2 -9v > redhat-rpm-config-$(VERSION).tar.bz2
 	@echo "The final archive is in $(NAME)-$(VERSION).tar.bz2"
 
 archive: tag-archive create-archive
