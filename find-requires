@@ -120,8 +120,8 @@ done | sort -u
 
 #
 # --- Perl modules.
-[ -x /usr/lib/rpm/redhat/perl.req -a -n "$perllist" ] && \
-    echo $perllist | tr '[:blank:]' \\n | /usr/lib/rpm/redhat/perl.req | sort -u
+[ -x /usr/lib/rpm/perl.req -a -n "$perllist" ] && \
+    echo $perllist | tr '[:blank:]' \\n | /usr/lib/rpm/perl.req | sort -u
 
 #
 # --- Python modules.

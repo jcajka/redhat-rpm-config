@@ -52,8 +52,8 @@ done | sort -u
 
 #
 # --- Perl modules.
-[ -x /usr/lib/rpm/redhat/perl.prov ] &&
-    echo $filelist | tr '[:blank:]' \\n | grep '\.pm$' | /usr/lib/rpm/redhat/perl.prov | sort -u
+[ -x /usr/lib/rpm/perl.prov ] &&
+    echo $filelist | tr '[:blank:]' \\n | grep '\.pm$' | /usr/lib/rpm/perl.prov | sort -u
 
 #
 # --- Python modules.
