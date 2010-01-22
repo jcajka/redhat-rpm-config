@@ -13,7 +13,7 @@ if [ ! -x /usr/bin/unzip ]; then
 	exit 0
 fi
 
-JARS=`find $RPM_BUILD_ROOT -type f -name \*.jar`
+JARS=`find $RPM_BUILD_ROOT -type f -name \*.jar -not -size 0`
 if [ ! -z "$JARS" ]; then 
 	
 	# make $RPM_BUILD_ROOT/tmp if it doesn't exist
