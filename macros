@@ -16,7 +16,6 @@
 %_localstatedir		/var
 %_infodir		/usr/share/info
 %_mandir		/usr/share/man
-%_initrddir		%{_sysconfdir}/rc.d/init.d
 
 %_defaultdocdir		%{_usr}/share/doc
 
