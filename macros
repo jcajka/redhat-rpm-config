@@ -179,9 +179,6 @@ unset DISPLAY\
 
 %__global_cflags	-O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4
 
-# Disable lookups
-%_hkp_keyserver  %{nil}
-
 # Use these macros to differentiate between RH and other KMP implementation(s).
 redhat_kernel_module_package	1
 kernel_module_package_release	1
