@@ -1,5 +1,5 @@
 NAME=redhat-rpm-config
-VERSION=$(shell awk '/Version:/ { print $$2 }' $(NAME).spec)
+VERSION=9.1.0
 
 CVSTAG = REDHAT_RPM_CONFIG_$(subst .,_,$(VERSION))
 
