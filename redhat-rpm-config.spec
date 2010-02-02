@@ -1,24 +1,16 @@
 Summary: Red Hat specific rpm configuration files
 Name: redhat-rpm-config
-Version: 9.0.3
-Release: 19%{?dist}
+Version: 9.1.0
+Release: 1%{?dist}
 # No version specified.
 License: GPL+
 Group: Development/System
+URL: http://git.fedoraproject.org/git/redhat-rpm-config
 Source: redhat-rpm-config-%{version}.tar.bz2
-Patch0: redhat-rpm-config-9.0.3-fix-requires.patch
-Patch1: limit-smp-16-threads.patch
-Patch2: redhat-rpm-config-9.0.3-F-11-Architectures.patch
-Patch3: redhat-rpm-config-9.0.3-F-11-StrongerHashes.patch
-Patch4: redhat-rpm-config-9.0.3-F-12-Architectures.patch
-Patch5: redhat-rpm-config-9.0.3-always_delete_buildroot_at_install.patch
-Patch6:	redhat-rpm-config-9.0.3-xz-payload.patch
-Patch7: redhat-rpm-config-9.0.3-jars-with-spaces.patch
-Patch8: redhat-rpm-config-9.0.3-brpssa-speedup.patch
-Patch9: redhat-rpm-config-9.0.3-filtering-macros.patch 
-Patch10: redhat-rpm-config-9.0.3-configure.patch
 BuildArch: noarch
 Requires: mktemp
+Requires: rpm >= 4.6.0
+BuildRequires: libtool
 BuildRoot: %{_tmppath}/%{name}-root
 
 %description
@@ -26,32 +18,31 @@ Red Hat specific rpm configuration files.
 
 %prep
 %setup -q
-%patch0 -p0
-%patch1 -p1
-%patch2 -p1
-%patch3 -p1
-%patch4 -p1
-%patch5 -p1
-%patch6 -p1
-%patch7 -p5
-%patch8 -p1
-%patch9 -p1
-%patch10 -p1
 
 %build
 
 %install
 make DESTDIR=${RPM_BUILD_ROOT} install
+cp -p %{_datadir}/libtool/config/config.{guess,sub} ${RPM_BUILD_ROOT}/usr/lib/rpm/redhat/
 find ${RPM_BUILD_ROOT} -name \*.orig -delete
+# buggy makefile in 9.1.0 leaves changelog in wrong place
+find ${RPM_BUILD_ROOT} -name ChangeLog -delete
 
 %clean
 rm -rf ${RPM_BUILD_ROOT}
 
 %files
 %defattr(-,root,root)
+%doc ChangeLog
 %{_prefix}/lib/rpm/redhat
 
 %changelog
+* Tue Feb 2 2010 Panu Matilainen <pmatilai@redhat.com> - 9.1.0-1
+- new version, lose merged patches (fixes #521141, #455279, #496522, #458648)
+- require rpm for parent dir, version >= 4.6.0 for sane keyserver behavior
+- buildrequire libtool to grab copies of config.guess and config.sub
+- add URL to the git repo and upstream changelog as documentation
+
 * Mon Nov 23 2009 Orion Poplawski <orion@cora.nwra.com> - 9.0.3-19
 - Change configure macro to use _configure to allow override (bug #489942)
 
