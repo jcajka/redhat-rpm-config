@@ -95,7 +95,7 @@
     %{!?__debug_package:/usr/lib/rpm/redhat/brp-strip %{__strip}} \
     /usr/lib/rpm/redhat/brp-strip-static-archive %{__strip} \
     /usr/lib/rpm/redhat/brp-strip-comment-note %{__strip} %{__objdump} \
-    /usr/lib/rpm/brp-python-bytecompile %{__python} \
+    /usr/lib/rpm/brp-python-bytecompile %{__python} %{?_python_bytecompile_errors_terminate_build} \
     /usr/lib/rpm/redhat/brp-python-hardlink \
     %{!?__jar_repack:/usr/lib/rpm/redhat/brp-java-repack-jars} \
 %{nil}
@@ -166,6 +166,10 @@ unset DISPLAY\
 #
 # Should unpackaged files in a build root terminate a build?
 %_unpackaged_files_terminate_build    1
+
+#
+## Should python bytecompilation errors terminate a build?
+%_python_bytecompile_errors_terminate_build 1
 
 # Use SHA-256 for FILEDIGESTS instead of default MD5
 %_source_filedigest_algorithm 8
