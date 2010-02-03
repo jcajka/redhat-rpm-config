@@ -1,12 +1,13 @@
 Summary: Red Hat specific rpm configuration files
 Name: redhat-rpm-config
 Version: 9.1.0
-Release: 1%{?dist}
+Release: 2%{?dist}
 # No version specified.
 License: GPL+
 Group: Development/System
 URL: http://git.fedoraproject.org/git/redhat-rpm-config
 Source: redhat-rpm-config-%{version}.tar.bz2
+Patch0: redhat-rpm-config-9.1.0-strict-python-bytecompile.patch
 BuildArch: noarch
 Requires: mktemp
 Requires: rpm >= 4.6.0
@@ -18,6 +19,7 @@ Red Hat specific rpm configuration files.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 
@@ -37,6 +39,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_prefix}/lib/rpm/redhat
 
 %changelog
+* Wed Feb 3 2010 Panu Matilainen <pmatilai@redhat.com> - 9.1.0-2
+- python byte-compilation errors abort the build by default
+
 * Tue Feb 2 2010 Panu Matilainen <pmatilai@redhat.com> - 9.1.0-1
 - new version, lose merged patches (fixes #521141, #455279, #496522, #458648)
 - require rpm for parent dir, version >= 4.6.0 for sane keyserver behavior
