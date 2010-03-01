@@ -1,7 +1,7 @@
 Summary: Red Hat specific rpm configuration files
 Name: redhat-rpm-config
 Version: 9.1.0
-Release: 3%{?dist}
+Release: 4%{?dist}
 # No version specified.
 License: GPL+
 Group: Development/System
@@ -9,6 +9,7 @@ URL: http://git.fedoraproject.org/git/redhat-rpm-config
 Source: redhat-rpm-config-%{version}.tar.bz2
 Patch0: redhat-rpm-config-9.1.0-strict-python-bytecompile.patch
 Patch1: redhat-rpm-config-9.1.0-fix-requires.patch
+Patch2: redhat-rpm-config-9.1.0-no-strip-note.patch
 BuildArch: noarch
 Requires: mktemp
 Requires: rpm >= 4.6.0
@@ -22,6 +23,7 @@ Red Hat specific rpm configuration files.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 
@@ -41,6 +43,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_prefix}/lib/rpm/redhat
 
 %changelog
+* Mon Mar 01 2010 Panu Matilainen <pmatilai@redhat.com> - 9.1.0-4
+- avoid unnecessarily running brp-strip-comment-note (#568924)
+
 * Mon Feb 15 2010 Panu Matilainen <pmatilai@redhat.com> - 9.1.0-3
 - unbreak find-requires again, doh (#564527)
 
