@@ -1,7 +1,7 @@
 Summary: Red Hat specific rpm configuration files
 Name: redhat-rpm-config
 Version: 9.1.0
-Release: 4%{?dist}
+Release: 5%{?dist}
 # No version specified.
 License: GPL+
 Group: Development/System
@@ -10,6 +10,7 @@ Source: redhat-rpm-config-%{version}.tar.bz2
 Patch0: redhat-rpm-config-9.1.0-strict-python-bytecompile.patch
 Patch1: redhat-rpm-config-9.1.0-fix-requires.patch
 Patch2: redhat-rpm-config-9.1.0-no-strip-note.patch
+Patch3: redhat-rpm-config-9.1.0-pkgconfig-private.patch
 BuildArch: noarch
 Requires: mktemp
 Requires: rpm >= 4.6.0
@@ -24,6 +25,7 @@ Red Hat specific rpm configuration files.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
 
@@ -43,6 +45,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_prefix}/lib/rpm/redhat
 
 %changelog
+* Thu May 27 2010 Panu Matilainen <pmatilai@redhat.com> - 9.1.0-5
+- adjust to new pkg-config behavior wrt private dependencies (#596433)
+
 * Mon Mar 01 2010 Panu Matilainen <pmatilai@redhat.com> - 9.1.0-4
 - avoid unnecessarily running brp-strip-comment-note (#568924)
 
