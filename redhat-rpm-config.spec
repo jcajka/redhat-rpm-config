@@ -50,6 +50,7 @@ rm -rf ${RPM_BUILD_ROOT}
 %defattr(-,root,root)
 %doc ChangeLog
 %{_prefix}/lib/rpm/redhat
+%{_sysconfdir}/rpm/*
 
 %changelog
 * Fri May 28 2011 Dennis Gilmore <dennis@ausil.us> - 9.1.0-6
