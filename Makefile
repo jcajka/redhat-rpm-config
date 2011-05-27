@@ -11,7 +11,10 @@ clean:
 install:
 	mkdir -p $(DESTDIR)/usr/lib/rpm/redhat
 	cp -pr * $(DESTDIR)/usr/lib/rpm/redhat/
+	mkdir -p $(DESTDIR)/etc/rpm
+	cp -pr macros.* $(DESTDIR)/etc/rpm/
 	rm -f $(DESTDIR)/usr/lib/rpm/redhat/{Makefile,ChangeLog}
+	rm -f $(DESTDIR)/usr/lib/rpm/redhat/macros.*
 
 tag-archive:
 	@git tag -a $(CVSTAG) -m "$(NAME)-$(VERSION) release"
