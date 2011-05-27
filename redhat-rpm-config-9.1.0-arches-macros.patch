@@ -1,0 +1,32 @@
+diff -uNr redhat-rpm-config-9.1.0-orig/macros.ghc redhat-rpm-config-9.1.0/macros.ghc
+--- redhat-rpm-config-9.1.0-orig/macros.ghc	1969-12-31 18:00:00.000000000 -0600
++++ redhat-rpm-config-9.1.0/macros.ghc	2011-05-27 10:19:29.504287354 -0500
+@@ -0,0 +1,2 @@
++# macro defining the archs that ghc runs on in fedora
++%ghc_arches %{ix86} x86_64 ppc ppc64 alpha sparcv9
+diff -uNr redhat-rpm-config-9.1.0-orig/macros.mono redhat-rpm-config-9.1.0/macros.mono
+--- redhat-rpm-config-9.1.0-orig/macros.mono	1969-12-31 18:00:00.000000000 -0600
++++ redhat-rpm-config-9.1.0/macros.mono	2011-05-27 10:59:00.348201750 -0500
+@@ -0,0 +1,2 @@
++# arches that mono builds on
++%mono_arches %{ix86} x86_64 sparc sparcv9 ia64 %{arm} alpha s390x ppc ppc64
+diff -uNr redhat-rpm-config-9.1.0-orig/macros.ocaml redhat-rpm-config-9.1.0/macros.ocaml
+--- redhat-rpm-config-9.1.0-orig/macros.ocaml	1969-12-31 18:00:00.000000000 -0600
++++ redhat-rpm-config-9.1.0/macros.ocaml	2011-05-27 10:42:10.638194240 -0500
+@@ -0,0 +1,2 @@
++# arches that ocaml runs on 
++%ocaml_arches alpha %{arm} %{ix86} ia64 x86_64 ppc  sparc sparcv9 ppc64
+diff -uNr redhat-rpm-config-9.1.0-orig/Makefile redhat-rpm-config-9.1.0/Makefile
+--- redhat-rpm-config-9.1.0-orig/Makefile	2010-02-02 03:24:04.000000000 -0600
++++ redhat-rpm-config-9.1.0/Makefile	2011-05-27 10:43:34.898205307 -0500
+@@ -11,7 +11,10 @@
+ install:
+ 	mkdir -p $(DESTDIR)/usr/lib/rpm/redhat
+ 	cp -pr * $(DESTDIR)/usr/lib/rpm/redhat/
++	mkdir -p $(DESTDIR)/etc/rpm
++	cp -pr macros.* $(DESTDIR)/etc/rpm/
+ 	rm -f $(DESTDIR)/usr/lib/rpm/redhat/Makefile
++	rm -f $(DESTDIR)/usr/lib/rpm/redhat/macros.*
+ 
+ tag-archive:
+ 	@git tag -a $(CVSTAG) -m "$(NAME)-$(VERSION) release"
