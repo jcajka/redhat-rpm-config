@@ -1,7 +1,7 @@
 Summary: Red Hat specific rpm configuration files
 Name: redhat-rpm-config
 Version: 9.1.0
-Release: 6%{?dist}
+Release: 7%{?dist}
 # No version specified.
 License: GPL+
 Group: Development/System
@@ -53,6 +53,10 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_sysconfdir}/rpm/*
 
 %changelog
+* Mon May 30 2011 Dennis Gilmore <dennis@ausil.us> - 9.1.0-7
+- add -srpm to the arches files so that the base language macros can
+- be parrallel installable with these
+
 * Fri May 28 2011 Dennis Gilmore <dennis@ausil.us> - 9.1.0-6
 - add some specific macros needed at srpm creation time
 
