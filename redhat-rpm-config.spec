@@ -1,7 +1,7 @@
 Summary: Red Hat specific rpm configuration files
 Name: redhat-rpm-config
 Version: 9.1.0
-Release: 7%{?dist}
+Release: 8%{?dist}
 # No version specified.
 License: GPL+
 Group: Development/System
@@ -17,6 +17,7 @@ Patch3: redhat-rpm-config-9.1.0-pkgconfig-private.patch
 # macros should not be defined here but instead in the base packages that can
 # be pulled in at rpm build time, this is specific for srpm creation.
 Patch4: redhat-rpm-config-9.1.0-arches-macros.patch
+Patch5: redhat-rpm-config-9.1.0-arm.patch
 BuildArch: noarch
 Requires: mktemp
 Requires: rpm >= 4.6.0
@@ -33,6 +34,7 @@ Red Hat specific rpm configuration files.
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
+%patch5 -p1
 
 %build
 
@@ -53,6 +55,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_sysconfdir}/rpm/*
 
 %changelog
+* Mon Jun 13 2011 Dennis Gilmore <dennis@ausil.us> - 9.1.0-8
+- add arm hardware float macros, fix up armv7l
+
 * Mon May 30 2011 Dennis Gilmore <dennis@ausil.us> - 9.1.0-7
 - add -srpm to the arches files so that the base language macros can
   be parallel installable with these
