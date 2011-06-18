@@ -1,7 +1,7 @@
 Summary: Red Hat specific rpm configuration files
 Name: redhat-rpm-config
 Version: 9.1.0
-Release: 8%{?dist}
+Release: 9%{?dist}
 # No version specified.
 License: GPL+
 Group: Development/System
@@ -55,6 +55,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_sysconfdir}/rpm/*
 
 %changelog
+* Sat Jun 18 2011 Jens Petersen <petersen@redhat.com> - 9.1.0-9
+- replace ghc_archs with ghc_excluded_archs
+
 * Mon Jun 13 2011 Dennis Gilmore <dennis@ausil.us> - 9.1.0-8
 - add arm hardware float macros, fix up armv7l
 
