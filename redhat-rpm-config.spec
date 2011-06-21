@@ -16,7 +16,7 @@ Patch3: redhat-rpm-config-9.1.0-pkgconfig-private.patch
 # that would otherwise be providing the macros. other language/arch specific 
 # macros should not be defined here but instead in the base packages that can
 # be pulled in at rpm build time, this is specific for srpm creation.
-Patch4: redhat-rpm-config-9.1.0-arch-macros.patch
+Patch4: redhat-rpm-config-9.1.0-arches-macros.patch
 Patch5: redhat-rpm-config-9.1.0-arm.patch
 BuildArch: noarch
 Requires: mktemp
