@@ -1,2 +1,2 @@
-# fedora archs on which ghc has not yet been bootstrapped
-%ghc_excluded_archs ia64 sparc64 s390 s390x %{arm}
+# macro defining the archs that ghc runs on in fedora
+%ghc_arches %{ix86} x86_64 ppc ppc64 alpha sparcv9
