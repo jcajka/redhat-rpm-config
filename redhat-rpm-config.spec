@@ -1,7 +1,7 @@
 Summary: Red Hat specific rpm configuration files
 Name: redhat-rpm-config
 Version: 9.1.0
-Release: 10%{?dist}
+Release: 11%{?dist}
 # No version specified.
 License: GPL+
 Group: Development/System
@@ -18,6 +18,7 @@ Patch3: redhat-rpm-config-9.1.0-pkgconfig-private.patch
 # be pulled in at rpm build time, this is specific for srpm creation.
 Patch4: redhat-rpm-config-9.1.0-arches-macros.patch
 Patch5: redhat-rpm-config-9.1.0-arm.patch
+Patch6: redhat-rpm-config-9.1.0-relro.patch
 BuildArch: noarch
 Requires: mktemp
 Requires: rpm >= 4.6.0
@@ -35,6 +36,7 @@ Red Hat specific rpm configuration files.
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
+%patch6 -p1
 
 %build
 
@@ -55,6 +57,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_sysconfdir}/rpm/*
 
 %changelog
+* Mon Jun 27 2011 Adam Jackson <ajax@redhat.com> 9.1.0-11
+- redhat-rpm-config-9.1.0-relro.patch: Add -Wl,-z,relro to __global_cflags
+
 * Tue Jun 21 2011 Jens Petersen <petersen@redhat.com> - 9.1.0-10
 - revert last build since releng prefers exclusivearch here
 

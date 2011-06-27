@@ -1,0 +1,12 @@
+diff -up redhat-rpm-config-9.1.0/macros.jx redhat-rpm-config-9.1.0/macros
+--- redhat-rpm-config-9.1.0/macros.jx	2011-06-27 12:30:32.000000000 -0400
++++ redhat-rpm-config-9.1.0/macros	2011-06-27 12:36:02.737309782 -0400
+@@ -183,7 +183,7 @@ unset DISPLAY\
+ %__find_provides        /usr/lib/rpm/redhat/find-provides
+ %__find_requires        /usr/lib/rpm/redhat/find-requires
+ 
+-%__global_cflags	-O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4
++%__global_cflags	-O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4 -Wl,-z,relro
+ 
+ # Use these macros to differentiate between RH and other KMP implementation(s).
+ redhat_kernel_module_package	1
