@@ -1,7 +1,7 @@
-diff -uNr redhat-rpm-config-9.1.0-orig/rpmrc redhat-rpm-config-9.1.0/rpmrc
---- redhat-rpm-config-9.1.0-orig/rpmrc	2010-02-02 03:24:04.000000000 -0600
-+++ redhat-rpm-config-9.1.0/rpmrc	2011-06-13 10:40:02.000000000 -0500
-@@ -46,10 +46,12 @@
+diff -urNp redhat-rpm-config-9.1.0_orig/rpmrc redhat-rpm-config-9.1.0/rpmrc
+--- redhat-rpm-config-9.1.0_orig/rpmrc	2010-02-02 04:24:04.000000000 -0500
++++ redhat-rpm-config-9.1.0/rpmrc	2011-07-02 04:29:11.921575635 -0400
+@@ -46,10 +46,12 @@ optflags: armv3l %{__global_cflags} -fsi
  optflags: armv4b %{__global_cflags} -fsigned-char -march=armv4
  optflags: armv4l %{__global_cflags} -fsigned-char -march=armv4
  optflags: armv4tl %{__global_cflags} -march=armv4t
@@ -18,9 +18,12 @@ diff -uNr redhat-rpm-config-9.1.0-orig/rpmrc redhat-rpm-config-9.1.0/rpmrc
  
  optflags: atarist %{__global_cflags}
  optflags: atariste %{__global_cflags}
-@@ -77,4 +79,5 @@
+@@ -76,5 +78,7 @@ buildarchtranslate: sparcv9v: sparcv9
+ 
  buildarchtranslate: armv5tejl: armv5tel
  buildarchtranslate: armv6l: armv5tel
- buildarchtranslate: armv7l: armv5tel
+-buildarchtranslate: armv7l: armv5tel
++buildarchtranslate: armv7l: armv7hl
++buildarchtranslate: armv7hl: armv7hl
 +buildarchtranslate: armv7hnl: armv7hl
  
