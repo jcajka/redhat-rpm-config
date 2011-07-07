@@ -1,7 +1,7 @@
 Summary: Red Hat specific rpm configuration files
 Name: redhat-rpm-config
 Version: 9.1.0
-Release: 12%{?dist}
+Release: 13%{?dist}
 # No version specified.
 License: GPL+
 Group: Development/System
@@ -57,6 +57,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_sysconfdir}/rpm/*
 
 %changelog
+* Thu Jul 07 2011 Adam Jackson <ajax@redhat.com> 9.1.0-13
+- redhat-rpm-config-9.1.0-relro.patch: LDFLAGS, not CFLAGS.
+
 * Sat Jul 02 2011 Jon Masters <jcm@jonmasters.org> - 9.1.0-12
 - redhat-rpm-config-9.1.0-arm.patch: Make armv7hl default on all v7 ARM
 
