@@ -1,7 +1,7 @@
 Summary: Red Hat specific rpm configuration files
 Name: redhat-rpm-config
 Version: 9.1.0
-Release: 13%{?dist}
+Release: 14%{?dist}
 # No version specified.
 License: GPL+
 Group: Development/System
@@ -19,11 +19,11 @@ Patch3: redhat-rpm-config-9.1.0-pkgconfig-private.patch
 Patch4: redhat-rpm-config-9.1.0-arches-macros.patch
 Patch5: redhat-rpm-config-9.1.0-arm.patch
 Patch6: redhat-rpm-config-9.1.0-relro.patch
+Patch7: redhat-rpm-config-9.1.0-hardened.patch
 BuildArch: noarch
 Requires: mktemp
 Requires: rpm >= 4.6.0
 BuildRequires: libtool
-BuildRoot: %{_tmppath}/%{name}-root
 
 %description
 Red Hat specific rpm configuration files.
@@ -37,6 +37,7 @@ Red Hat specific rpm configuration files.
 %patch4 -p1
 %patch5 -p1
 %patch6 -p1
+%patch7 -p1
 
 %build
 
@@ -57,6 +58,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_sysconfdir}/rpm/*
 
 %changelog
+* Mon Aug 01 2011 Adam Jackson <ajax@redhat.com> 9.1.0-14
+- redhat-rpm-config-9.1.0-hardened.patch: Add macro magic for %%_hardened_build
+
 * Thu Jul 07 2011 Adam Jackson <ajax@redhat.com> 9.1.0-13
 - redhat-rpm-config-9.1.0-relro.patch: LDFLAGS, not CFLAGS.
 
