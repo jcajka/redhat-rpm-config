@@ -1,12 +1,20 @@
 Summary: Red Hat specific rpm configuration files
 Name: redhat-rpm-config
 Version: 9.1.0
-Release: 14%{?dist}
+Release: 15%{?dist}
 # No version specified.
 License: GPL+
 Group: Development/System
 URL: http://git.fedoraproject.org/git/redhat-rpm-config
 Source: redhat-rpm-config-%{version}.tar.bz2
+
+# these two implement automagic {c,ld}flags mangling for additional ELF
+# hardening when _hardened_build is defined in a spec file.  gcc 4.6.1-7.fc16
+# or newer is needed for these to work; prior to that *self_specs was not
+# exposed.  If anything goes wrong, blame ajax@
+Source1: redhat-hardened-cc1
+Source2: redhat-hardened-ld
+
 Patch0: redhat-rpm-config-9.1.0-strict-python-bytecompile.patch
 Patch1: redhat-rpm-config-9.1.0-fix-requires.patch
 Patch2: redhat-rpm-config-9.1.0-no-strip-note.patch
@@ -44,6 +52,7 @@ Red Hat specific rpm configuration files.
 %install
 make DESTDIR=${RPM_BUILD_ROOT} install
 cp -p %{_datadir}/libtool/config/config.{guess,sub} ${RPM_BUILD_ROOT}/usr/lib/rpm/redhat/
+install -m 0444 %{SOURCE1} %{SOURCE2} ${RPM_BUILD_ROOT}/usr/lib/rpm/redhat
 find ${RPM_BUILD_ROOT} -name \*.orig -delete
 # buggy makefile in 9.1.0 leaves changelog in wrong place
 find ${RPM_BUILD_ROOT} -name ChangeLog -delete
@@ -58,6 +67,10 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_sysconfdir}/rpm/*
 
 %changelog
+* Wed Aug 03 2011 Adam Jackson <ajax@redhat.com> 9.1.0-15
+- redhat-hardened-{cc1,ld}: Move some of the rewrite magic to gcc specs so
+  we don't end up with both -fPIC and -fPIE on the command line
+
 * Mon Aug 01 2011 Adam Jackson <ajax@redhat.com> 9.1.0-14
 - redhat-rpm-config-9.1.0-hardened.patch: Add macro magic for %%_hardened_build
 
