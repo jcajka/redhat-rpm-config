@@ -35,6 +35,7 @@
   %{_configure} --build=%{_build} --host=%{_host} \\\
 	--program-prefix=%{?_program_prefix} \\\
 	--disable-dependency-tracking \\\
+	--disable-silent-rules \\\
 	--prefix=%{_prefix} \\\
 	--exec-prefix=%{_exec_prefix} \\\
 	--bindir=%{_bindir} \\\
