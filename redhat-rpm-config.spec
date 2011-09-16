@@ -1,7 +1,7 @@
 Summary: Red Hat specific rpm configuration files
 Name: redhat-rpm-config
 Version: 9.1.0
-Release: 16%{?dist}
+Release: 17%{?dist}
 # No version specified.
 License: GPL+
 Group: Development/System
@@ -69,6 +69,10 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_sysconfdir}/rpm/*
 
 %changelog
+* Fri Sep 16 2011 Adam Jackson <ajax@redhat.com> 9.1.0-17
+- Expose %%_hardening_{c,ld}flags independently to make it easier for
+  packages to apply them to selected components
+
 * Wed Aug 10 2011 Colin Walters <walters@verbum.org> - 9.1.0-16
 - Globally disable silent rules
 
