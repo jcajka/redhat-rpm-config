@@ -1,11 +1,11 @@
 Summary: Red Hat specific rpm configuration files
 Name: redhat-rpm-config
 Version: 9.1.0
-Release: 18%{?dist}
+Release: 19%{?dist}
 # No version specified.
 License: GPL+
 Group: Development/System
-URL: http://git.fedoraproject.org/git/redhat-rpm-config
+URL: http://git.fedorahosted.org/git/redhat-rpm-config
 Source: redhat-rpm-config-%{version}.tar.bz2
 
 # these two implement automagic {c,ld}flags mangling for additional ELF
@@ -69,6 +69,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_sysconfdir}/rpm/*
 
 %changelog
+* Sun Sep 25 2011 Ville Skyttä <ville.skytta@iki.fi> - 9.1.0-19
+- Fix URL.
+
 * Thu Sep 22 2011 Adam Jackson <ajax@redhat.com> 9.1.0-18
 - redhat-hardened-cc1: Inject -fPIE, not -fPIC.
   cf. http://lists.fedoraproject.org/pipermail/devel/2011-September/157365.html
