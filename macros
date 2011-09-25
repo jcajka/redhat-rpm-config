@@ -131,29 +131,8 @@ package or when debugging this package.\
 %endif\
 %{nil}
 
-# Bad hack to set $LANG to C during all RPM builds
-%prep \
-%%prep\
-LANG=C\
-export LANG\
-unset DISPLAY\
-%{nil}
-
-%build %%build\
-LANG=C\
-export LANG\
-unset DISPLAY\
-%{nil}
-
 %install %{?_enable_debug_packages:%{?buildsubdir:%{debug_package}}}\
 %%install\
-LANG=C\
-export LANG\
-unset DISPLAY\
-%{nil}
-
-%check %%check\
-unset DISPLAY\
 %{nil}
 
 #
