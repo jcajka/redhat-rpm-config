@@ -22,8 +22,7 @@ diff -urNp redhat-rpm-config-9.1.0_orig/rpmrc redhat-rpm-config-9.1.0/rpmrc
  
  buildarchtranslate: armv5tejl: armv5tel
  buildarchtranslate: armv6l: armv5tel
--buildarchtranslate: armv7l: armv5tel
-+buildarchtranslate: armv7l: armv7hl
+ buildarchtranslate: armv7l: armv5tel
 +buildarchtranslate: armv7hl: armv7hl
 +buildarchtranslate: armv7hnl: armv7hl
  
