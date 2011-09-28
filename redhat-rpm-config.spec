@@ -1,7 +1,7 @@
 Summary: Red Hat specific rpm configuration files
 Name: redhat-rpm-config
 Version: 9.1.0
-Release: 19%{?dist}
+Release: 20%{?dist}
 # No version specified.
 License: GPL+
 Group: Development/System
@@ -21,7 +21,7 @@ Patch2: redhat-rpm-config-9.1.0-no-strip-note.patch
 Patch3: redhat-rpm-config-9.1.0-pkgconfig-private.patch
 # the macros defined by this patch are for things that need to be defined
 # at srpm creation time when it is not feasable to require the base packages
-# that would otherwise be providing the macros. other language/arch specific 
+# that would otherwise be providing the macros. other language/arch specific
 # macros should not be defined here but instead in the base packages that can
 # be pulled in at rpm build time, this is specific for srpm creation.
 Patch4: redhat-rpm-config-9.1.0-arches-macros.patch
@@ -69,6 +69,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_sysconfdir}/rpm/*
 
 %changelog
+* Wed Sep 28 2011 Jens Petersen <petersen@redhat.com> - 9.1.0-20
+- add armv7hl to ghc_arches
+
 * Sun Sep 25 2011 Ville Skyttä <ville.skytta@iki.fi> - 9.1.0-19
 - Fix URL.
 
