@@ -1,2 +1,2 @@
 # macro defining the archs that ghc runs on in fedora
-%ghc_arches %{ix86} x86_64 ppc ppc64 alpha sparcv9 armv7hl
+%ghc_arches %{ix86} x86_64 ppc ppc64 alpha sparcv9 armv7hl armv5tel
