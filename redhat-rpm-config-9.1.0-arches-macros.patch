@@ -3,7 +3,7 @@ diff -uNr redhat-rpm-config-9.1.0-orig/macros.ghc-srpm redhat-rpm-config-9.1.0/m
 +++ redhat-rpm-config-9.1.0/macros.ghc-srpm	2011-05-27 10:19:29.504287354 -0500
 @@ -0,0 +1,2 @@
 +# macro defining the archs that ghc runs on in fedora
-+%ghc_arches %{ix86} x86_64 ppc ppc64 alpha sparcv9 armv7hl
++%ghc_arches %{ix86} x86_64 ppc ppc64 alpha sparcv9 armv7hl armv5tel
 diff -uNr redhat-rpm-config-9.1.0-orig/macros.mono-srpm redhat-rpm-config-9.1.0/macros.mono-srpm
 --- redhat-rpm-config-9.1.0-orig/macros.mono-srpm	1969-12-31 18:00:00.000000000 -0600
 +++ redhat-rpm-config-9.1.0/macros.mono-srpm	2011-05-27 10:59:00.348201750 -0500

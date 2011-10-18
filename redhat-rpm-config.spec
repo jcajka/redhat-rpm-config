@@ -1,7 +1,7 @@
 Summary: Red Hat specific rpm configuration files
 Name: redhat-rpm-config
 Version: 9.1.0
-Release: 21%{?dist}
+Release: 22%{?dist}
 # No version specified.
 License: GPL+
 Group: Development/System
@@ -69,6 +69,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_sysconfdir}/rpm/*
 
 %changelog
+* Tue Oct 18 2011 Jens Petersen <petersen@redhat.com> - 9.1.0-22
+- add armv5tel to ghc_arches
+
 * Wed Sep 28 2011 Dennis Gilmore <dennis@ausil.us> - 9.1.0-21
 - build armv5tel on armv7l since they are the same abi armv7hl is 
 - a incompatable ABI
