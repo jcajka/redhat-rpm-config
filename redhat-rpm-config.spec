@@ -1,7 +1,7 @@
 Summary: Red Hat specific rpm configuration files
 Name: redhat-rpm-config
 Version: 9.1.0
-Release: 22%{?dist}
+Release: 23%{?dist}
 # No version specified.
 License: GPL+
 Group: Development/System
@@ -28,7 +28,6 @@ Patch4: redhat-rpm-config-9.1.0-arches-macros.patch
 Patch5: redhat-rpm-config-9.1.0-arm.patch
 Patch6: redhat-rpm-config-9.1.0-relro.patch
 Patch7: redhat-rpm-config-9.1.0-hardened.patch
-Patch8: 0001-macros-Globally-add-disable-silent-rules-to-configur.patch
 BuildArch: noarch
 Requires: mktemp
 Requires: rpm >= 4.6.0
@@ -47,7 +46,6 @@ Red Hat specific rpm configuration files.
 %patch5 -p1
 %patch6 -p1
 %patch7 -p1
-%patch8 -p1
 
 %build
 
@@ -69,6 +67,10 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_sysconfdir}/rpm/*
 
 %changelog
+* Wed Nov 09 2011 Dennis Gilmore <dennis@ausil.us> - 9.1.0-23
+- remove patch that forces --disable-silent-rules to configure 
+- it breaks anything set to not ignore unknown configure options
+
 * Tue Oct 18 2011 Jens Petersen <petersen@redhat.com> - 9.1.0-22
 - add armv5tel to ghc_arches
 
