@@ -1,7 +1,7 @@
 Summary: Red Hat specific rpm configuration files
 Name: redhat-rpm-config
 Version: 9.1.0
-Release: 23%{?dist}
+Release: 24%{?dist}
 # No version specified.
 License: GPL+
 Group: Development/System
@@ -67,6 +67,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_sysconfdir}/rpm/*
 
 %changelog
+* Tue Dec 27 2011 Jens Petersen <petersen@redhat.com> - 9.1.0-24
+- add ghc_arches_with_ghci
+
 * Wed Nov 09 2011 Dennis Gilmore <dennis@ausil.us> - 9.1.0-23
 - remove patch that forces --disable-silent-rules to configure 
 - it breaks anything set to not ignore unknown configure options
