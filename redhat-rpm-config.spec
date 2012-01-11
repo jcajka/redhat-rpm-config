@@ -29,7 +29,7 @@ Patch5: redhat-rpm-config-9.1.0-arm.patch
 Patch6: redhat-rpm-config-9.1.0-relro.patch
 Patch7: redhat-rpm-config-9.1.0-hardened.patch
 BuildArch: noarch
-Requires: mktemp
+Requires: coreutils
 Requires: rpm >= 4.6.0
 BuildRequires: libtool
 
