@@ -1,7 +1,7 @@
 Summary: Red Hat specific rpm configuration files
 Name: redhat-rpm-config
 Version: 9.1.0
-Release: 24%{?dist}
+Release: 25%{?dist}
 # No version specified.
 License: GPL+
 Group: Development/System
@@ -67,6 +67,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_sysconfdir}/rpm/*
 
 %changelog
+* Sat Jan 14 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 9.1.0-25
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_17_Mass_Rebuild
+
 * Tue Dec 27 2011 Jens Petersen <petersen@redhat.com> - 9.1.0-24
 - add ghc_arches_with_ghci
 
