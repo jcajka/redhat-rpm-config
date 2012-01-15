@@ -1,7 +1,7 @@
 Summary: Red Hat specific rpm configuration files
 Name: redhat-rpm-config
 Version: 9.1.0
-Release: 25%{?dist}
+Release: 26%{?dist}
 # No version specified.
 License: GPL+
 Group: Development/System
@@ -28,6 +28,7 @@ Patch4: redhat-rpm-config-9.1.0-arches-macros.patch
 Patch5: redhat-rpm-config-9.1.0-arm.patch
 Patch6: redhat-rpm-config-9.1.0-relro.patch
 Patch7: redhat-rpm-config-9.1.0-hardened.patch
+Patch8: redhat-rpm-config-9.1.0-ppc-no-minimal-toc.patch
 BuildArch: noarch
 Requires: coreutils
 Requires: rpm >= 4.6.0
@@ -46,6 +47,7 @@ Red Hat specific rpm configuration files.
 %patch5 -p1
 %patch6 -p1
 %patch7 -p1
+%patch8 -p1
 
 %build
 
@@ -67,6 +69,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_sysconfdir}/rpm/*
 
 %changelog
+* Sun Jan 15 2012 Dennis Gilmore <dennis@ausil.us> - 9.1.0-26
+- per ppc team request drop -mminimal-toc on ppc64
+
 * Sat Jan 14 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 9.1.0-25
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_17_Mass_Rebuild
 
