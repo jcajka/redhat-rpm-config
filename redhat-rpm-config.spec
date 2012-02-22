@@ -1,7 +1,7 @@
 Summary: Red Hat specific rpm configuration files
 Name: redhat-rpm-config
 Version: 9.1.0
-Release: 26%{?dist}
+Release: 27%{?dist}
 # No version specified.
 License: GPL+
 Group: Development/System
@@ -69,6 +69,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_sysconfdir}/rpm/*
 
 %changelog
+* Wed Feb 22 2012 Panu Matilainen <pmatilai@redhat.com> - 9.1.0-27
+- add GNAT arch definitions
+
 * Sun Jan 15 2012 Dennis Gilmore <dennis@ausil.us> - 9.1.0-26
 - per ppc team request drop -mminimal-toc on ppc64
 
