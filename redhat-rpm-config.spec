@@ -1,7 +1,7 @@
 Summary: Red Hat specific rpm configuration files
 Name: redhat-rpm-config
 Version: 9.1.0
-Release: 27%{?dist}
+Release: 28%{?dist}
 # No version specified.
 License: GPL+
 Group: Development/System
@@ -69,6 +69,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_sysconfdir}/rpm/*
 
 %changelog
+* Sat Mar  3 2012 Jens Petersen <petersen@redhat.com> - 9.1.0-28
+- add s390 and s390x to ghc_arches
+
 * Wed Feb 22 2012 Panu Matilainen <pmatilai@redhat.com> - 9.1.0-27
 - add GNAT arch definitions
 
