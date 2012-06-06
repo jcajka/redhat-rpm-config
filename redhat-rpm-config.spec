@@ -1,7 +1,7 @@
 Summary: Red Hat specific rpm configuration files
 Name: redhat-rpm-config
 Version: 9.1.0
-Release: 28%{?dist}
+Release: 29%{?dist}
 # No version specified.
 License: GPL+
 Group: Development/System
@@ -31,6 +31,7 @@ Patch7: redhat-rpm-config-9.1.0-hardened.patch
 Patch8: redhat-rpm-config-9.1.0-ppc-no-minimal-toc.patch
 BuildArch: noarch
 Requires: coreutils
+Requires: perl-srpm-macros
 Requires: rpm >= 4.6.0
 BuildRequires: libtool
 
@@ -69,6 +70,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_sysconfdir}/rpm/*
 
 %changelog
+* Wed Jun 06 2012 Petr Pisar <ppisar@redhat.com> - 9.1.0-29
+- Pull in dependency with macros specific for building Perl source packages
+
 * Sat Mar  3 2012 Jens Petersen <petersen@redhat.com> - 9.1.0-28
 - add s390 and s390x to ghc_arches
 
