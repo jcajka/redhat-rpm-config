@@ -1,7 +1,7 @@
 Summary: Red Hat specific rpm configuration files
 Name: redhat-rpm-config
 Version: 9.1.0
-Release: 29%{?dist}
+Release: 30%{?dist}
 # No version specified.
 License: GPL+
 Group: Development/System
@@ -29,10 +29,12 @@ Patch5: redhat-rpm-config-9.1.0-arm.patch
 Patch6: redhat-rpm-config-9.1.0-relro.patch
 Patch7: redhat-rpm-config-9.1.0-hardened.patch
 Patch8: redhat-rpm-config-9.1.0-ppc-no-minimal-toc.patch
+Patch9: redhat-rpm-config-9.1.0-dwz.patch
 BuildArch: noarch
 Requires: coreutils
 Requires: perl-srpm-macros
 Requires: rpm >= 4.6.0
+Requires: dwz >= 0.4
 BuildRequires: libtool
 
 %description
@@ -49,6 +51,7 @@ Red Hat specific rpm configuration files.
 %patch6 -p1
 %patch7 -p1
 %patch8 -p1
+%patch9 -p1
 
 %build
 
@@ -70,6 +73,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_sysconfdir}/rpm/*
 
 %changelog
+* Mon Jun 25 2012 Panu Matilainen <pmatilai@redhat.com> - 9.1.0-30
+- require dwz, enable dwarf compression for debuginfo packages (#833311)
+
 * Wed Jun 06 2012 Petr Pisar <ppisar@redhat.com> - 9.1.0-29
 - Pull in dependency with macros specific for building Perl source packages
 
