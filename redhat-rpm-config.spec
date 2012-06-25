@@ -1,7 +1,7 @@
 Summary: Red Hat specific rpm configuration files
 Name: redhat-rpm-config
 Version: 9.1.0
-Release: 30%{?dist}
+Release: 31%{?dist}
 # No version specified.
 License: GPL+
 Group: Development/System
@@ -73,6 +73,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_sysconfdir}/rpm/*
 
 %changelog
+* Mon Jun 25 2012 Panu Matilainen <pmatilai@redhat.com> - 9.1.0-31
+- revert back to plain -g, -g3 seems to cancel dwz size improvements
+
 * Mon Jun 25 2012 Panu Matilainen <pmatilai@redhat.com> - 9.1.0-30
 - require dwz, enable dwarf compression for debuginfo packages (#833311)
 

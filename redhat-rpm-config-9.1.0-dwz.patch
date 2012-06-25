@@ -40,14 +40,3 @@
 +%_find_debuginfo_dwz_opts --run-dwz\\\
 +   --dwz-low-mem-die-limit %{_dwz_limit _dwz_low_mem_die_limit}\\\
 +   --dwz-max-die-limit %{_dwz_limit _dwz_max_die_limit}
---- redhat-rpm-config-9.1.0/macros.jj	2012-06-25 13:08:44.854489913 +0200
-+++ redhat-rpm-config-9.1.0/macros	2012-06-25 13:03:55.520112180 +0200
-@@ -191,7 +191,7 @@ unset DISPLAY\
- %_hardened_cflags	%{?_hardened_build:%{_hardening_cflags}}
- %_hardened_ldflags	%{?_hardened_build:%{_hardening_ldflags}}
- 
--%__global_cflags	-O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4 %{_hardened_cflags}
-+%__global_cflags	-O2 -g3 -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4 %{_hardened_cflags}
- %__global_ldflags	-Wl,-z,relro %{_hardened_ldflags}
- 
- # Use these macros to differentiate between RH and other KMP implementation(s).
