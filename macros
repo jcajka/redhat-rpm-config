@@ -22,6 +22,7 @@
 %_fmoddir		%{_libdir}/gfortran/modules
 
 %_enable_debug_packages 1
+%_include_minidebuginfo 1
 
 #==============================================================================
 # ---- configure and makeinstall.
