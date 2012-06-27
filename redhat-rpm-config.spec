@@ -1,7 +1,7 @@
 Summary: Red Hat specific rpm configuration files
 Name: redhat-rpm-config
 Version: 9.1.0
-Release: 31%{?dist}
+Release: 32%{?dist}
 # No version specified.
 License: GPL+
 Group: Development/System
@@ -30,6 +30,7 @@ Patch6: redhat-rpm-config-9.1.0-relro.patch
 Patch7: redhat-rpm-config-9.1.0-hardened.patch
 Patch8: redhat-rpm-config-9.1.0-ppc-no-minimal-toc.patch
 Patch9: redhat-rpm-config-9.1.0-dwz.patch
+Patch10: redhat-rpm-config-9.1.0-minidebuginfo.patch
 BuildArch: noarch
 Requires: coreutils
 Requires: perl-srpm-macros
@@ -52,6 +53,7 @@ Red Hat specific rpm configuration files.
 %patch7 -p1
 %patch8 -p1
 %patch9 -p1
+%patch10 -p1
 
 %build
 
@@ -73,6 +75,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_sysconfdir}/rpm/*
 
 %changelog
+* Wed Jun 27 2012 Panu Matilainen <pmatilai@redhat.com> - 9.1.0-32
+- enable minidebuginfo generation (#834073)
+
 * Mon Jun 25 2012 Panu Matilainen <pmatilai@redhat.com> - 9.1.0-31
 - revert back to plain -g, -g3 seems to cancel dwz size improvements
 
