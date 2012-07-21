@@ -1,7 +1,7 @@
 Summary: Red Hat specific rpm configuration files
 Name: redhat-rpm-config
 Version: 9.1.0
-Release: 32%{?dist}
+Release: 33%{?dist}
 # No version specified.
 License: GPL+
 Group: Development/System
@@ -75,6 +75,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_sysconfdir}/rpm/*
 
 %changelog
+* Sat Jul 21 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 9.1.0-33
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_18_Mass_Rebuild
+
 * Wed Jun 27 2012 Panu Matilainen <pmatilai@redhat.com> - 9.1.0-32
 - enable minidebuginfo generation (#834073)
 
