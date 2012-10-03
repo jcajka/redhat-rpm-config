@@ -31,6 +31,7 @@ Patch7: redhat-rpm-config-9.1.0-hardened.patch
 Patch8: redhat-rpm-config-9.1.0-ppc-no-minimal-toc.patch
 Patch9: redhat-rpm-config-9.1.0-dwz.patch
 Patch10: redhat-rpm-config-9.1.0-minidebuginfo.patch
+Patch11: redhat-rpm-config-9.1.0-python-hardlink-spaces-in-filenames.patch
 BuildArch: noarch
 Requires: coreutils
 Requires: perl-srpm-macros
@@ -54,6 +55,7 @@ Red Hat specific rpm configuration files.
 %patch8 -p1
 %patch9 -p1
 %patch10 -p1
+%patch11 -p1
 
 %build
 
@@ -75,6 +77,11 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_sysconfdir}/rpm/*
 
 %changelog
+* Wed Oct  3 2012 Toshio Kuratomi <toshio@fedoraproject.org> - 9.1.0-33
+- Add patch from https://bugzilla.redhat.com/show_bug.cgi?id=783433
+  to fix spaces in files and directories that are fed to the
+  brp-python-hardlink script
+
 * Sat Jul 21 2012 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 9.1.0-33
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_18_Mass_Rebuild
 
