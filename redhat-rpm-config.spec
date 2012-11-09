@@ -1,7 +1,7 @@
 Summary: Red Hat specific rpm configuration files
 Name: redhat-rpm-config
 Version: 9.1.0
-Release: 36%{?dist}
+Release: 37%{?dist}
 # No version specified.
 License: GPL+
 Group: Development/System
@@ -43,6 +43,8 @@ Patch14: redhat-rpm-config-9.1.0-java-repack-order.patch
 Patch15: 0001-Drop-un-setting-LANG-and-DISPLAY-in-various-build-st.patch
 # https://bugzilla.redhat.com/show_bug.cgi?id=783932
 Patch16: redhat-rpm-config-9.1.0-filtering-spaces-in-filename.patch
+# https://bugzilla.redhat.com/show_bug.cgi?id=872737
+Patch17: redhat-rpm-config-9.1.0-java-repack-spaces-in-filenames.patch
 BuildArch: noarch
 Requires: coreutils
 Requires: perl-srpm-macros
@@ -73,6 +75,7 @@ Red Hat specific rpm configuration files.
 %patch14 -p1
 %patch15 -p1
 %patch16 -p1
+%patch17 -p1
 
 %build
 
@@ -94,6 +97,10 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_sysconfdir}/rpm/*
 
 %changelog
+* Fri Nov  9 2012 Toshio Kuratomi <toshio@fedoraproject.org> - 9.1.0-37
+- Patch to fix spaces in java jar files
+  https://bugzilla.redhat.com/show_bug.cgi?id=872737
+
 * Fri Nov  9 2012 Toshio Kuratomi <toshio@fedoraproject.org> - 9.1.0-36
 - Patch to fix spaces in files used in filtering macros
   https://bugzilla.redhat.com/show_bug.cgi?id=783932
