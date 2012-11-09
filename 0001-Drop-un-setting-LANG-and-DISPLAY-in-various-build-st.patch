@@ -8,11 +8,11 @@ rpm >= 4.8.0 takes care of that itself.
  macros |   21 ---------------------
  1 files changed, 0 insertions(+), 21 deletions(-)
 
-diff --git a/macros b/macros
-index 1ac46d7..a6bf95d 100644
---- a/macros
-+++ b/macros
-@@ -129,29 +129,8 @@ package or when debugging this package.\
+Index: redhat-rpm-config-9.1.0/macros
+===================================================================
+--- redhat-rpm-config-9.1.0.orig/macros
++++ redhat-rpm-config-9.1.0/macros
+@@ -131,29 +131,8 @@ package or when debugging this package.\
  %endif\
  %{nil}
  
@@ -42,6 +42,3 @@ index 1ac46d7..a6bf95d 100644
  %{nil}
  
  #
--- 
-1.7.6
-
