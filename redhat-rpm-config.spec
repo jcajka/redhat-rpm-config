@@ -1,7 +1,7 @@
 Summary: Red Hat specific rpm configuration files
 Name: redhat-rpm-config
 Version: 9.1.0
-Release: 35%{?dist}
+Release: 36%{?dist}
 # No version specified.
 License: GPL+
 Group: Development/System
@@ -41,6 +41,8 @@ Patch13: redhat-rpm-config-9.1.0-kernel-source.patch
 Patch14: redhat-rpm-config-9.1.0-java-repack-order.patch
 # https://bugzilla.redhat.com/show_bug.cgi?id=741089
 Patch15: 0001-Drop-un-setting-LANG-and-DISPLAY-in-various-build-st.patch
+# https://bugzilla.redhat.com/show_bug.cgi?id=783932
+Patch16: redhat-rpm-config-9.1.0-filtering-spaces-in-filename.patch
 BuildArch: noarch
 Requires: coreutils
 Requires: perl-srpm-macros
@@ -70,6 +72,7 @@ Red Hat specific rpm configuration files.
 %patch13 -p1
 %patch14 -p1
 %patch15 -p1
+%patch16 -p1
 
 %build
 
@@ -91,6 +94,10 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_sysconfdir}/rpm/*
 
 %changelog
+* Fri Nov  9 2012 Toshio Kuratomi <toshio@fedoraproject.org> - 9.1.0-36
+- Patch to fix spaces in files used in filtering macros
+  https://bugzilla.redhat.com/show_bug.cgi?id=783932
+
 * Wed Oct  3 2012 Ville Skyttä <ville.skytta@iki.fi> - 9.1.0-35
 - Drop (un)setting LANG and DISPLAY in build stages, require rpm >= 4.8.0.
 
