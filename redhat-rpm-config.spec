@@ -1,7 +1,7 @@
 Summary: Red Hat specific rpm configuration files
 Name: redhat-rpm-config
 Version: 9.1.0
-Release: 37%{?dist}
+Release: 38%{?dist}
 # No version specified.
 License: GPL+
 Group: Development/System
@@ -97,6 +97,10 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_sysconfdir}/rpm/*
 
 %changelog
+* Sat Nov 17 2012 Jens Petersen <petersen@redhat.com> - 9.1.0-38
+- add ARM to ghc_arches_with_ghci for ghc-7.4.2 ghci support
+  (NB this change should not be backported before ghc-7.4.2)
+
 * Fri Nov  9 2012 Toshio Kuratomi <toshio@fedoraproject.org> - 9.1.0-37
 - Patch to fix spaces in java jar files
   https://bugzilla.redhat.com/show_bug.cgi?id=872737
