@@ -1,7 +1,7 @@
 Summary: Red Hat specific rpm configuration files
 Name: redhat-rpm-config
 Version: 9.1.0
-Release: 39%{?dist}
+Release: 40%{?dist}
 # No version specified.
 License: GPL+
 Group: Development/System
@@ -51,6 +51,7 @@ Requires: perl-srpm-macros
 Requires: rpm >= 4.8.0
 Requires: dwz >= 0.4
 Requires: zip
+Provides: system-rpm-config = %{version}-%{release}
 BuildRequires: libtool
 
 %description
@@ -97,6 +98,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_sysconfdir}/rpm/*
 
 %changelog
+* Mon Mar 25 2013 Panu Matilainen <pmatilai@redhat.com> - 9.1.0-40
+- Add virtual system-rpm-config provide
+
 * Thu Feb 14 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 9.1.0-39
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_19_Mass_Rebuild
 
