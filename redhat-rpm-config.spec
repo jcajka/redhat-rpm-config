@@ -1,7 +1,7 @@
 Summary: Red Hat specific rpm configuration files
 Name: redhat-rpm-config
 Version: 9.1.0
-Release: 41%{?dist}
+Release: 42%{?dist}
 # No version specified.
 License: GPL+
 Group: Development/System
@@ -14,6 +14,10 @@ Source: redhat-rpm-config-%{version}.tar.bz2
 # exposed.  If anything goes wrong, blame ajax@
 Source1: redhat-hardened-cc1
 Source2: redhat-hardened-ld
+
+# up-to-date copies of config.guess and config.sub (from automake 1.13.1)
+Source10: config.guess
+Source11: config.sub
 
 Patch0: redhat-rpm-config-9.1.0-strict-python-bytecompile.patch
 Patch1: redhat-rpm-config-9.1.0-fix-requires.patch
@@ -47,6 +51,8 @@ Patch16: redhat-rpm-config-9.1.0-filtering-spaces-in-filename.patch
 Patch17: redhat-rpm-config-9.1.0-java-repack-spaces-in-filenames.patch
 # https://bugzilla.redhat.com/show_bug.cgi?id=951669
 Patch18: redhat-rpm-config-9.1.0-record-switches.patch
+# https://bugzilla.redhat.com/show_bug.cgi?id=951442
+Patch19: redhat-rpm-config-9.1.0-configfoo.patch
 BuildArch: noarch
 Requires: coreutils
 Requires: perl-srpm-macros
@@ -54,7 +60,6 @@ Requires: rpm >= 4.8.0
 Requires: dwz >= 0.4
 Requires: zip
 Provides: system-rpm-config = %{version}-%{release}
-BuildRequires: libtool
 
 %description
 Red Hat specific rpm configuration files.
@@ -80,13 +85,14 @@ Red Hat specific rpm configuration files.
 %patch16 -p1
 %patch17 -p1
 %patch18 -p1
+%patch19 -p1
 
 %build
 
 %install
 make DESTDIR=${RPM_BUILD_ROOT} install
-cp -p %{_datadir}/libtool/config/config.{guess,sub} ${RPM_BUILD_ROOT}/usr/lib/rpm/redhat/
 install -m 0444 %{SOURCE1} %{SOURCE2} ${RPM_BUILD_ROOT}/usr/lib/rpm/redhat
+install -m 0775 %{SOURCE10} %{SOURCE11} ${RPM_BUILD_ROOT}/usr/lib/rpm/redhat
 find ${RPM_BUILD_ROOT} -name \*.orig -delete
 # buggy makefile in 9.1.0 leaves changelog in wrong place
 find ${RPM_BUILD_ROOT} -name ChangeLog -delete
@@ -101,6 +107,10 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_sysconfdir}/rpm/*
 
 %changelog
+* Mon Apr 22 2013 Panu Matilainen <pmatilai@redhat.com> - 9.1.0-42
+- Switch back to manual config.guess/sub copies for reproducability
+- Replace config.guess/sub from %%configure again (#951442)
+
 * Mon Apr 22 2013 Panu Matilainen <pmatilai@redhat.com> - 9.1.0-41
 - Add -grecord-gcc-switches to global CFLAGS (#951669)
 
