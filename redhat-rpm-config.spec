@@ -1,7 +1,7 @@
 Summary: Red Hat specific rpm configuration files
 Name: redhat-rpm-config
 Version: 9.1.0
-Release: 40%{?dist}
+Release: 41%{?dist}
 # No version specified.
 License: GPL+
 Group: Development/System
@@ -45,6 +45,8 @@ Patch15: 0001-Drop-un-setting-LANG-and-DISPLAY-in-various-build-st.patch
 Patch16: redhat-rpm-config-9.1.0-filtering-spaces-in-filename.patch
 # https://bugzilla.redhat.com/show_bug.cgi?id=872737
 Patch17: redhat-rpm-config-9.1.0-java-repack-spaces-in-filenames.patch
+# https://bugzilla.redhat.com/show_bug.cgi?id=951669
+Patch18: redhat-rpm-config-9.1.0-record-switches.patch
 BuildArch: noarch
 Requires: coreutils
 Requires: perl-srpm-macros
@@ -77,6 +79,7 @@ Red Hat specific rpm configuration files.
 %patch15 -p1
 %patch16 -p1
 %patch17 -p1
+%patch18 -p1
 
 %build
 
@@ -98,6 +101,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_sysconfdir}/rpm/*
 
 %changelog
+* Mon Apr 22 2013 Panu Matilainen <pmatilai@redhat.com> - 9.1.0-41
+- Add -grecord-gcc-switches to global CFLAGS (#951669)
+
 * Mon Mar 25 2013 Panu Matilainen <pmatilai@redhat.com> - 9.1.0-40
 - Add virtual system-rpm-config provide
 
