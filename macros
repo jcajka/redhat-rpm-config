@@ -32,6 +32,7 @@
   CFLAGS="${CFLAGS:-%optflags}" ; export CFLAGS ; \
   CXXFLAGS="${CXXFLAGS:-%optflags}" ; export CXXFLAGS ; \
   FFLAGS="${FFLAGS:-%optflags -I%_fmoddir}" ; export FFLAGS ; \
+  FCFLAGS="${FCFLAGS:-%optflags -I%_fmoddir}" ; export FCFLAGS ; \
   LDFLAGS="${LDFLAGS:-%__global_ldflags}"; export LDFLAGS; \
   for i in $(find . -name config.guess -o -name config.sub) ; do \
       [ -f /usr/lib/rpm/redhat/$(basename $i) ] && %{__rm} -f $i && %{__cp} -fv /usr/lib/rpm/redhat/$(basename $i) $i ; \
