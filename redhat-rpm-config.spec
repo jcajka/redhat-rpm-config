@@ -1,7 +1,7 @@
 Summary: Red Hat specific rpm configuration files
 Name: redhat-rpm-config
 Version: 9.1.0
-Release: 42%{?dist}
+Release: 43%{?dist}
 # No version specified.
 License: GPL+
 Group: Development/System
@@ -53,6 +53,8 @@ Patch17: redhat-rpm-config-9.1.0-java-repack-spaces-in-filenames.patch
 Patch18: redhat-rpm-config-9.1.0-record-switches.patch
 # https://bugzilla.redhat.com/show_bug.cgi?id=951442
 Patch19: redhat-rpm-config-9.1.0-configfoo.patch
+# https://bugzilla.redhat.com/show_bug.cgi?id=909788
+Patch20: redhat-rpm-config-9.1.0-aarch64.patch
 BuildArch: noarch
 Requires: coreutils
 Requires: perl-srpm-macros
@@ -86,6 +88,7 @@ Red Hat specific rpm configuration files.
 %patch17 -p1
 %patch18 -p1
 %patch19 -p1
+%patch20 -p1
 
 %build
 
@@ -107,6 +110,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_sysconfdir}/rpm/*
 
 %changelog
+* Tue Apr 23 2013 Panu Matilainen <pmatilai@redhat.com> - 9.1.0-43
+- Add optflags stack protector override for AArch64 (#909788)
+
 * Mon Apr 22 2013 Panu Matilainen <pmatilai@redhat.com> - 9.1.0-42
 - Switch back to manual config.guess/sub copies for reproducability
 - Replace config.guess/sub from %%configure again (#951442)

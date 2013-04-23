@@ -1,0 +1,13 @@
+diff --git a/rpmrc b/rpmrc
+index 9127200..fe2f84b 100644
+--- a/rpmrc
++++ b/rpmrc
+@@ -64,6 +64,8 @@ optflags: hades %{__global_cflags}
+ optflags: s390 %{__global_cflags} -m31 -march=z9-109 -mtune=z10
+ optflags: s390x %{__global_cflags} -m64 -march=z9-109 -mtune=z10
+ 
++optflags: aarch64 %{__global_cflags} -fno-stack-protector
++
+ # set build arch to fedora buildarches on hardware capable of running it
+ # saves having to do rpmbuild --target=
+ buildarchtranslate: athlon: i686
