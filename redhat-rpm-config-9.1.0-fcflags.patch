@@ -1,0 +1,11 @@
+diff -up redhat-rpm-config-9.1.0/macros.fcflags redhat-rpm-config-9.1.0/macros
+--- redhat-rpm-config-9.1.0/macros.fcflags	2013-04-23 07:26:57.202073011 +0300
++++ redhat-rpm-config-9.1.0/macros	2013-04-23 07:29:21.401036883 +0300
+@@ -32,6 +32,7 @@
+   CFLAGS="${CFLAGS:-%optflags}" ; export CFLAGS ; \
+   CXXFLAGS="${CXXFLAGS:-%optflags}" ; export CXXFLAGS ; \
+   FFLAGS="${FFLAGS:-%optflags -I%_fmoddir}" ; export FFLAGS ; \
++  FCFLAGS="${FCFLAGS:-%optflags -I%_fmoddir}" ; export FCFLAGS ; \
+   LDFLAGS="${LDFLAGS:-%__global_ldflags}"; export LDFLAGS; \
+   for i in $(find . -name config.guess -o -name config.sub) ; do \
+       [ -f /usr/lib/rpm/redhat/$(basename $i) ] && %{__rm} -f $i && %{__cp} -fv /usr/lib/rpm/redhat/$(basename $i) $i ; \
