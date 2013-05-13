@@ -8,10 +8,7 @@ Group: Development/System
 URL: http://git.fedorahosted.org/git/redhat-rpm-config
 Source: redhat-rpm-config-%{version}.tar.bz2
 
-# these two implement automagic {c,ld}flags mangling for additional ELF
-# hardening when _hardened_build is defined in a spec file.  gcc 4.6.1-7.fc16
-# or newer is needed for these to work; prior to that *self_specs was not
-# exposed.  If anything goes wrong, blame ajax@
+# gcc specs files for hardened builds
 Source1: redhat-hardened-cc1
 Source2: redhat-hardened-ld
 
