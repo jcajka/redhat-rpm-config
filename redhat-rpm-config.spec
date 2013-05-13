@@ -1,7 +1,7 @@
 Summary: Red Hat specific rpm configuration files
 Name: redhat-rpm-config
 Version: 9.1.0
-Release: 43%{?dist}
+Release: 44%{?dist}
 # No version specified.
 License: GPL+
 Group: Development/System
@@ -113,6 +113,10 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_sysconfdir}/rpm/*
 
 %changelog
+* Mon May 13 2013 Adam Jackson <ajax@redhat.com> 9.1.0-44
+- redhat-config-*: Use + to append rather than %%rename, to protect against
+  multiple -specs= ending up in the command line. (#892837)
+
 * Tue Apr 23 2013 Panu Matilainen <pmatilai@redhat.com> - 9.1.0-43
 - Add optflags stack protector override for AArch64 (#909788)
 - Also set FCFLAGS from %%configure (#914831)
