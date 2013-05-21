@@ -1,7 +1,7 @@
 Summary: Red Hat specific rpm configuration files
 Name: redhat-rpm-config
 Version: 9.1.0
-Release: 44%{?dist}
+Release: 45%{?dist}
 # No version specified.
 License: GPL+
 Group: Development/System
@@ -110,6 +110,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_sysconfdir}/rpm/*
 
 %changelog
+* Tue May 21 2013 T.C. Hollingsworth <tchollingsworth@gmail.com> - 9.1.0-45
+- add nodejs_arches macro for ExclusiveArch for Node.js packages
+
 * Mon May 13 2013 Adam Jackson <ajax@redhat.com> 9.1.0-44
 - redhat-config-*: Use + to append rather than %%rename, to protect against
   multiple -specs= ending up in the command line. (#892837)

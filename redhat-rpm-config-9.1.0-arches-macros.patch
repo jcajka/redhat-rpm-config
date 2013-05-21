@@ -11,6 +11,16 @@ diff -uNr redhat-rpm-config-9.1.0-orig/macros.mono-srpm redhat-rpm-config-9.1.0/
 @@ -0,0 +1,2 @@
 +# arches that mono builds on
 +%mono_arches %{ix86} x86_64 sparc sparcv9 ia64 %{arm} alpha s390x ppc ppc64
+diff -uNr redhat-rpm-config-9.1.0-orig/macros.nodejs-srpm redhat-rpm-config-9.1.0/macros.nodejs-srpm
+--- redhat-rpm-config-9.1.0-orig/macros.nodejs-srpm 1969-12-31 17:00:00.000000000 -0700
++++ redhat-rpm-config-9.1.0/macros.nodejs-srpm  2013-05-20 19:21:20.364367765 -0700
+@@ -0,0 +1,6 @@
++# nodejs_arches lists what arches Node.js and dependent packages run on.
++#
++# Enabling Node.js on other arches requires porting the V8 JavaScript JIT to
++# those arches.
++
++%nodejs_arches %{ix86} x86_64 %{arm}
 diff -uNr redhat-rpm-config-9.1.0-orig/macros.ocaml-srpm redhat-rpm-config-9.1.0/macros.ocaml-srpm
 --- redhat-rpm-config-9.1.0-orig/macros.ocaml-srpm	1969-12-31 18:00:00.000000000 -0600
 +++ redhat-rpm-config-9.1.0/macros.ocaml-srpm	2011-05-27 10:42:10.638194240 -0500
