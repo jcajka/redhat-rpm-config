@@ -249,7 +249,7 @@ rm -rf ${RPM_BUILD_ROOT}
 - add -srpm to the arches files so that the base language macros can
   be parallel installable with these
 
-* Fri May 28 2011 Dennis Gilmore <dennis@ausil.us> - 9.1.0-6
+* Fri May 27 2011 Dennis Gilmore <dennis@ausil.us> - 9.1.0-6
 - add some specific macros needed at srpm creation time
 
 * Thu May 27 2010 Panu Matilainen <pmatilai@redhat.com> - 9.1.0-5
