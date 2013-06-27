@@ -1,7 +1,7 @@
 Summary: Red Hat specific rpm configuration files
 Name: redhat-rpm-config
 Version: 9.1.0
-Release: 45%{?dist}
+Release: 46%{?dist}
 # No version specified.
 License: GPL+
 Group: Development/System
@@ -54,6 +54,8 @@ Patch19: redhat-rpm-config-9.1.0-configfoo.patch
 Patch20: redhat-rpm-config-9.1.0-aarch64.patch
 # https://bugzilla.redhat.com/show_bug.cgi?id=914831
 Patch21: redhat-rpm-config-9.1.0-fcflags.patch
+# https://bugzilla.redhat.com/show_bug.cgi?id=669638
+Patch22: redhat-rpm-config-9.1.0-ncpus-max.patch
 BuildArch: noarch
 Requires: coreutils
 Requires: perl-srpm-macros
@@ -89,6 +91,7 @@ Red Hat specific rpm configuration files.
 %patch19 -p1
 %patch20 -p1
 %patch21 -p1
+%patch22 -p1
 
 %build
 
@@ -110,6 +113,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_sysconfdir}/rpm/*
 
 %changelog
+* Thu Jun 27 2013 Panu Matilainen <pmatilai@redhat.com> - - 9.1.0-46
+- make cpu limit for building configurable through _smp_ncpus_max macro
+
 * Tue May 21 2013 T.C. Hollingsworth <tchollingsworth@gmail.com> - 9.1.0-45
 - add nodejs_arches macro for ExclusiveArch for Node.js packages
 

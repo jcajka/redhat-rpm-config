@@ -1,0 +1,19 @@
+diff -up redhat-rpm-config-9.1.0/macros.ncpus redhat-rpm-config-9.1.0/macros
+--- redhat-rpm-config-9.1.0/macros.ncpus	2013-06-27 09:54:38.663039820 +0300
++++ redhat-rpm-config-9.1.0/macros	2013-06-27 09:54:50.746135882 +0300
+@@ -71,10 +71,13 @@
+ 	infodir=%{?buildroot:%{buildroot}}%{_infodir} \\\
+   install
+ 
++# Maximum number of CPU's to use when building, 0 for unlimited.
++%_smp_ncpus_max 16
+ %_smp_mflags %([ -z "$RPM_BUILD_NCPUS" ] \\\
+ 	&& RPM_BUILD_NCPUS="`/usr/bin/getconf _NPROCESSORS_ONLN`"; \\\
+-        if [ "$RPM_BUILD_NCPUS" -gt 16 ]; then echo "-j16"; \\\
+-        elif [ "$RPM_BUILD_NCPUS" -gt 1 ]; then echo "-j$RPM_BUILD_NCPUS"; fi)
++        ncpus_max=%{?_smp_ncpus_max}; \\\
++        if [ -n "$ncpus_max" ] && [ "$ncpus_max" -gt 0 ] && [ "$RPM_BUILD_NCPUS" -gt "$ncpus_max" ]; then RPM_BUILD_NCPUS="$ncpus_max"; fi; \\\
++        if [ "$RPM_BUILD_NCPUS" -gt 1 ]; then echo "-j$RPM_BUILD_NCPUS"; fi)
+ 
+ #==============================================================================
+ # ---- Build policy macros.
