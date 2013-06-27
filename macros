@@ -71,10 +71,13 @@
 	infodir=%{?buildroot:%{buildroot}}%{_infodir} \\\
   install
 
+# Maximum number of CPU's to use when building, 0 for unlimited.
+%_smp_ncpus_max 16
 %_smp_mflags %([ -z "$RPM_BUILD_NCPUS" ] \\\
 	&& RPM_BUILD_NCPUS="`/usr/bin/getconf _NPROCESSORS_ONLN`"; \\\
-        if [ "$RPM_BUILD_NCPUS" -gt 16 ]; then echo "-j16"; \\\
-        elif [ "$RPM_BUILD_NCPUS" -gt 1 ]; then echo "-j$RPM_BUILD_NCPUS"; fi)
+        ncpus_max=%{?_smp_ncpus_max}; \\\
+        if [ -n "$ncpus_max" ] && [ "$ncpus_max" -gt 0 ] && [ "$RPM_BUILD_NCPUS" -gt "$ncpus_max" ]; then RPM_BUILD_NCPUS="$ncpus_max"; fi; \\\
+        if [ "$RPM_BUILD_NCPUS" -gt 1 ]; then echo "-j$RPM_BUILD_NCPUS"; fi)
 
 #==============================================================================
 # ---- Build policy macros.
