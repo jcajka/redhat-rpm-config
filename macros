@@ -178,7 +178,7 @@ package or when debugging this package.\
 %_hardened_cflags	%{?_hardened_build:%{_hardening_cflags}}
 %_hardened_ldflags	%{?_hardened_build:%{_hardening_ldflags}}
 
-%__global_cflags	-O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector --param=ssp-buffer-size=4 -grecord-gcc-switches %{_hardened_cflags}
+%__global_cflags	-O2 -g -pipe -Wall -Wp,-D_FORTIFY_SOURCE=2 -fexceptions -fstack-protector-strong --param=ssp-buffer-size=4 -grecord-gcc-switches %{_hardened_cflags}
 %__global_ldflags	-Wl,-z,relro %{_hardened_ldflags}
 
 # Use these macros to differentiate between RH and other KMP implementation(s).
