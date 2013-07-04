@@ -1,7 +1,7 @@
 Summary: Red Hat specific rpm configuration files
 Name: redhat-rpm-config
 Version: 9.1.0
-Release: 46%{?dist}
+Release: 47%{?dist}
 # No version specified.
 License: GPL+
 Group: Development/System
@@ -56,6 +56,8 @@ Patch20: redhat-rpm-config-9.1.0-aarch64.patch
 Patch21: redhat-rpm-config-9.1.0-fcflags.patch
 # https://bugzilla.redhat.com/show_bug.cgi?id=669638
 Patch22: redhat-rpm-config-9.1.0-ncpus-max.patch
+# https://bugzilla.redhat.com/show_bug.cgi?id=978763
+Patch23: redhat-rpm-config-9.1.0-stackprotector-strong.patch
 BuildArch: noarch
 Requires: coreutils
 Requires: perl-srpm-macros
@@ -92,6 +94,7 @@ Red Hat specific rpm configuration files.
 %patch20 -p1
 %patch21 -p1
 %patch22 -p1
+%patch23 -p1
 
 %build
 
@@ -113,6 +116,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_sysconfdir}/rpm/*
 
 %changelog
+* Thu Jul 04 2013 Panu Matilainen <pmatilai@redhat.com> - 9.1.0-47
+- switch from -fstack-protector to -fstack-protector-strong (#978763)
+
 * Thu Jun 27 2013 Panu Matilainen <pmatilai@redhat.com> - - 9.1.0-46
 - make cpu limit for building configurable through _smp_ncpus_max macro
 
