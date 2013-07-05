@@ -1,7 +1,7 @@
 Summary: Red Hat specific rpm configuration files
 Name: redhat-rpm-config
 Version: 9.1.0
-Release: 47%{?dist}
+Release: 48%{?dist}
 # No version specified.
 License: GPL+
 Group: Development/System
@@ -58,6 +58,8 @@ Patch21: redhat-rpm-config-9.1.0-fcflags.patch
 Patch22: redhat-rpm-config-9.1.0-ncpus-max.patch
 # https://bugzilla.redhat.com/show_bug.cgi?id=978763
 Patch23: redhat-rpm-config-9.1.0-stackprotector-strong.patch
+# https://bugzilla.redhat.com/show_bug.cgi?id=905573
+Patch24: redhat-rpm-config-9.1.0-jar-repack-perms.patch
 BuildArch: noarch
 Requires: coreutils
 Requires: perl-srpm-macros
@@ -95,6 +97,7 @@ Red Hat specific rpm configuration files.
 %patch21 -p1
 %patch22 -p1
 %patch23 -p1
+%patch24 -p1
 
 %build
 
@@ -116,6 +119,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_sysconfdir}/rpm/*
 
 %changelog
+* Fri Jul 05 2013 Panu Matilainen <pmatilai@redhat.com> - 9.1.0-48
+- fix brp-java-repack-jars failing on strange permissions (#905573)
+
 * Thu Jul 04 2013 Panu Matilainen <pmatilai@redhat.com> - 9.1.0-47
 - switch from -fstack-protector to -fstack-protector-strong (#978763)
 

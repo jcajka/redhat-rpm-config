@@ -1,0 +1,14 @@
+diff -up redhat-rpm-config-9.1.0/brp-java-repack-jars.jar-repack-perms redhat-rpm-config-9.1.0/brp-java-repack-jars
+--- redhat-rpm-config-9.1.0/brp-java-repack-jars.jar-repack-perms	2013-07-05 13:21:56.548998671 +0300
++++ redhat-rpm-config-9.1.0/brp-java-repack-jars	2013-07-05 13:22:50.962398381 +0300
+@@ -35,8 +35,8 @@ if [ ! -z "$JARS" ]; then
+ 		
+ 		pushd "$JTMPDIR" > /dev/null
+ 		/usr/bin/unzip -qq -o "$j"
+-		find -type d -exec chmod a+rx {} \;
+-		find -type f -exec chmod a+r {} \;
++		find -type d -exec chmod a+rx,u+w {} \;
++		find -type f -exec chmod a+r,u+w {} \;
+ 		rm -f "$j"
+ 		
+ 		# Create the directories first.
