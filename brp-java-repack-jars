@@ -35,8 +35,8 @@ if [ ! -z "$JARS" ]; then
 		
 		pushd "$JTMPDIR" > /dev/null
 		/usr/bin/unzip -qq -o "$j"
-		find -type d -exec chmod a+rx {} \;
-		find -type f -exec chmod a+r {} \;
+		find -type d -exec chmod a+rx,u+w {} \;
+		find -type f -exec chmod a+r,u+w {} \;
 		rm -f "$j"
 		
 		# Create the directories first.
