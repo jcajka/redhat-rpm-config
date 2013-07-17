@@ -1,7 +1,7 @@
 Summary: Red Hat specific rpm configuration files
 Name: redhat-rpm-config
 Version: 9.1.0
-Release: 48%{?dist}
+Release: 49%{?dist}
 # No version specified.
 License: GPL+
 Group: Development/System
@@ -119,6 +119,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_sysconfdir}/rpm/*
 
 %changelog
+* Wed Jul 17 2013 Petr Pisar <ppisar@redhat.com> - 9.1.0-49
+- Perl 5.18 rebuild
+
 * Fri Jul 05 2013 Panu Matilainen <pmatilai@redhat.com> - 9.1.0-48
 - fix brp-java-repack-jars failing on strange permissions (#905573)
 
