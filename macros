@@ -18,6 +18,8 @@
 %_mandir		%{_prefix}/share/man
 
 %_defaultdocdir		%{_prefix}/share/doc
+%_pkgdocdir             %{_docdir}/%{name}
+%_docdir_fmt            %%{NAME}
 
 %_fmoddir		%{_libdir}/gfortran/modules
 
