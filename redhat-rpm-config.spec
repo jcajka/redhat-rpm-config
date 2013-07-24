@@ -1,7 +1,7 @@
 Summary: Red Hat specific rpm configuration files
 Name: redhat-rpm-config
 Version: 9.1.0
-Release: 49%{?dist}
+Release: 50%{?dist}
 # No version specified.
 License: GPL+
 Group: Development/System
@@ -60,6 +60,16 @@ Patch22: redhat-rpm-config-9.1.0-ncpus-max.patch
 Patch23: redhat-rpm-config-9.1.0-stackprotector-strong.patch
 # https://bugzilla.redhat.com/show_bug.cgi?id=905573
 Patch24: redhat-rpm-config-9.1.0-jar-repack-perms.patch
+# Hacky fix for hardened build and libtool. 
+# Should be dropped as soon as libtool is fixed. 
+# https://bugzilla.redhat.com/show_bug.cgi?id=978949
+Patch25: redhat-rpm-config-9.1.0-libtool-hardened-build.patch
+%if 0%{?fedora} >= 20
+# Drop versioning on docdirs in Fedora 20+
+# https://bugzilla.redhat.com/show_bug.cgi?id=986871
+Patch26: redhat-rpm-config-9.1.0-unversioned-docdirs.patch
+%endif
+
 BuildArch: noarch
 Requires: coreutils
 Requires: perl-srpm-macros
@@ -98,6 +108,11 @@ Red Hat specific rpm configuration files.
 %patch22 -p1
 %patch23 -p1
 %patch24 -p1
+%patch25 -p1
+# Only make docs change in Fedora 20+
+%if 0%{?fedora} >= 20
+%patch26 -p1
+%endif
 
 %build
 
@@ -119,6 +134,10 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_sysconfdir}/rpm/*
 
 %changelog
+* Wed Jul 24 2013 Kevin Fenzi <kevin@scrye.com> 9.1.0-50
+- Make docdirs unversioned on Fedora 20+ (#986871)
+- Hack around libtool issue for hardened build for now (#978949)
+
 * Wed Jul 17 2013 Petr Pisar <ppisar@redhat.com> - 9.1.0-49
 - Perl 5.18 rebuild
 
