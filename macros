@@ -28,7 +28,7 @@
 # ---- configure and makeinstall.
 #
 %_configure ./configure
-%configure \
+%configure(--:-:ChnqV) \
   CFLAGS="${CFLAGS:-%optflags}" ; export CFLAGS ; \
   CXXFLAGS="${CXXFLAGS:-%optflags}" ; export CXXFLAGS ; \
   FFLAGS="${FFLAGS:-%optflags -I%_fmoddir}" ; export FFLAGS ; \
@@ -52,7 +52,12 @@
 	--localstatedir=%{_localstatedir} \\\
 	--sharedstatedir=%{_sharedstatedir} \\\
 	--mandir=%{_mandir} \\\
-	--infodir=%{_infodir}
+	--infodir=%{_infodir} \\\
+        %{**} ; \
+  [[ -f ./libtool && "x%{?%_hardened_ldflags}" != "x" ]] && \\\
+  sed   -i \\\
+        -e 's! \\\\\\$compiler_flags !&%{?%_hardened_ldflags} !g' \\\
+        ./libtool ;
 
 %makeinstall \
   %{__make} \\\
