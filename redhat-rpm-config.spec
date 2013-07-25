@@ -1,7 +1,7 @@
 Summary: Red Hat specific rpm configuration files
 Name: redhat-rpm-config
 Version: 9.1.0
-Release: 50%{?dist}
+Release: 51%{?dist}
 # No version specified.
 License: GPL+
 Group: Development/System
@@ -108,7 +108,7 @@ Red Hat specific rpm configuration files.
 %patch22 -p1
 %patch23 -p1
 %patch24 -p1
-%patch25 -p1
+#%patch25 -p1
 # Only make docs change in Fedora 20+
 %if 0%{?fedora} >= 20
 %patch26 -p1
@@ -134,6 +134,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_sysconfdir}/rpm/*
 
 %changelog
+* Thu Jul 25 2013 Tomas Mraz <tmraz@redhat.com> 9.1.0-51
+- Disable the libtool hack as it is breaking builds
+
 * Wed Jul 24 2013 Kevin Fenzi <kevin@scrye.com> 9.1.0-50
 - Make docdirs unversioned on Fedora 20+ (#986871)
 - Hack around libtool issue for hardened build for now (#978949)
