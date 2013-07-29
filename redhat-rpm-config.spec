@@ -1,7 +1,7 @@
 Summary: Red Hat specific rpm configuration files
 Name: redhat-rpm-config
 Version: 9.1.0
-Release: 51%{?dist}
+Release: 52%{?dist}
 # No version specified.
 License: GPL+
 Group: Development/System
@@ -134,6 +134,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_sysconfdir}/rpm/*
 
 %changelog
+* Mon Jul 29 2013 Petr Pisar <ppisar@redhat.com> - 9.1.0-52
+- Perl 5.18 rebuild
+
 * Thu Jul 25 2013 Tomas Mraz <tmraz@redhat.com> 9.1.0-51
 - Disable the libtool hack as it is breaking builds
 
