@@ -1,7 +1,7 @@
 Summary: Red Hat specific rpm configuration files
 Name: redhat-rpm-config
 Version: 9.1.0
-Release: 52%{?dist}
+Release: 53%{?dist}
 # No version specified.
 License: GPL+
 Group: Development/System
@@ -12,7 +12,7 @@ Source: redhat-rpm-config-%{version}.tar.bz2
 Source1: redhat-hardened-cc1
 Source2: redhat-hardened-ld
 
-# up-to-date copies of config.guess and config.sub (from automake 1.13.1)
+# 16082013 snapshots from http://git.savannah.gnu.org/gitweb/?p=config.git
 Source10: config.guess
 Source11: config.sub
 
@@ -134,6 +134,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_sysconfdir}/rpm/*
 
 %changelog
+* Fri Aug 16 2013 Panu Matilainen <pmatilai@redhat.com> - 9.1.0-53
+- updated config.guess/sub from upstream for little-endian ppc archs
+
 * Mon Jul 29 2013 Petr Pisar <ppisar@redhat.com> - 9.1.0-52
 - Perl 5.18 rebuild
 
