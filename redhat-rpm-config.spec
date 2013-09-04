@@ -1,7 +1,7 @@
 Summary: Red Hat specific rpm configuration files
 Name: redhat-rpm-config
 Version: 9.1.0
-Release: 53%{?dist}
+Release: 54%{?dist}
 # No version specified.
 License: GPL+
 Group: Development/System
@@ -134,6 +134,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_sysconfdir}/rpm/*
 
 %changelog
+* Wed Sep 04 2013 Karsten Hopp <karsten@redhat.com> 9.1.0-54
+- update config.sub with ppc64p7 support (from Fedora automake)
+
 * Fri Aug 16 2013 Panu Matilainen <pmatilai@redhat.com> - 9.1.0-53
 - updated config.guess/sub from upstream for little-endian ppc archs
 
