@@ -1,7 +1,7 @@
 Summary: Red Hat specific rpm configuration files
 Name: redhat-rpm-config
 Version: 9.1.0
-Release: 54%{?dist}
+Release: 55%{?dist}
 # No version specified.
 License: GPL+
 Group: Development/System
@@ -68,6 +68,8 @@ Patch25: redhat-rpm-config-9.1.0-libtool-hardened-build.patch
 # Drop versioning on docdirs in Fedora 20+
 # https://bugzilla.redhat.com/show_bug.cgi?id=986871
 Patch26: redhat-rpm-config-9.1.0-unversioned-docdirs.patch
+# Enable "-Werror=format-security" by default
+Patch27: redhat-rpm-config-9.1.0-strict-format.patch
 %endif
 
 BuildArch: noarch
@@ -114,6 +116,7 @@ Red Hat specific rpm configuration files.
 %patch26 -p1
 %endif
 
+%patch27 -p1
 %build
 
 %install
@@ -134,6 +137,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_sysconfdir}/rpm/*
 
 %changelog
+* Wed Dec 18 2013 Dhiru Kholia <dhiru@openwall.com> - 9.1.0-55
+- Enable "-Werror=format-security" by default (#1043495)
+
 * Wed Sep 04 2013 Karsten Hopp <karsten@redhat.com> 9.1.0-54
 - update config.sub with ppc64p7 support (from Fedora automake)
 
