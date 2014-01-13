@@ -1,25 +1,30 @@
---- redhat-rpm-config-9.1.0.orig/macros	
-+++ redhat-rpm-config-9.1.0/macros	
-@@ -28,7 +28,7 @@ 
+diff -Nur redhat-rpm-config-9.1.0.orig/macros redhat-rpm-config-9.1.0/macros
+--- redhat-rpm-config-9.1.0.orig/macros	2014-01-12 11:24:18.866139925 -0700
++++ redhat-rpm-config-9.1.0/macros	2014-01-12 11:26:28.182832378 -0700
+@@ -29,6 +29,7 @@
+ #==============================================================================
  # ---- configure and makeinstall.
  #
++%_configure_libtool_hardening_hack	1
  %_configure ./configure
--%configure \
-+%configure(--:-:ChnqV) \
+ %configure \
    CFLAGS="${CFLAGS:-%optflags}" ; export CFLAGS ; \
-   CXXFLAGS="${CXXFLAGS:-%optflags}" ; export CXXFLAGS ; \
-   FFLAGS="${FFLAGS:-%optflags -I%_fmoddir}" ; export FFLAGS ; \
-@@ -52,7 +52,12 @@ 
- 	--localstatedir=%{_localstatedir} \\\
- 	--sharedstatedir=%{_sharedstatedir} \\\
- 	--mandir=%{_mandir} \\\
--	--infodir=%{_infodir}
-+	--infodir=%{_infodir} \\\
-+        %{**} ; \
-+  [[ -f ./libtool && "x%{?%_hardened_ldflags}" != "x" ]] && \\\
-+  sed   -i \\\
-+        -e 's! \\\\\\$compiler_flags !&%{?%_hardened_ldflags} !g' \\\
-+        ./libtool ;
+@@ -39,6 +40,10 @@
+   for i in $(find . -name config.guess -o -name config.sub) ; do \
+       [ -f /usr/lib/rpm/redhat/$(basename $i) ] && %{__rm} -f $i && %{__cp} -fv /usr/lib/rpm/redhat/$(basename $i) $i ; \
+   done ; \
++  [ "%_configure_libtool_hardening_hack" = 1 ] && [ x != "x%{_hardened_ldflags}" ] && \
++      for i in $(find . -name ltmain.sh) ; do \
++        %{__sed} -i.backup -e 's~compiler_flags=$~compiler_flags="%{_hardened_ldflags}"~' $i \
++      done ; \
+   %{_configure} --build=%{_build} --host=%{_host} \\\
+ 	--program-prefix=%{?_program_prefix} \\\
+ 	--disable-dependency-tracking \\\
+@@ -174,6 +179,7 @@
+ %__find_requires        /usr/lib/rpm/redhat/find-requires
  
- %makeinstall \
-   %{__make} \\\
+ %_hardening_cflags	-specs=/usr/lib/rpm/redhat/redhat-hardened-cc1
++# we don't escape symbols '~', '"', etc. so be careful when changing this
+ %_hardening_ldflags	-specs=/usr/lib/rpm/redhat/redhat-hardened-ld
+ 
+ #_hardened_build	0

@@ -1,7 +1,7 @@
 Summary: Red Hat specific rpm configuration files
 Name: redhat-rpm-config
 Version: 9.1.0
-Release: 55%{?dist}
+Release: 56%{?dist}
 # No version specified.
 License: GPL+
 Group: Development/System
@@ -110,7 +110,7 @@ Red Hat specific rpm configuration files.
 %patch22 -p1
 %patch23 -p1
 %patch24 -p1
-#%patch25 -p1
+%patch25 -p1
 # Only make docs change in Fedora 20+
 %if 0%{?fedora} >= 20
 %patch26 -p1
@@ -137,6 +137,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_sysconfdir}/rpm/*
 
 %changelog
+* Sun Jan 12 2014 Kevin Fenzi <kevin@scrye.com> 9.1.0-56
+- Update libtool hardening hack and re-enable (#978949)
+
 * Wed Dec 18 2013 Dhiru Kholia <dhiru@openwall.com> - 9.1.0-55
 - Enable "-Werror=format-security" by default (#1043495)
 
