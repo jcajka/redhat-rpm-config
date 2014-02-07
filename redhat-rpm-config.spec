@@ -1,7 +1,7 @@
 Summary: Red Hat specific rpm configuration files
 Name: redhat-rpm-config
 Version: 9.1.0
-Release: 56%{?dist}
+Release: 57%{?dist}
 # No version specified.
 License: GPL+
 Group: Development/System
@@ -122,7 +122,7 @@ Red Hat specific rpm configuration files.
 %install
 make DESTDIR=${RPM_BUILD_ROOT} install
 install -m 0444 %{SOURCE1} %{SOURCE2} ${RPM_BUILD_ROOT}/usr/lib/rpm/redhat
-install -m 0775 %{SOURCE10} %{SOURCE11} ${RPM_BUILD_ROOT}/usr/lib/rpm/redhat
+install -m 0755 %{SOURCE10} %{SOURCE11} ${RPM_BUILD_ROOT}/usr/lib/rpm/redhat
 find ${RPM_BUILD_ROOT} -name \*.orig -delete
 # buggy makefile in 9.1.0 leaves changelog in wrong place
 find ${RPM_BUILD_ROOT} -name ChangeLog -delete
@@ -137,6 +137,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_sysconfdir}/rpm/*
 
 %changelog
+* Fri Feb 07 2014 Panu Matilainen <pmatilai@redhat.com> - 9.1.0-57
+- config.guess/sub don't need to be group-writable (#1061762)
+
 * Sun Jan 12 2014 Kevin Fenzi <kevin@scrye.com> 9.1.0-56
 - Update libtool hardening hack and re-enable (#978949)
 
