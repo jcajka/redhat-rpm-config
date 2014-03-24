@@ -1,0 +1,11 @@
+diff -up redhat-rpm-config-9.1.0/rpmrc.ppc64le redhat-rpm-config-9.1.0/rpmrc
+--- redhat-rpm-config-9.1.0/rpmrc.ppc64le	2014-03-24 17:20:09.000000000 +0100
++++ redhat-rpm-config-9.1.0/rpmrc	2014-03-24 17:20:53.000000000 +0100
+@@ -28,6 +28,7 @@ optflags: ppc %{__global_cflags} -m32
+ optflags: ppciseries %{__global_cflags} -m32
+ optflags: ppcpseries %{__global_cflags} -m32
+ optflags: ppc64 %{__global_cflags} -m64
++optflags: ppc64le %{__global_cflags} -m64
+ optflags: ppc64iseries %{__global_cflags} -m64
+ optflags: ppc64pseries %{__global_cflags} -m64
+ optflags: ppc8260 %{__global_cflags} -m32

@@ -1,7 +1,7 @@
 Summary: Red Hat specific rpm configuration files
 Name: redhat-rpm-config
 Version: 9.1.0
-Release: 57%{?dist}
+Release: 58%{?dist}
 # No version specified.
 License: GPL+
 Group: Development/System
@@ -71,6 +71,9 @@ Patch26: redhat-rpm-config-9.1.0-unversioned-docdirs.patch
 # Enable "-Werror=format-security" by default
 Patch27: redhat-rpm-config-9.1.0-strict-format.patch
 %endif
+# enable ppc64le otherwise default rpm cflags will be used
+Patch28: redhat-rpm-config-9.1.0-ppc64le.patch
+
 
 BuildArch: noarch
 Requires: coreutils
@@ -117,6 +120,7 @@ Red Hat specific rpm configuration files.
 %endif
 
 %patch27 -p1
+%patch28 -p1
 %build
 
 %install
@@ -137,6 +141,9 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_sysconfdir}/rpm/*
 
 %changelog
+* Mon Mar 24 2014 Dan Horák <dan[at]danny.cz> - 9.1.0-58
+- enable ppc64le otherwise default rpm cflags will be used
+
 * Fri Feb 07 2014 Panu Matilainen <pmatilai@redhat.com> - 9.1.0-57
 - config.guess/sub don't need to be group-writable (#1061762)
 
