@@ -1,79 +1,71 @@
+#                        TO WHOM IT MAY CONCERN
+#
+# 1) Don't add patches, dist-git is the upstream repository for this package.
+# 2) When making changes, update version by +1, leave release alone.
+#
+
 Summary: Red Hat specific rpm configuration files
 Name: redhat-rpm-config
-Version: 9.1.0
-Release: 58%{?dist}
+Version: 10
+Release: 1%{?dist}
 # No version specified.
 License: GPL+
 Group: Development/System
-URL: http://git.fedorahosted.org/git/redhat-rpm-config
-Source: redhat-rpm-config-%{version}.tar.bz2
+URL: http://pkgs.fedoraproject.org/cgit/redhat-rpm-config.git
+
+# Core rpm settings
+Source0: macros
+Source1: rpmrc
 
 # gcc specs files for hardened builds
-Source1: redhat-hardened-cc1
-Source2: redhat-hardened-ld
+Source50: redhat-hardened-cc1
+Source51: redhat-hardened-ld
 
-# 16082013 snapshots from http://git.savannah.gnu.org/gitweb/?p=config.git
-Source10: config.guess
-Source11: config.sub
-
-Patch0: redhat-rpm-config-9.1.0-strict-python-bytecompile.patch
-Patch1: redhat-rpm-config-9.1.0-fix-requires.patch
-Patch2: redhat-rpm-config-9.1.0-no-strip-note.patch
-Patch3: redhat-rpm-config-9.1.0-pkgconfig-private.patch
-# the macros defined by this patch are for things that need to be defined
+# The macros defined by these files are for things that need to be defined
 # at srpm creation time when it is not feasable to require the base packages
 # that would otherwise be providing the macros. other language/arch specific
 # macros should not be defined here but instead in the base packages that can
 # be pulled in at rpm build time, this is specific for srpm creation.
-Patch4: redhat-rpm-config-9.1.0-arches-macros.patch
-Patch5: redhat-rpm-config-9.1.0-arm.patch
-Patch6: redhat-rpm-config-9.1.0-relro.patch
-Patch7: redhat-rpm-config-9.1.0-hardened.patch
-Patch8: redhat-rpm-config-9.1.0-ppc-no-minimal-toc.patch
-Patch9: redhat-rpm-config-9.1.0-dwz.patch
-Patch10: redhat-rpm-config-9.1.0-minidebuginfo.patch
-# https://bugzilla.redhat.com/show_bug.cgi?id=783433
-Patch11: redhat-rpm-config-9.1.0-python-hardlink-spaces-in-filenames.patch
-# https://bugzilla.redhat.com/show_bug.cgi?id=853216
-Patch12:redhat-rpm-config-9.1.0-use-prefix-macro.patch
-# https://bugzilla.redhat.com/show_bug.cgi?id=648996
-Patch13: redhat-rpm-config-9.1.0-kernel-source.patch
-# https://bugzilla.redhat.com/show_bug.cgi?id=465664
-Patch14: redhat-rpm-config-9.1.0-java-repack-order.patch
-# https://bugzilla.redhat.com/show_bug.cgi?id=741089
-Patch15: 0001-Drop-un-setting-LANG-and-DISPLAY-in-various-build-st.patch
-# https://bugzilla.redhat.com/show_bug.cgi?id=783932
-Patch16: redhat-rpm-config-9.1.0-filtering-spaces-in-filename.patch
-# https://bugzilla.redhat.com/show_bug.cgi?id=872737
-Patch17: redhat-rpm-config-9.1.0-java-repack-spaces-in-filenames.patch
-# https://bugzilla.redhat.com/show_bug.cgi?id=951669
-Patch18: redhat-rpm-config-9.1.0-record-switches.patch
-# https://bugzilla.redhat.com/show_bug.cgi?id=951442
-Patch19: redhat-rpm-config-9.1.0-configfoo.patch
-# https://bugzilla.redhat.com/show_bug.cgi?id=909788
-Patch20: redhat-rpm-config-9.1.0-aarch64.patch
-# https://bugzilla.redhat.com/show_bug.cgi?id=914831
-Patch21: redhat-rpm-config-9.1.0-fcflags.patch
-# https://bugzilla.redhat.com/show_bug.cgi?id=669638
-Patch22: redhat-rpm-config-9.1.0-ncpus-max.patch
-# https://bugzilla.redhat.com/show_bug.cgi?id=978763
-Patch23: redhat-rpm-config-9.1.0-stackprotector-strong.patch
-# https://bugzilla.redhat.com/show_bug.cgi?id=905573
-Patch24: redhat-rpm-config-9.1.0-jar-repack-perms.patch
-# Hacky fix for hardened build and libtool. 
-# Should be dropped as soon as libtool is fixed. 
-# https://bugzilla.redhat.com/show_bug.cgi?id=978949
-Patch25: redhat-rpm-config-9.1.0-libtool-hardened-build.patch
-%if 0%{?fedora} >= 20
-# Drop versioning on docdirs in Fedora 20+
-# https://bugzilla.redhat.com/show_bug.cgi?id=986871
-Patch26: redhat-rpm-config-9.1.0-unversioned-docdirs.patch
-# Enable "-Werror=format-security" by default
-Patch27: redhat-rpm-config-9.1.0-strict-format.patch
-%endif
-# enable ppc64le otherwise default rpm cflags will be used
-Patch28: redhat-rpm-config-9.1.0-ppc64le.patch
+Source100: macros.ghc-srpm
+Source101: macros.gnat-srpm
+Source102: macros.mono-srpm
+Source103: macros.nodejs-srpm
+Source104: macros.ocaml-srpm
 
+# Other misc macros
+Source150: macros.dwz
+
+# Build policy scripts
+Source200: brp-compress
+Source201: brp-implant-ident-static
+Source202: brp-java-repack-jars
+Source203: brp-python-hardlink
+Source204: brp-strip
+Source205: brp-strip-comment-note
+Source206: brp-strip-shared
+Source207: brp-strip-static-archive
+
+# Dependency generator scripts (deprecated)
+Source300: find-provides
+Source301: find-provides.ksyms
+Source302: find-provides.libtool
+Source303: find-provides.pkgconfig
+Source304: find-requires
+Source305: find-requires.ksyms
+Source306: find-requires.libtool
+Source307: find-requires.pkgconfig
+Source308: firmware.prov
+Source309: modalias.prov
+
+# Misc helper scripts
+Source400: dist.sh
+Source401: rpmsort
+Source402: symset-table
+Source403: kmodtool
+
+# 16082013 snapshots from http://git.savannah.gnu.org/gitweb/?p=config.git
+Source500: config.guess
+Source501: config.sub
 
 BuildArch: noarch
 Requires: coreutils
@@ -83,64 +75,42 @@ Requires: dwz >= 0.4
 Requires: zip
 Provides: system-rpm-config = %{version}-%{release}
 
+%global rrcdir %{_prefix}/lib/rpm/redhat
+
 %description
 Red Hat specific rpm configuration files.
 
 %prep
-%setup -q
-%patch0 -p1
-%patch1 -p1
-%patch2 -p1
-%patch3 -p1
-%patch4 -p1
-%patch5 -p1
-%patch6 -p1
-%patch7 -p1
-%patch8 -p1
-%patch9 -p1
-%patch10 -p1
-%patch11 -p1
-%patch12 -p1
-%patch13 -p1
-%patch14 -p1
-%patch15 -p1
-%patch16 -p1
-%patch17 -p1
-%patch18 -p1
-%patch19 -p1
-%patch20 -p1
-%patch21 -p1
-%patch22 -p1
-%patch23 -p1
-%patch24 -p1
-%patch25 -p1
-# Only make docs change in Fedora 20+
-%if 0%{?fedora} >= 20
-%patch26 -p1
-%endif
-
-%patch27 -p1
-%patch28 -p1
-%build
+# Not strictly necessary but allows working on file names instead
+# of source numbers in install section
+%setup -c -T
+cp -p %{sources} .
 
 %install
-make DESTDIR=${RPM_BUILD_ROOT} install
-install -m 0444 %{SOURCE1} %{SOURCE2} ${RPM_BUILD_ROOT}/usr/lib/rpm/redhat
-install -m 0755 %{SOURCE10} %{SOURCE11} ${RPM_BUILD_ROOT}/usr/lib/rpm/redhat
-find ${RPM_BUILD_ROOT} -name \*.orig -delete
-# buggy makefile in 9.1.0 leaves changelog in wrong place
-find ${RPM_BUILD_ROOT} -name ChangeLog -delete
+mkdir -p %{buildroot}%{rrcdir}
+install -p -m 644 -t %{buildroot}%{rrcdir} macros rpmrc
+install -p -m 444 -t %{buildroot}%{rrcdir} redhat-hardened-*
+install -p -m 755 -t %{buildroot}%{rrcdir} config.*
+install -p -m 755 -t %{buildroot}%{rrcdir} dist.sh rpmsort symset-table kmodtool
+install -p -m 755 -t %{buildroot}%{rrcdir} brp-*
 
-%clean
-rm -rf ${RPM_BUILD_ROOT}
+install -p -m 755 -t %{buildroot}%{rrcdir} find-*
+mkdir -p %{buildroot}%{rrcdir}/find-provides.d
+install -p -m 644 -t %{buildroot}%{rrcdir}/find-provides.d *.prov
+
+mkdir -p %{buildroot}%{_sysconfdir}/rpm
+install -p -m 644 -t %{buildroot}%{_sysconfdir}/rpm macros.*
 
 %files
 %defattr(-,root,root)
-%doc ChangeLog
-%{_prefix}/lib/rpm/redhat
+%{rrcdir}
 %{_sysconfdir}/rpm/*
 
 %changelog
+* Wed Apr 02 2014  Panu Matilainen <pmatilai@redhat.com> - 10-1
+- Make fedora dist-git the upstream of this package and its sources
+- Add maintainer comments to spec wrt versioning and changes
+
 * Mon Mar 24 2014 Dan Horák <dan[at]danny.cz> - 9.1.0-58
 - enable ppc64le otherwise default rpm cflags will be used
 
