@@ -6,7 +6,7 @@
 
 Summary: Red Hat specific rpm configuration files
 Name: redhat-rpm-config
-Version: 10
+Version: 11
 Release: 1%{?dist}
 # No version specified.
 License: GPL+
@@ -70,12 +70,12 @@ Source501: config.sub
 BuildArch: noarch
 Requires: coreutils
 Requires: perl-srpm-macros
-Requires: rpm >= 4.8.0
+Requires: rpm >= 4.11.0
 Requires: dwz >= 0.4
 Requires: zip
 Provides: system-rpm-config = %{version}-%{release}
 
-%global rrcdir %{_prefix}/lib/rpm/redhat
+%global rrcdir /usr/lib/rpm/redhat
 
 %description
 Red Hat specific rpm configuration files.
@@ -98,15 +98,20 @@ install -p -m 755 -t %{buildroot}%{rrcdir} find-*
 mkdir -p %{buildroot}%{rrcdir}/find-provides.d
 install -p -m 644 -t %{buildroot}%{rrcdir}/find-provides.d *.prov
 
-mkdir -p %{buildroot}%{_sysconfdir}/rpm
-install -p -m 644 -t %{buildroot}%{_sysconfdir}/rpm macros.*
+mkdir -p %{buildroot}%{_rpmconfigdir}/macros.d
+install -p -m 644 -t %{buildroot}%{_rpmconfigdir}/macros.d macros.*
 
 %files
 %defattr(-,root,root)
 %{rrcdir}
-%{_sysconfdir}/rpm/*
+%{_rpmconfigdir}/macros.d/*
 
 %changelog
+* Wed Apr 02 2014  Panu Matilainen <pmatilai@redhat.com> - 11-1
+- Stop pretending this package is relocatable, its not
+- Require rpm >= 4.11 for /usr/lib/rpm/macros.d support etc
+- Move our macros out of from /etc, they're not configuration
+
 * Wed Apr 02 2014  Panu Matilainen <pmatilai@redhat.com> - 10-1
 - Make fedora dist-git the upstream of this package and its sources
 - Add maintainer comments to spec wrt versioning and changes
