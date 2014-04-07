@@ -81,6 +81,13 @@ Provides: system-rpm-config = %{version}-%{release}
 %description
 Red Hat specific rpm configuration files.
 
+%package -n kernel-rpm-macros
+Summary: Macros and scripts for building kernel module packages.
+Requires: redhat-rpm-config >= 12
+
+%description -n kernel-rpm-macros
+Macros and scripts for building kernel module packages.
+
 %prep
 # Not strictly necessary but allows working on file names instead
 # of source numbers in install section
@@ -121,6 +128,7 @@ install -p -m 644 -t %{buildroot}%{_rpmconfigdir}/macros.d macros.*
 %{_rpmconfigdir}/macros.d/macros.*-srpm
 %{_rpmconfigdir}/macros.d/macros.dwz
 
+%files -n kernel-rpm-macros
 %{rrcdir}/kmodtool
 %{rrcdir}/rpmsort
 %{rrcdir}/symset-table
@@ -134,6 +142,7 @@ install -p -m 644 -t %{buildroot}%{_rpmconfigdir}/macros.d macros.*
 * Mon Apr 07 2014  Panu Matilainen <pmatilai@redhat.com> - 12-1
 - Be more explicit about the package contents
 - Split kernel module macros to a separate file
+- Split kernel module scripts and macros to a separate package
 
 * Wed Apr 02 2014  Panu Matilainen <pmatilai@redhat.com> - 11-1
 - Stop pretending this package is relocatable, its not
