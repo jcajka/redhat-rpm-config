@@ -6,7 +6,7 @@
 
 Summary: Red Hat specific rpm configuration files
 Name: redhat-rpm-config
-Version: 11
+Version: 12
 Release: 1%{?dist}
 # No version specified.
 License: GPL+
@@ -103,10 +103,35 @@ install -p -m 644 -t %{buildroot}%{_rpmconfigdir}/macros.d macros.*
 
 %files
 %defattr(-,root,root)
-%{rrcdir}
-%{_rpmconfigdir}/macros.d/*
+%dir %{rrcdir}
+%dir %{rrcdir}/find-provides.d
+%{rrcdir}/macros
+%{rrcdir}/rpmrc
+%{rrcdir}/brp-*
+%{rrcdir}/dist.sh
+%{rrcdir}/find-provides
+%{rrcdir}/find-provides.libtool
+%{rrcdir}/find-provides.pkgconfig
+%{rrcdir}/find-requires
+%{rrcdir}/find-requires.libtool
+%{rrcdir}/find-requires.pkgconfig
+%{rrcdir}/redhat-hardened-*
+%{rrcdir}/config.*
+%{_rpmconfigdir}/macros.d/macros.*-srpm
+%{_rpmconfigdir}/macros.d/macros.dwz
+
+%{rrcdir}/kmodtool
+%{rrcdir}/rpmsort
+%{rrcdir}/symset-table
+%{rrcdir}/find-provides.ksyms
+%{rrcdir}/find-requires.ksyms
+%{rrcdir}/find-provides.d/firmware.prov
+%{rrcdir}/find-provides.d/modalias.prov
 
 %changelog
+* Mon Apr 07 2014  Panu Matilainen <pmatilai@redhat.com> - 12-1
+- Be more explicit about the package contents
+
 * Wed Apr 02 2014  Panu Matilainen <pmatilai@redhat.com> - 11-1
 - Stop pretending this package is relocatable, its not
 - Require rpm >= 4.11 for /usr/lib/rpm/macros.d support etc
