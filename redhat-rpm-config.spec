@@ -34,6 +34,7 @@ Source104: macros.ocaml-srpm
 
 # Other misc macros
 Source150: macros.dwz
+Source151: macros.kmp
 
 # Build policy scripts
 Source200: brp-compress
@@ -127,10 +128,12 @@ install -p -m 644 -t %{buildroot}%{_rpmconfigdir}/macros.d macros.*
 %{rrcdir}/find-requires.ksyms
 %{rrcdir}/find-provides.d/firmware.prov
 %{rrcdir}/find-provides.d/modalias.prov
+%{_rpmconfigdir}/macros.d/macros.kmp
 
 %changelog
 * Mon Apr 07 2014  Panu Matilainen <pmatilai@redhat.com> - 12-1
 - Be more explicit about the package contents
+- Split kernel module macros to a separate file
 
 * Wed Apr 02 2014  Panu Matilainen <pmatilai@redhat.com> - 11-1
 - Stop pretending this package is relocatable, its not
