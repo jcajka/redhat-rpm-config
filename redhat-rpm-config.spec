@@ -141,6 +141,7 @@ install -p -m 644 -t %{buildroot}%{_rpmconfigdir}/macros.d macros.*
 %changelog
 * Tue Apr 08 2014  Panu Matilainen <pmatilai@redhat.com> - 14-1
 - Add Mono path macros (#1070936)
+- Allow opting out of config.{guess,sub} replacement hack (#991613)
 
 * Tue Apr 08 2014  Panu Matilainen <pmatilai@redhat.com> - 13-1
 - Move the remaining dependency generator stuff to the kmp macro package
