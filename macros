@@ -175,9 +175,6 @@ package or when debugging this package.\
 # Use XZ compression for binary payloads
 %_binary_payload w2.xzdio
 
-%__find_provides        /usr/lib/rpm/redhat/find-provides
-%__find_requires        /usr/lib/rpm/redhat/find-requires
-
 %_hardening_cflags	-specs=/usr/lib/rpm/redhat/redhat-hardened-cc1
 # we don't escape symbols '~', '"', etc. so be careful when changing this
 %_hardening_ldflags	-specs=/usr/lib/rpm/redhat/redhat-hardened-ld

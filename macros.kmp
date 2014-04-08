@@ -2,6 +2,9 @@
 redhat_kernel_module_package	1
 kernel_module_package_release	1
 
+%__find_provides        /usr/lib/rpm/redhat/find-provides
+%__find_requires        /usr/lib/rpm/redhat/find-requires
+
 #kernel_module_package [ -n name ] [ -v version ] [ -r release ] [ -s script ]
 #                      [ -f filelist] [ -x ] [ -p preamble ] flavor flavor ...
 

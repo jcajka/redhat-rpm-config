@@ -83,7 +83,7 @@ Red Hat specific rpm configuration files.
 
 %package -n kernel-rpm-macros
 Summary: Macros and scripts for building kernel module packages.
-Requires: redhat-rpm-config >= 12
+Requires: redhat-rpm-config >= 13
 
 %description -n kernel-rpm-macros
 Macros and scripts for building kernel module packages.
@@ -112,26 +112,26 @@ install -p -m 644 -t %{buildroot}%{_rpmconfigdir}/macros.d macros.*
 %files
 %defattr(-,root,root)
 %dir %{rrcdir}
-%dir %{rrcdir}/find-provides.d
 %{rrcdir}/macros
 %{rrcdir}/rpmrc
 %{rrcdir}/brp-*
 %{rrcdir}/dist.sh
-%{rrcdir}/find-provides
-%{rrcdir}/find-provides.libtool
-%{rrcdir}/find-provides.pkgconfig
-%{rrcdir}/find-requires
-%{rrcdir}/find-requires.libtool
-%{rrcdir}/find-requires.pkgconfig
 %{rrcdir}/redhat-hardened-*
 %{rrcdir}/config.*
 %{_rpmconfigdir}/macros.d/macros.*-srpm
 %{_rpmconfigdir}/macros.d/macros.dwz
 
 %files -n kernel-rpm-macros
+%dir %{rrcdir}/find-provides.d
 %{rrcdir}/kmodtool
 %{rrcdir}/rpmsort
 %{rrcdir}/symset-table
+%{rrcdir}/find-provides
+%{rrcdir}/find-provides.libtool
+%{rrcdir}/find-provides.pkgconfig
+%{rrcdir}/find-requires
+%{rrcdir}/find-requires.libtool
+%{rrcdir}/find-requires.pkgconfig
 %{rrcdir}/find-provides.ksyms
 %{rrcdir}/find-requires.ksyms
 %{rrcdir}/find-provides.d/firmware.prov
@@ -139,6 +139,10 @@ install -p -m 644 -t %{buildroot}%{_rpmconfigdir}/macros.d macros.*
 %{_rpmconfigdir}/macros.d/macros.kmp
 
 %changelog
+* Tue Apr 08 2014  Panu Matilainen <pmatilai@redhat.com> - 13-1
+- Move the remaining dependency generator stuff to the kmp macro package
+- Stop overriding rpm external dependency generator settings by default
+
 * Mon Apr 07 2014  Panu Matilainen <pmatilai@redhat.com> - 12-1
 - Be more explicit about the package contents
 - Split kernel module macros to a separate file
