@@ -6,7 +6,7 @@
 
 Summary: Red Hat specific rpm configuration files
 Name: redhat-rpm-config
-Version: 13
+Version: 14
 Release: 1%{?dist}
 # No version specified.
 License: GPL+
@@ -139,6 +139,9 @@ install -p -m 644 -t %{buildroot}%{_rpmconfigdir}/macros.d macros.*
 %{_rpmconfigdir}/macros.d/macros.kmp
 
 %changelog
+* Tue Apr 08 2014  Panu Matilainen <pmatilai@redhat.com> - 14-1
+- Add Mono path macros (#1070936)
+
 * Tue Apr 08 2014  Panu Matilainen <pmatilai@redhat.com> - 13-1
 - Move the remaining dependency generator stuff to the kmp macro package
 - Stop overriding rpm external dependency generator settings by default
