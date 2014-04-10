@@ -6,7 +6,7 @@
 
 Summary: Red Hat specific rpm configuration files
 Name: redhat-rpm-config
-Version: 14
+Version: 15
 Release: 1%{?dist}
 # No version specified.
 License: GPL+
@@ -49,12 +49,8 @@ Source207: brp-strip-static-archive
 # Dependency generator scripts (deprecated)
 Source300: find-provides
 Source301: find-provides.ksyms
-Source302: find-provides.libtool
-Source303: find-provides.pkgconfig
 Source304: find-requires
 Source305: find-requires.ksyms
-Source306: find-requires.libtool
-Source307: find-requires.pkgconfig
 Source308: firmware.prov
 Source309: modalias.prov
 
@@ -127,11 +123,7 @@ install -p -m 644 -t %{buildroot}%{_rpmconfigdir}/macros.d macros.*
 %{rrcdir}/rpmsort
 %{rrcdir}/symset-table
 %{rrcdir}/find-provides
-%{rrcdir}/find-provides.libtool
-%{rrcdir}/find-provides.pkgconfig
 %{rrcdir}/find-requires
-%{rrcdir}/find-requires.libtool
-%{rrcdir}/find-requires.pkgconfig
 %{rrcdir}/find-provides.ksyms
 %{rrcdir}/find-requires.ksyms
 %{rrcdir}/find-provides.d/firmware.prov
@@ -139,6 +131,9 @@ install -p -m 644 -t %{buildroot}%{_rpmconfigdir}/macros.d macros.*
 %{_rpmconfigdir}/macros.d/macros.kmp
 
 %changelog
+* Thu Apr 10 2014  Panu Matilainen <pmatilai@redhat.com> - 15-1
+- Drop most of the script-based dependency generation bits
+
 * Tue Apr 08 2014  Panu Matilainen <pmatilai@redhat.com> - 14-1
 - Add Mono path macros (#1070936)
 - Allow opting out of config.{guess,sub} replacement hack (#991613)
