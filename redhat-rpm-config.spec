@@ -6,7 +6,7 @@
 
 Summary: Red Hat specific rpm configuration files
 Name: redhat-rpm-config
-Version: 15
+Version: 16
 Release: 1%{?dist}
 # No version specified.
 License: GPL+
@@ -64,6 +64,11 @@ Source403: kmodtool
 Source500: config.guess
 Source501: config.sub
 
+# Dependency generators & their rules
+Source600: kmod.attr
+Source601: kmod.prov
+Source602: libsymlink.attr
+
 BuildArch: noarch
 Requires: coreutils
 Requires: perl-srpm-macros
@@ -100,10 +105,14 @@ install -p -m 755 -t %{buildroot}%{rrcdir} brp-*
 
 install -p -m 755 -t %{buildroot}%{rrcdir} find-*
 mkdir -p %{buildroot}%{rrcdir}/find-provides.d
-install -p -m 644 -t %{buildroot}%{rrcdir}/find-provides.d *.prov
+install -p -m 644 -t %{buildroot}%{rrcdir}/find-provides.d firmware.prov modalias.prov
 
 mkdir -p %{buildroot}%{_rpmconfigdir}/macros.d
 install -p -m 644 -t %{buildroot}%{_rpmconfigdir}/macros.d macros.*
+
+mkdir -p %{buildroot}%{_fileattrsdir}
+install -p -m 644 -t %{buildroot}%{_fileattrsdir} *.attr
+install -p -m 755 -t %{buildroot}%{_rpmconfigdir} kmod.prov
 
 %files
 %defattr(-,root,root)
@@ -114,6 +123,8 @@ install -p -m 644 -t %{buildroot}%{_rpmconfigdir}/macros.d macros.*
 %{rrcdir}/dist.sh
 %{rrcdir}/redhat-hardened-*
 %{rrcdir}/config.*
+%{_fileattrsdir}/*.attr
+%{_rpmconfigdir}/kmod.prov
 %{_rpmconfigdir}/macros.d/macros.*-srpm
 %{_rpmconfigdir}/macros.d/macros.dwz
 
@@ -131,6 +142,9 @@ install -p -m 644 -t %{buildroot}%{_rpmconfigdir}/macros.d macros.*
 %{_rpmconfigdir}/macros.d/macros.kmp
 
 %changelog
+* Tue Apr 14 2014  Panu Matilainen <pmatilai@redhat.com> - 16-1
+- Move kmod and libsymlink dependency generators here from rpm
+
 * Thu Apr 10 2014  Panu Matilainen <pmatilai@redhat.com> - 15-1
 - Drop most of the script-based dependency generation bits
 
