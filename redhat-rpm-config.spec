@@ -142,7 +142,7 @@ install -p -m 755 -t %{buildroot}%{_rpmconfigdir} kmod.prov
 %{_rpmconfigdir}/macros.d/macros.kmp
 
 %changelog
-* Tue Apr 14 2014  Panu Matilainen <pmatilai@redhat.com> - 16-1
+* Tue Apr 15 2014  Panu Matilainen <pmatilai@redhat.com> - 16-1
 - Move kmod and libsymlink dependency generators here from rpm
 
 * Thu Apr 10 2014  Panu Matilainen <pmatilai@redhat.com> - 15-1
