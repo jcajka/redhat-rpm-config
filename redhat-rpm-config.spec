@@ -6,7 +6,7 @@
 
 Summary: Red Hat specific rpm configuration files
 Name: redhat-rpm-config
-Version: 16
+Version: 17
 Release: 1%{?dist}
 # No version specified.
 License: GPL+
@@ -30,7 +30,6 @@ Source100: macros.ghc-srpm
 Source101: macros.gnat-srpm
 Source102: macros.mono-srpm
 Source103: macros.nodejs-srpm
-Source104: macros.ocaml-srpm
 
 # Other misc macros
 Source150: macros.dwz
@@ -72,6 +71,7 @@ Source602: libsymlink.attr
 BuildArch: noarch
 Requires: coreutils
 Requires: perl-srpm-macros
+Requires: ocaml-srpm-macros
 Requires: rpm >= 4.11.0
 Requires: dwz >= 0.4
 Requires: zip
@@ -142,6 +142,9 @@ install -p -m 755 -t %{buildroot}%{_rpmconfigdir} kmod.prov
 %{_rpmconfigdir}/macros.d/macros.kmp
 
 %changelog
+* Tue Apr 15 2014  Panu Matilainen <pmatilai@redhat.com> - 17-1
+- Let OCaml handle its own arch macros (#1087794)
+
 * Tue Apr 15 2014  Panu Matilainen <pmatilai@redhat.com> - 16-1
 - Move kmod and libsymlink dependency generators here from rpm
 
