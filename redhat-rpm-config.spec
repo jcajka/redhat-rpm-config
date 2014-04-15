@@ -6,7 +6,7 @@
 
 Summary: Red Hat specific rpm configuration files
 Name: redhat-rpm-config
-Version: 17
+Version: 18
 Release: 1%{?dist}
 # No version specified.
 License: GPL+
@@ -123,6 +123,8 @@ install -p -m 755 -t %{buildroot}%{_rpmconfigdir} kmod.prov
 %{rrcdir}/dist.sh
 %{rrcdir}/redhat-hardened-*
 %{rrcdir}/config.*
+%{rrcdir}/find-provides
+%{rrcdir}/find-requires
 %{_fileattrsdir}/*.attr
 %{_rpmconfigdir}/kmod.prov
 %{_rpmconfigdir}/macros.d/macros.*-srpm
@@ -133,8 +135,6 @@ install -p -m 755 -t %{buildroot}%{_rpmconfigdir} kmod.prov
 %{rrcdir}/kmodtool
 %{rrcdir}/rpmsort
 %{rrcdir}/symset-table
-%{rrcdir}/find-provides
-%{rrcdir}/find-requires
 %{rrcdir}/find-provides.ksyms
 %{rrcdir}/find-requires.ksyms
 %{rrcdir}/find-provides.d/firmware.prov
@@ -142,6 +142,9 @@ install -p -m 755 -t %{buildroot}%{_rpmconfigdir} kmod.prov
 %{_rpmconfigdir}/macros.d/macros.kmp
 
 %changelog
+* Tue Apr 15 2014  Panu Matilainen <pmatilai@redhat.com> - 18-1
+- Temporarily bring back find-requires and -provides scripts to rrc-side
+
 * Tue Apr 15 2014  Panu Matilainen <pmatilai@redhat.com> - 17-1
 - Let OCaml handle its own arch macros (#1087794)
 
