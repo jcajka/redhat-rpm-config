@@ -6,7 +6,7 @@
 
 Summary: Red Hat specific rpm configuration files
 Name: redhat-rpm-config
-Version: 18
+Version: 19
 Release: 1%{?dist}
 # No version specified.
 License: GPL+
@@ -36,14 +36,8 @@ Source150: macros.dwz
 Source151: macros.kmp
 
 # Build policy scripts
-Source200: brp-compress
 Source201: brp-implant-ident-static
 Source202: brp-java-repack-jars
-Source203: brp-python-hardlink
-Source204: brp-strip
-Source205: brp-strip-comment-note
-Source206: brp-strip-shared
-Source207: brp-strip-static-archive
 
 # Dependency generator scripts (deprecated)
 Source300: find-provides
@@ -142,8 +136,8 @@ install -p -m 755 -t %{buildroot}%{_rpmconfigdir} kmod.prov
 %{_rpmconfigdir}/macros.d/macros.kmp
 
 %changelog
-* Sun Apr 27 2014 Ville Skyttä <ville.skytta@iki.fi>
-- Drop bunch of macro definitions needlessly duplicated with rpm
+* Sun Apr 27 2014 Ville Skyttä <ville.skytta@iki.fi> - 19-1
+- Drop bunch of duplicated-with-rpm macro definitions and brp-* scripts
 
 * Tue Apr 15 2014  Panu Matilainen <pmatilai@redhat.com> - 18-1
 - Temporarily bring back find-requires and -provides scripts to rrc-side
