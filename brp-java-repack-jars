@@ -14,16 +14,16 @@ if [ ! -x /usr/bin/unzip ]; then
 fi
 
 JARS=`find $RPM_BUILD_ROOT -type f -name \*.jar -not -size 0`
-if [ ! -z "$JARS" ]; then 
-	
+if [ ! -z "$JARS" ]; then
+
 	# make $RPM_BUILD_ROOT/tmp if it doesn't exist
 	rmtmp=0
 	if [ ! -x "$RPM_BUILD_ROOT/tmp" ]; then
 		mkdir -p $RPM_BUILD_ROOT/tmp
 		rmtmp=1
 	fi
-	
-	# unpack every jar, set the date of the files and directories and 
+
+	# unpack every jar, set the date of the files and directories and
 	# repack the jar
 	OLD_IFS="$IFS"
 	IFS=$(printf '\n\t')
@@ -32,17 +32,17 @@ if [ ! -z "$JARS" ]; then
 		JTMPDIR=`mktemp -d -p $RPM_BUILD_ROOT/tmp "$JARNAME.tmpdir.XXXXXXXXXX"` || exit 1
 		JARDIR=`mktemp -d -p $RPM_BUILD_ROOT/tmp "$JARNAME.jardir.XXXXXXXXXX"` || exit 1
 		TIMEREF=`mktemp -p $RPM_BUILD_ROOT/tmp "$JARNAME.timeref.XXXXXXXXXX"` || exit 1
-		
+
 		pushd "$JTMPDIR" > /dev/null
 		/usr/bin/unzip -qq -o "$j"
 		find -type d -exec chmod a+rx,u+w {} \;
 		find -type f -exec chmod a+r,u+w {} \;
 		rm -f "$j"
-		
+
 		# Create the directories first.
 		find -type d | LC_ALL=C sort | while read d; do
 			mkdir -p "$JARDIR/$d"
-        	done 
+        	done
 
 		# Get the modtime from the newest ChangeLog. If the project
 		# doesn't have a ChangeLog, Jan 1, 1970 will be used.
@@ -61,7 +61,7 @@ if [ ! -z "$JARS" ]; then
 						DATE="$TMPDATE"
 					fi
 				done
-			fi 
+			fi
 		fi
 
 		# move the contents over to the a new directory in order and set

@@ -88,16 +88,16 @@ get_rpmtemplate ()
     if [ ! -z "$kmp_release" ]; then
         echo "Release: %{kmp_release}"
     fi
-    
+
     if [ ! -z "$kmp" ]; then
         echo "%global _use_internal_dependency_generator 0"
     fi
-    
+
     cat <<EOF
 Provides:         kernel-modules = ${verrel}${variant}
 Provides:         ${kmod_name}-kmod = %{?epoch:%{epoch}:}%{version}-%{release}
 EOF
-    
+
     if [ -z "$kmp" ]; then
         echo "Requires:         ${kdep}"
     fi
@@ -131,7 +131,7 @@ if [ -e "/boot/System.map-${verrel}${variant}" ]; then
     /sbin/depmod -aeF "/boot/System.map-${verrel}${variant}" "${verrel}${variant}" > /dev/null || :
 fi
 EOF
-    
+
     if [ ! -z "$kmp" ]; then
         cat <<EOF
 
@@ -144,14 +144,14 @@ fi
 rpm -ql kmod-${kmod_name}${dashvariant} | grep '\.ko$' \
     > /var/run/rpm-kmod-${kmod_name}${dashvariant}-modules
 EOF
-        
+
     fi
-    
+
     cat <<EOF
 %postun        -n kmod-${kmod_name}${dashvariant}
 /sbin/depmod -aF /boot/System.map-${verrel}${variant} ${verrel}${variant} &> /dev/null || :
 EOF
-    
+
     if [ ! -z "$kmp" ]; then
         cat <<EOF
 modules=( \$(cat /var/run/rpm-kmod-${kmod_name}${dashvariant}-modules) )
@@ -192,7 +192,7 @@ print_rpmtemplate ()
     echo "Couldn't find out the verrel." >&2
     exit 2
   fi
-  
+
   for variant in "$@" ; do
       if [ "default" == "$variant" ];
       then
@@ -210,15 +210,15 @@ You called: ${invocation}
 
 Usage: ${myprog} <command> <option>+
  Commands:
-  verrel <uname>                               
+  verrel <uname>
     - Get "base" version-release.
-  variant <uname>                               
+  variant <uname>
     - Get variant from uname.
-  rpmtemplate <mainpgkname> <uname> <variants> 
+  rpmtemplate <mainpgkname> <uname> <variants>
     - Return a template for use in a source RPM
   rpmtemplate_kmp <mainpgkname> <uname> <variants>
     - Return a template for use in a source RPM with KMP dependencies
-  version  
+  version
     - Output version number and exit.
 EOF
 }

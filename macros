@@ -188,7 +188,7 @@ package or when debugging this package.\
 %__global_ldflags	-Wl,-z,relro %{_hardened_ldflags}
 
 #==============================================================================
-# ---- Generic auto req/prov filtering macros 
+# ---- Generic auto req/prov filtering macros
 #
 # http://fedoraproject.org/wiki/PackagingDrafts/AutoProvidesAndRequiresFiltering
 
@@ -212,11 +212,10 @@ package or when debugging this package.\
 %global __filter_from_req %{?__filter_from_req} | %{__sed} -e '%*' \
 }
 
-# actually set up the filtering bits 
+# actually set up the filtering bits
 %filter_setup %{expand: \
 %global _use_internal_dependency_generator 0 \
 %global __deploop() while read FILE; do echo "${FILE}" | /usr/lib/rpm/rpmdeps -%{1}; done | /bin/sort -u \
 %global __find_provides /bin/sh -c "%{?__filter_prov_cmd} %{__deploop P} %{?__filter_from_prov}" \
 %global __find_requires /bin/sh -c "%{?__filter_req_cmd}  %{__deploop R} %{?__filter_from_req}" \
 }
-

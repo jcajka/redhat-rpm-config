@@ -299,14 +299,14 @@ install -p -m 755 -t %{buildroot}%{_rpmconfigdir} kmod.prov
 - add ghc_arches_with_ghci
 
 * Wed Nov 09 2011 Dennis Gilmore <dennis@ausil.us> - 9.1.0-23
-- remove patch that forces --disable-silent-rules to configure 
+- remove patch that forces --disable-silent-rules to configure
 - it breaks anything set to not ignore unknown configure options
 
 * Tue Oct 18 2011 Jens Petersen <petersen@redhat.com> - 9.1.0-22
 - add armv5tel to ghc_arches
 
 * Wed Sep 28 2011 Dennis Gilmore <dennis@ausil.us> - 9.1.0-21
-- build armv5tel on armv7l since they are the same abi armv7hl is 
+- build armv5tel on armv7l since they are the same abi armv7hl is
 - a incompatable ABI
 
 * Wed Sep 28 2011 Jens Petersen <petersen@redhat.com> - 9.1.0-20
@@ -424,7 +424,7 @@ install -p -m 755 -t %{buildroot}%{_rpmconfigdir} kmod.prov
 - Resolves: #485826.
 
 * Tue Feb 17 2009 Dennis Gilmore <dennis@ausil.us> - 9.0.3-6
-- add missing armv7l arch  
+- add missing armv7l arch
 - set the default build arch to match fedora arm build target
 
 * Mon Feb 16 2009 Dennis Gilmore <dennis@ausil.us> - 9.0.3-5
@@ -483,7 +483,7 @@ install -p -m 755 -t %{buildroot}%{_rpmconfigdir} kmod.prov
   Further debate may see these move elsewhere in the ordering.
 
 * Tue Mar 13 2007 Ben Konrath <bkonrath@redhat.com> 8.0.45-13
-- Update brp-java-repack-jars to fix issue with tomcat. 
+- Update brp-java-repack-jars to fix issue with tomcat.
 
 * Wed Oct 18 2006 Jon Masters <jcm@redhat.com> 8.0.45-12
 - Synced kernel_module_package semantics with SuSE.
@@ -505,13 +505,13 @@ install -p -m 755 -t %{buildroot}%{_rpmconfigdir} kmod.prov
 - Fix order of tokens in find command (thanks mikeb@redhat.com)
 
 * Thu Sep  7 2006 Ben Konrath <bkonrath@redhat.com> - 8.0.45-4
-- Fix bug in repack jars script. 
+- Fix bug in repack jars script.
 
 * Wed Sep  6 2006 Jeremy Katz <katzj@redhat.com> - 8.0.45-3
 - path fix
 
 * Tue Sep  5 2006 Jeremy Katz <katzj@redhat.com> - 8.0.45-2
-- Add script from Ben Konrath <bkonrath@redhat.com> to repack jars to 
+- Add script from Ben Konrath <bkonrath@redhat.com> to repack jars to
   avoid multilib conflicts
 
 * Sun Jul 30 2006 Jon Masters <jcm@redhat.com> - 8.0.45-1
@@ -661,7 +661,7 @@ install -p -m 755 -t %{buildroot}%{_rpmconfigdir} kmod.prov
 - Update macrofiles
 
 * Wed Jul 31 2002 Elliot Lee <sopwith@redhat.com> 7.3.93-1
-- Add _unpackaged_files_terminate_build and 
+- Add _unpackaged_files_terminate_build and
 _missing_doc_files_terminate_build to macros
 
 * Thu Jul 11 2002 Elliot Lee <sopwith@redhat.com> 7.3.92-6
