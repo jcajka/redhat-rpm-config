@@ -22,7 +22,7 @@ Source50: redhat-hardened-cc1
 Source51: redhat-hardened-ld
 
 # The macros defined by these files are for things that need to be defined
-# at srpm creation time when it is not feasable to require the base packages
+# at srpm creation time when it is not feasible to require the base packages
 # that would otherwise be providing the macros. other language/arch specific
 # macros should not be defined here but instead in the base packages that can
 # be pulled in at rpm build time, this is specific for srpm creation.
@@ -307,7 +307,7 @@ install -p -m 755 -t %{buildroot}%{_rpmconfigdir} kmod.prov
 
 * Wed Sep 28 2011 Dennis Gilmore <dennis@ausil.us> - 9.1.0-21
 - build armv5tel on armv7l since they are the same abi armv7hl is
-- a incompatable ABI
+  an incompatible ABI
 
 * Wed Sep 28 2011 Jens Petersen <petersen@redhat.com> - 9.1.0-20
 - add armv7hl to ghc_arches
@@ -429,8 +429,8 @@ install -p -m 755 -t %{buildroot}%{_rpmconfigdir} kmod.prov
 
 * Mon Feb 16 2009 Dennis Gilmore <dennis@ausil.us> - 9.0.3-5
 - apply fedora 11 default buildflags
-- set 32 bit intel build arch to i586 on compatiable hardware
-- set 32 bit sparc build arch to sparcv9 on compatiable hardware
+- set 32 bit intel build arch to i586 on compatible hardware
+- set 32 bit sparc build arch to sparcv9 on compatible hardware
 
 * Mon Feb 16 2009 Dennis Gilmore <dennis@ausil.us> - 9.0.3-4
 - limit _smp_flags to -j16
