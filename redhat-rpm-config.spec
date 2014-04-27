@@ -142,6 +142,9 @@ install -p -m 755 -t %{buildroot}%{_rpmconfigdir} kmod.prov
 %{_rpmconfigdir}/macros.d/macros.kmp
 
 %changelog
+* Sun Apr 27 2014 Ville Skyttä <ville.skytta@iki.fi>
+- Drop bunch of macro definitions needlessly duplicated with rpm
+
 * Tue Apr 15 2014  Panu Matilainen <pmatilai@redhat.com> - 18-1
 - Temporarily bring back find-requires and -provides scripts to rrc-side
 

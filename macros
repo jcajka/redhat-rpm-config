@@ -11,13 +11,8 @@
 # ---- configure macros.  note that most of these are inherited
 #      from the defaults.
 #
-%_prefix		/usr
-%_sysconfdir		/etc
 %_localstatedir		/var
-%_infodir		%{_prefix}/share/info
-%_mandir		%{_prefix}/share/man
 
-%_defaultdocdir		%{_prefix}/share/doc
 %_pkgdocdir             %{_docdir}/%{name}
 %_docdir_fmt            %%{NAME}
 
@@ -31,7 +26,6 @@
 #
 %_configure_gnuconfig_hack	1
 %_configure_libtool_hardening_hack	1
-%_configure ./configure
 %configure \
   CFLAGS="${CFLAGS:-%optflags}" ; export CFLAGS ; \
   CXXFLAGS="${CXXFLAGS:-%optflags}" ; export CXXFLAGS ; \
@@ -61,23 +55,6 @@
 	--sharedstatedir=%{_sharedstatedir} \\\
 	--mandir=%{_mandir} \\\
 	--infodir=%{_infodir}
-
-%makeinstall \
-  %{__make} \\\
-	prefix=%{?buildroot:%{buildroot}}%{_prefix} \\\
-	exec_prefix=%{?buildroot:%{buildroot}}%{_exec_prefix} \\\
-	bindir=%{?buildroot:%{buildroot}}%{_bindir} \\\
-	sbindir=%{?buildroot:%{buildroot}}%{_sbindir} \\\
-	sysconfdir=%{?buildroot:%{buildroot}}%{_sysconfdir} \\\
-	datadir=%{?buildroot:%{buildroot}}%{_datadir} \\\
-	includedir=%{?buildroot:%{buildroot}}%{_includedir} \\\
-	libdir=%{?buildroot:%{buildroot}}%{_libdir} \\\
-	libexecdir=%{?buildroot:%{buildroot}}%{_libexecdir} \\\
-	localstatedir=%{?buildroot:%{buildroot}}%{_localstatedir} \\\
-	sharedstatedir=%{?buildroot:%{buildroot}}%{_sharedstatedir} \\\
-	mandir=%{?buildroot:%{buildroot}}%{_mandir} \\\
-	infodir=%{?buildroot:%{buildroot}}%{_infodir} \\\
-  install
 
 # Maximum number of CPU's to use when building, 0 for unlimited.
 %_smp_ncpus_max 16
@@ -127,43 +104,13 @@
     %{__os_install_post}\
 %{nil}
 
-
-#	Template for debug information sub-package.
-# NOTE: This is a copy from rpm to get the ifnarch noarch fix, it can be removed later
-%debug_package \
-%ifnarch noarch\
-%global __debug_package 1\
-%package debuginfo \
-Summary: Debug information for package %{name}\
-Group: Development/Debug\
-AutoReqProv: 0\
-%description debuginfo\
-This package provides debug information for package %{name}.\
-Debug information is useful when developing applications that use this\
-package or when debugging this package.\
-%files debuginfo -f debugfiles.list\
-%defattr(-,root,root)\
-%endif\
-%{nil}
-
 %install %{?_enable_debug_packages:%{?buildsubdir:%{debug_package}}}\
 %%install\
 %{nil}
 
 #
-# use internal dep generator?
-%_use_internal_dependency_generator 1
-
-#
-# Should missing %doc files terminate a build?
-%_missing_doc_files_terminate_build    1
-#
 # Should missing buildids terminate a build?
 %_missing_build_ids_terminate_build    1
-
-#
-# Should unpackaged files in a build root terminate a build?
-%_unpackaged_files_terminate_build    1
 
 #
 ## Should python bytecompilation errors terminate a build?
