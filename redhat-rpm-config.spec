@@ -6,7 +6,7 @@
 
 Summary: Red Hat specific rpm configuration files
 Name: redhat-rpm-config
-Version: 19
+Version: 20
 Release: 1%{?dist}
 # No version specified.
 License: GPL+
@@ -109,7 +109,6 @@ install -p -m 644 -t %{buildroot}%{_fileattrsdir} *.attr
 install -p -m 755 -t %{buildroot}%{_rpmconfigdir} kmod.prov
 
 %files
-%defattr(-,root,root)
 %dir %{rrcdir}
 %{rrcdir}/macros
 %{rrcdir}/rpmrc
@@ -136,6 +135,9 @@ install -p -m 755 -t %{buildroot}%{_rpmconfigdir} kmod.prov
 %{_rpmconfigdir}/macros.d/macros.kmp
 
 %changelog
+* Tue Apr 29 2014 Peter Robinson <pbrobinson@fedoraproject.org> 20-1
+- With gcc 4.9 aarch64 now supports stack-protector
+
 * Sun Apr 27 2014 Ville Skyttä <ville.skytta@iki.fi> - 19-1
 - Drop bunch of duplicated-with-rpm macro definitions and brp-* scripts
 
