@@ -6,7 +6,7 @@
 
 Summary: Red Hat specific rpm configuration files
 Name: redhat-rpm-config
-Version: 20
+Version: 21
 Release: 1%{?dist}
 # No version specified.
 License: GPL+
@@ -26,7 +26,6 @@ Source51: redhat-hardened-ld
 # that would otherwise be providing the macros. other language/arch specific
 # macros should not be defined here but instead in the base packages that can
 # be pulled in at rpm build time, this is specific for srpm creation.
-Source100: macros.ghc-srpm
 Source101: macros.gnat-srpm
 Source102: macros.mono-srpm
 Source103: macros.nodejs-srpm
@@ -66,6 +65,7 @@ BuildArch: noarch
 Requires: coreutils
 Requires: perl-srpm-macros
 Requires: ocaml-srpm-macros
+Requires: ghc-srpm-macros
 Requires: rpm >= 4.11.0
 Requires: dwz >= 0.4
 Requires: zip
@@ -135,6 +135,10 @@ install -p -m 755 -t %{buildroot}%{_rpmconfigdir} kmod.prov
 %{_rpmconfigdir}/macros.d/macros.kmp
 
 %changelog
+* Wed Apr 30 2014 Jens Petersen <petersen@redhat.com> - 21-1
+- macros.ghc-srpm moved to ghc-rpm-macros package (#1089102)
+- add requires ghc-srpm-macros
+
 * Tue Apr 29 2014 Peter Robinson <pbrobinson@fedoraproject.org> 20-1
 - With gcc 4.9 aarch64 now supports stack-protector
 
