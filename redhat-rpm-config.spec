@@ -6,7 +6,7 @@
 
 Summary: Red Hat specific rpm configuration files
 Name: redhat-rpm-config
-Version: 21
+Version: 22
 Release: 1%{?dist}
 # No version specified.
 License: GPL+
@@ -135,6 +135,9 @@ install -p -m 755 -t %{buildroot}%{_rpmconfigdir} kmod.prov
 %{_rpmconfigdir}/macros.d/macros.kmp
 
 %changelog
+* Mon May 12 2014 Josh Boyer <jwboyer@fedoraproject.org> - 22-1
+- Fix kmod.prov to deal with compressed modules (#1096349)
+
 * Wed Apr 30 2014 Jens Petersen <petersen@redhat.com> - 21-1
 - macros.ghc-srpm moved to ghc-rpm-macros package (#1089102)
 - add requires ghc-srpm-macros

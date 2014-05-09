@@ -4,7 +4,7 @@ IFS=$'\n'
 
 for i in $(grep -E '(/lib/modules/.*\.ko|/lib/modules/.*/modules.builtin)');
 do
-	kmod=$(basename $i);
+	kmod=$(basename $i | sed -e 's/.[xg]z//');
 
 	if [ $kmod == "modules.builtin" ]; then
 		for j in $(cat $i); do
