@@ -6,7 +6,7 @@
 
 Summary: Red Hat specific rpm configuration files
 Name: redhat-rpm-config
-Version: 22
+Version: 23
 Release: 1%{?dist}
 # No version specified.
 License: GPL+
@@ -135,6 +135,9 @@ install -p -m 755 -t %{buildroot}%{_rpmconfigdir} kmod.prov
 %{_rpmconfigdir}/macros.d/macros.kmp
 
 %changelog
+* Tue May 13 2014 Peter Robinson <pbrobinson@fedoraproject.org> 
+- aarch64 has Ada so add it to GNAT_arches
+
 * Mon May 12 2014 Josh Boyer <jwboyer@fedoraproject.org> - 22-1
 - Fix kmod.prov to deal with compressed modules (#1096349)
 
