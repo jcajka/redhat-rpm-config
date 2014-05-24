@@ -7,7 +7,7 @@
 Summary: Red Hat specific rpm configuration files
 Name: redhat-rpm-config
 Version: 23
-Release: 1%{?dist}
+Release: 2%{?dist}
 # No version specified.
 License: GPL+
 Group: Development/System
@@ -135,6 +135,9 @@ install -p -m 755 -t %{buildroot}%{_rpmconfigdir} kmod.prov
 %{_rpmconfigdir}/macros.d/macros.kmp
 
 %changelog
+* Sat May 24 2014 Brent Baude <baude@us.ibm.com> - 23-2
+- Changed ppc64 to power64 macro for mono_archs
+
 * Tue May 13 2014 Peter Robinson <pbrobinson@fedoraproject.org> 
 - aarch64 has Ada so add it to GNAT_arches
 
