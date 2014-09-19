@@ -6,8 +6,8 @@
 
 Summary: Red Hat specific rpm configuration files
 Name: redhat-rpm-config
-Version: 24
-Release: 2%{?dist}
+Version: 25
+Release: 1%{?dist}
 # No version specified.
 License: GPL+
 Group: Development/System
@@ -135,6 +135,9 @@ install -p -m 755 -t %{buildroot}%{_rpmconfigdir} kmod.prov
 %{_rpmconfigdir}/macros.d/macros.kmp
 
 %changelog
+* Fri Sep 19 2014 Dan Horák <dan[at]danny.cz> - 25-1
+- there is still no properly packaged Mono for ppc64le
+
 * Sun Jun 08 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 24-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_21_Mass_Rebuild
 
