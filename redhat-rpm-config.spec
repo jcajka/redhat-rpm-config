@@ -6,7 +6,7 @@
 
 Summary: Red Hat specific rpm configuration files
 Name: redhat-rpm-config
-Version: 25
+Version: 26
 Release: 1%{?dist}
 # No version specified.
 License: GPL+
@@ -26,7 +26,6 @@ Source51: redhat-hardened-ld
 # that would otherwise be providing the macros. other language/arch specific
 # macros should not be defined here but instead in the base packages that can
 # be pulled in at rpm build time, this is specific for srpm creation.
-Source101: macros.gnat-srpm
 Source102: macros.mono-srpm
 Source103: macros.nodejs-srpm
 
@@ -65,6 +64,7 @@ BuildArch: noarch
 Requires: coreutils
 Requires: perl-srpm-macros
 Requires: ocaml-srpm-macros
+Requires: gnat-srpm-macros
 Requires: ghc-srpm-macros
 Requires: rpm >= 4.11.0
 Requires: dwz >= 0.4
@@ -135,6 +135,9 @@ install -p -m 755 -t %{buildroot}%{_rpmconfigdir} kmod.prov
 %{_rpmconfigdir}/macros.d/macros.kmp
 
 %changelog
+* Mon Sep 22 2014 Panu Matilainen <pmatilai@redhat.com> - 26-1
+- Gnat macros are now in a package of their own (#1133632)
+
 * Fri Sep 19 2014 Dan Horák <dan[at]danny.cz> - 25-1
 - there is still no properly packaged Mono for ppc64le
 
