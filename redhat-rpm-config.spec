@@ -6,7 +6,7 @@
 
 Summary: Red Hat specific rpm configuration files
 Name: redhat-rpm-config
-Version: 26
+Version: 27
 Release: 1%{?dist}
 # No version specified.
 License: GPL+
@@ -135,6 +135,9 @@ install -p -m 755 -t %{buildroot}%{_rpmconfigdir} kmod.prov
 %{_rpmconfigdir}/macros.d/macros.kmp
 
 %changelog
+* Wed Dec 10 2014 Dan Horák <dan[at]danny.cz> - 27-1
+- Explicitly set -mcpu/-mtune for ppc64p7 and ppc64le to override rpm defaults
+
 * Mon Sep 22 2014 Panu Matilainen <pmatilai@redhat.com> - 26-1
 - Gnat macros are now in a package of their own (#1133632)
 
