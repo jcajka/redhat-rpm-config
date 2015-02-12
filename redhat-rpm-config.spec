@@ -6,7 +6,7 @@
 
 Summary: Red Hat specific rpm configuration files
 Name: redhat-rpm-config
-Version: 27
+Version: 28
 Release: 1%{?dist}
 # No version specified.
 License: GPL+
@@ -135,6 +135,9 @@ install -p -m 755 -t %{buildroot}%{_rpmconfigdir} kmod.prov
 %{_rpmconfigdir}/macros.d/macros.kmp
 
 %changelog
+* Thu Feb 19 2015 Till Maas <opensource@till.name> - 28-1
+- Enable harden flags by default (#1192183)
+
 * Wed Dec 10 2014 Dan Horák <dan[at]danny.cz> - 27-1
 - Explicitly set -mcpu/-mtune for ppc64p7 and ppc64le to override rpm defaults
 
