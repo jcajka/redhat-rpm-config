@@ -6,7 +6,7 @@
 
 Summary: Red Hat specific rpm configuration files
 Name: redhat-rpm-config
-Version: 28
+Version: 29
 Release: 1%{?dist}
 # No version specified.
 License: GPL+
@@ -135,6 +135,9 @@ install -p -m 755 -t %{buildroot}%{_rpmconfigdir} kmod.prov
 %{_rpmconfigdir}/macros.d/macros.kmp
 
 %changelog
+* Wed Apr 08 2015 Adam Jackson <ajax@redhat.com> 29-1
+- Fix ld specs mishandling of incremental linking
+
 * Thu Feb 19 2015 Till Maas <opensource@till.name> - 28-1
 - Enable harden flags by default (#1192183)
 
