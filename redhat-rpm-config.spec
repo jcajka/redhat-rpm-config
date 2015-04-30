@@ -8,6 +8,8 @@ Summary: Red Hat specific rpm configuration files
 Name: redhat-rpm-config
 Version: 30
 Release: 1%{?dist}
+# Be ahead of Fedora
+Epoch: 1
 # No version specified.
 License: GPL+
 Group: Development/System
@@ -28,6 +30,7 @@ Source51: redhat-hardened-ld
 # be pulled in at rpm build time, this is specific for srpm creation.
 Source102: macros.mono-srpm
 Source103: macros.nodejs-srpm
+Source104: macros.go
 
 # Other misc macros
 Source150: macros.dwz
@@ -122,6 +125,7 @@ install -p -m 755 -t %{buildroot}%{_rpmconfigdir} kmod.prov
 %{_rpmconfigdir}/kmod.prov
 %{_rpmconfigdir}/macros.d/macros.*-srpm
 %{_rpmconfigdir}/macros.d/macros.dwz
+%{_rpmconfigdir}/macros.d/macros.go
 
 %files -n kernel-rpm-macros
 %dir %{rrcdir}/find-provides.d
@@ -135,6 +139,10 @@ install -p -m 755 -t %{buildroot}%{_rpmconfigdir} kmod.prov
 %{_rpmconfigdir}/macros.d/macros.kmp
 
 %changelog
+* Thu Apr 30 2015 Jakub Čajka <jcajka@redhat.com> 30-1:1
+- Added Go macros
+- Epoch bump to be ahead of Fedora
+
 * Wed Apr 29 2015 Florian Festi <ffesti@redhat.com> 30-1
 - Fix libsymlink.attr for new magic pattern for symlinks (#1207945)
 
