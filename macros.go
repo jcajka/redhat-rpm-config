@@ -1,7 +1,8 @@
 # for use like:
 # ExclusiveArch:  %{go_arches}
 # Former "%go_arches"
-%golang_arches   empty # can't be empty...
+# can't be empty...
+%golang_arches   empty
 %gccgo_arches    %{power64} s390x aarch64 %{ix86} x86_64 %{arm}
 %go_arches       %golang_arches %gccgo_arches
 
