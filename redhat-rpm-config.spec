@@ -7,7 +7,7 @@
 Summary: Red Hat specific rpm configuration files
 Name: redhat-rpm-config
 Version: 27
-Release: 2%{?dist}
+Release: 3%{?dist}
 # Be ahead of Fedora
 Epoch: 1
 # No version specified.
@@ -139,6 +139,9 @@ install -p -m 755 -t %{buildroot}%{_rpmconfigdir} kmod.prov
 %{_rpmconfigdir}/macros.d/macros.kmp
 
 %changelog
+* Mon May 04 2015 Jakub Čajka <jcajka@redhat.com> 27-3:1
+- No inline comments
+
 * Mon May 04 2015 Jakub Čajka <jcajka@redhat.com> 27-2:1
 - Workaround empty golang arches
 
