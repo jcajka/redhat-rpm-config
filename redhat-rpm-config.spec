@@ -7,7 +7,7 @@
 Summary: Red Hat specific rpm configuration files
 Name: redhat-rpm-config
 Version: 30
-Release: 3%{?dist}
+Release: 4%{?dist}
 # Be ahead of Fedora
 Epoch: 1
 # No version specified.
@@ -139,6 +139,9 @@ install -p -m 755 -t %{buildroot}%{_rpmconfigdir} kmod.prov
 %{_rpmconfigdir}/macros.d/macros.kmp
 
 %changelog
+* Tue May 05 2015 Jakub Čajka <jcajka@redhat.com> 30-4:1
+- Fix ifarch conditionals
+
 * Mon May 04 2015 Jakub Čajka <jcajka@redhat.com> 30-3:1
 - No inline comments
 
