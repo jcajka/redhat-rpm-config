@@ -20,17 +20,19 @@
 %buildrequiresgo \
   %ifarch %golang_arches \
 BuildRequires: golang %{?golang_version} \
-  %else %{ %ifarch %gccgo_arches \
+  %else \
+  %ifarch %gccgo_arches \
 BuildRequires: gcc-go %{?gccgo_version} \
-  %endif }\
+  %endif \
   %endif
 
 %requiresgo \
   %ifarch %golang_arches \
 Requires: golang %{?golang_version} \
-  %else %{ %ifarch %gccgo_arches \
+  %else \
+  %ifarch %gccgo_arches \
 Requires: libgo %{?gccgo_version} \
-  %endif }\
+  %endif \
   %endif
 
 # gocommands -p option for setting additional GOPATH(s), all arguments are appended to the go command 
@@ -47,15 +49,17 @@ Requires: libgo %{?gccgo_version} \
 %gobuild(p:) \
   %ifarch %golang_arches \
     GOPATH=%{-p*} go build -compiler gc %{*} \
-  %else %{ %ifarch %gccgo_arches \
+  %else \
+  %ifarch %gccgo_arches \
     GOPATH=%{-p*} go build -compiler gccgo -gccgoflags "$RPM_OPT_FLAGS" %{*} \
-  %endif }\
+  %endif \
   %endif
 
 %gotest(p:) \
   %ifarch %golang_arches \
     GOPATH=%{buildroot}/%{gopath}:%{gopath}:%{-p*} go test -compiler gc %{*} \
-  %else %{ %ifarch %gccgo_arches \
+  %else \
+  %ifarch %gccgo_arches \
     GOPATH=%{buildroot}/%{gopath}:%{gopath}:%{-p*} go test -compiler gccgo -gccgoflags "$RPM_OPT_FLAGS" %{*} \
-  %endif }\
+  %endif \
   %endif
